@@ -9,4 +9,8 @@ return [
     'es' => 'Español',
     'search_placeholder' => 'Buscar un dron...',
     'products'=>'Productos',
+    'about' => 'Acerca de',
+    'log' => 'Iniciar sesión',
+    'sign' => 'Registrarse',
+
 ];
