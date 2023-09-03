@@ -9,4 +9,5 @@ return [
     'reviews' => 'Reviews',
     'en' => 'English',
     'es'=> 'Spanish',
+    'welcome'=>'Welcome'
 ];

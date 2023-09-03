@@ -9,6 +9,7 @@ class AdminPageController extends Controller
  {
     $viewData = [];
     $viewData["title"] =__('adminpanel.title');
+    $viewData["message"] =__('adminpanel.welcome');
     return view('admin.index')->with("viewData", $viewData);
     }
 }

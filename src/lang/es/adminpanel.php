@@ -9,4 +9,5 @@ return [
     'reviews' => 'Reseñas',
     'en' => 'Inglés',
     'es' => 'Español',
+    'welcome'=>'Bienvenido'
 ];
