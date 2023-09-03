@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('price');
-            $table->enum('size', ['s', 'm','l']); //small, medium, large.
+            $table->string('brand');
+            $table->integer('price');
+            $table->string('size')->default('s');
             $table->text('description');
             $table->string('image');
-            $table->enum('category', ['accessory', 'base']);
+            $table->string('category')->default('accessory');
             $table->timestamps();
         });
     }

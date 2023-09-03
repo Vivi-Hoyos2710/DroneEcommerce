@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller('App\Http\Controllers\HomeController')->group(function () {
+    Route::get('/', 'index')->name("home.index");
+});
+Route::controller('App\Http\Controllers\AdminPageController')->group(function () {
+    Route::get('/admin', 'index')->name("admin.index");
 });
