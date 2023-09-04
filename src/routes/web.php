@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller('App\Http\Controllers\HomeController')->group(function () {
-    Route::get('/', 'index')->name("home.index");
+Route::controller('App\Http\Controllers\HomeController')->group(function (): void {
+    Route::get('/', 'index')->name('home.index');
 });
-Route::controller('App\Http\Controllers\AdminPageController')->group(function () {
-    Route::get('/admin', 'index')->name("admin.index");
+Route::controller('App\Http\Controllers\AdminPageController')->group(function (): void {
+    Route::get('/admin', 'index')->name('admin.index');
 });
