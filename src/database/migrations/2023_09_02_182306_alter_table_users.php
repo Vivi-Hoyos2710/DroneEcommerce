@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('total_amount');
-            $table->string('address');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('username')->unique();
+            $table->string('rol')->default('customer'); //admin or customer.
+            $table->float('balance');
         });
     }
 
@@ -25,7 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
-        
+        //
     }
 };
