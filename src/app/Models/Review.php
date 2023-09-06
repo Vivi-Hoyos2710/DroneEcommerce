@@ -87,8 +87,33 @@ class Review extends Model
     }
 
     //RelationShips
+    //USER
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function getUser(): BelongsTo
+    {
+        return $this->user;
+    }
+
+    public function setUser(BelongsTo $user): void
+    {
+        $this->user = $user;
+    }
+    //Product
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    public function setProduct($product): void
+    {
+        $this->product = $product;
     }
 }

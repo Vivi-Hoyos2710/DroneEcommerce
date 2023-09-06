@@ -88,7 +88,7 @@ class Product extends Model
         $this->attributes['brand'] = mb_strtolower($brand);
     }
 
-    public function setPrice(float $price): void
+    public function setPrice(int $price): void
     {
         $this->attributes['price'] = $price;
     }
