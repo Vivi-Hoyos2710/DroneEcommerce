@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::controller('App\Http\Controllers\HomeController')->group(function (): void {
     Route::get('/', 'index')->name('home.index');
 });
+Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
+    Route::get('/products', 'index')->name('product.index');
+    Route::get('/products/{id}', 'show')->name('product.show');
+});
 //User Routes WITH auth
 Route::middleware('auth')->group(function (){
     Route::controller('App\Http\Controllers\UserController')->group(function (): void {
@@ -36,12 +40,15 @@ Route::middleware('auth')->group(function (){
 Route::middleware('admin')->group(function () {
     Route::controller('App\Http\Controllers\Admin\AdminPageController')->group(function (): void {
         Route::get('/admin', 'index')->name('admin.index');
-    });
+    });        
     Route::controller('App\Http\Controllers\Admin\AdminOrderController')->group(function (): void {
         Route::get('/admin/orders', 'index')->name('admin.orders');
         Route::delete('/admin/orders/{id}/delete', 'delete')->name('admin.orders.delete');
         Route::get('/admin/orders/{id}/show', 'show')->name('admin.orders.show');
-        
+        Route::get('admin/products', 'index')->name('admin.product.index');
+        Route::get('admin/products/create', 'create')->name('admin.product.create');
+
     });
 });
 Auth::routes();
+
