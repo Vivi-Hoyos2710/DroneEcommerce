@@ -6,62 +6,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): void
-    {
 
+    public function index(): View
+    {
+        $viewData = [];
+        $viewData["title"] = "My Orders - Online Store";
+        $viewData["subtitle"] = "My Orders";
+        $viewData['table_header'] = ['Item ID', 'Product Name', 'Price', 'Quantity'];
+        $viewData["orders"] = Order::with(['items.product'])->where('user_id', Auth::user()->getId())->get();
+        return view('user.order.index')->with("viewData", $viewData);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): void
-    {
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): void
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order): void
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order): void
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order): void
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order): void
-    {
-
-    }
 }

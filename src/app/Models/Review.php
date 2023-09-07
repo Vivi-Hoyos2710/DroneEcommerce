@@ -50,12 +50,12 @@ class Review extends Model
         return $this->attributes['product_id'];
     }
 
-    public function getCreatedAtColumn(): string
+    public function getCreatedAtColumn(): int
     {
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAtColumn(): string
+    public function getUpdatedAtColumn(): int
     {
         return $this->attributes['updated_at'];
     }
