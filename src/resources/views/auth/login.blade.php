@@ -35,11 +35,6 @@
                     </div>
                     <div class="mb-0 text-center">
                         <button type="submit" class="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg">{{ __('Login') }}</button>
-                        @if (Route::has('password.request'))
-                            <a class="text-blue-500 hover:underline text-sm mt-2" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
                     </div>
                 </form>
             </div>
