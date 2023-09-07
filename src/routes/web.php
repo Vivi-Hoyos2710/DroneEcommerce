@@ -21,3 +21,8 @@ Route::controller('App\Http\Controllers\HomeController')->group(function (): voi
 Route::controller('App\Http\Controllers\AdminPageController')->group(function (): void {
     Route::get('/admin', 'index')->name('admin.index');
 });
+Route::controller('App\Http\Controllers\ProductController')->group(function (): void {
+    Route::get('/products', 'index')->name('product.index');
+    Route::get('/products/create', 'create')->name('product.create');
+    Route::get('/products/{id}', 'show')->name('product.show');
+});
