@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
-
-use App\Models\Item;
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
-class ItemController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): void
     {
+
     }
 
     /**
@@ -35,7 +36,7 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Item $item): void
+    public function show(Review $review): void
     {
 
     }
@@ -43,7 +44,7 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Item $item): void
+    public function edit(Review $review): void
     {
 
     }
@@ -51,7 +52,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Item $item): void
+    public function update(Request $request, Review $review): void
     {
 
     }
@@ -59,7 +60,7 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Item $item): void
+    public function destroy(Review $review): void
     {
 
     }

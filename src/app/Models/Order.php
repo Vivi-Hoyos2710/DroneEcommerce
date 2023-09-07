@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use Illuminate\Http\Request;
 class Order extends Model
 {
     /**
@@ -22,14 +23,21 @@ class Order extends Model
      * $this->items - Item[] - contains the associated items
      */
     //Validation
-    public static function validate($request): void
+    public static function validate(Request $request): void
     {
         $request->validate([
-            'total' => 'required|numeric',
+            'total_amount' => 'required|numeric',
+            'address' => 'required|string',
             'user_id' => 'required|exists:users,id',
         ]);
     }
-
+    protected $fillable = [
+        'total_amount',
+        'address',
+        'user_id',
+        'user',
+        'items',
+    ];
     //Getters
     public function getId(): int
     {
@@ -79,7 +87,7 @@ class Order extends Model
         return $this->hasMany(Item::class);
     }
 
-    public function getItems(): HasMany
+    public function getItems(): Collection
     {
         return $this->items;
     }
@@ -95,12 +103,12 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(): BelongsTo
+    public function getUser():User
     {
         return $this->user;
     }
 
-    public function setUser(BelongsTo $user): void
+    public function setUser(User $user): void
     {
         $this->user = $user;
     }

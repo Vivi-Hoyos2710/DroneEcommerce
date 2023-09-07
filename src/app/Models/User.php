@@ -36,9 +36,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
+        'balance',
     ];
 
     /**
@@ -47,6 +49,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'rol',
         'password',
         'remember_token',
     ];
@@ -60,7 +63,77 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    
+    //Getters and setters
+    public function getId(): int
+    {
+        return $this->attributes['id'];
+    }
+    public function getName()
+    {
+        return $this->attributes['name'];
+    }
+    public function getEmail()
+    {
+        return $this->attributes['email'];
+    }
+    public function getUserName()
+    {
+        return $this->attributes['username'];
+    }
+    public function getPassword()
+    {
+        return $this->attributes['password'];
+    }
+    public function getRol()
+    {
+        return $this->attributes['rol'];
+    }
+    public function getBalance()
+    {
+        return $this->attributes['balance'];
+    }
+    public function getCreatedAtColumn()
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAtColumn()
+    {
+        return $this->attributes['updated_at'];
+    }
+    //setters
+    public function setName($name)
+    {
+        $this->attributes['name'] = $name;
+    }
+    public function setUserName($name)
+    {
+        $this->attributes['name'] = $name;
+    }
+    public function setEmail($email)
+    {
+        $this->attributes['email'] = $email;
+    }
+    public function setPassword($password)
+    {
+        $this->attributes['password'] = $password;
+    }
+    public function setRole($role)
+    {
+        $this->attributes['role'] = $role;
+    }
+    public function setBalance($balance)
+    {
+        $this->attributes['balance'] = $balance;
+    }
+    public function setCreatedAt($createdAt)
+    {
+        $this->attributes['created_at'] = $createdAt;
+    }
+    public function setUpdatedAt($updatedAt) 
+    { 
+    $this->attributes['updated_at'] = $updatedAt; 
+    }
     // Relationships
     //REVIEWS
     public function reviews(): HasMany
