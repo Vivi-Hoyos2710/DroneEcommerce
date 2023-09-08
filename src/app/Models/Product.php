@@ -24,7 +24,7 @@ class Product extends Model
      * attributes['updated_at'] : string => update of the product
      */
 
-    public static function sumPricesByQuantities($products, $productsInSession):float
+    public static function sumPricesByQuantities($products, $productsInSession):int
     {
         $total = 0;
         foreach ($products as $product) {

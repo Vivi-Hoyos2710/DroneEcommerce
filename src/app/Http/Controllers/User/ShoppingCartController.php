@@ -17,19 +17,18 @@ class ShoppingCartController extends Controller
     /**
      * Made by Vivi.
      */
-    public function index(): View
+    public function index(Request $request):View
     {
         $total = 0;
         $productsInCart = [];
-        $sessionProducts = session()->get('shopping_cart');
-        if (!is_null($sessionProducts)) {
-
-            $productsInCart = Product::findMany(array_keys($sessionProducts));
-            $total = Product::sumPricesByQuantities($productsInCart, $sessionProducts);
+        $productsInSession = $request->session()->get("products");
+        if ($productsInSession) {
+            $productsInCart = Product::findMany(array_keys($productsInSession));
+            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
         }
         $viewData = [];
         $viewData["title"] = "Cart - Online Store";
-        $viewData["table_header"] = ['Product','Price','Quantity','Total'];
+        $viewData["table_header"] = ['Product', 'Price', 'Quantity', 'Total'];
         $viewData['products'] = $productsInCart;
         $viewData['total'] = $total;
 
@@ -37,12 +36,13 @@ class ShoppingCartController extends Controller
     }
     public function add(Request $request, $id): RedirectResponse
     {
+        
         $products = $request->session()->get("products");
         $products[$id] = $request->input('quantity');
         $request->session()->put('products', $products);
         return redirect()->route('cart.index');
     }
-    public function delete(Request $request):RedirectResponse
+    public function delete(Request $request): RedirectResponse
     {
         $request->session()->forget('products');
         return back();

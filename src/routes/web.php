@@ -24,6 +24,8 @@ Route::controller('App\Http\Controllers\User\ProductController')->group(function
 });
 Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(function (): void {
     Route::get('/cart', 'index')->name('cart.index');
+    Route::get('/cart/delete', 'delete')->name('cart.delete');
+    Route::post('/cart/add/{id}', 'add')->name('cart.add');
 });
 
 //User Routes WITH auth

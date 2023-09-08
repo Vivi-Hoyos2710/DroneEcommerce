@@ -7,34 +7,57 @@
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="md:w-3/4">
                     <div class="bg-white rounded-lg shadow-md p-6 mb-4">
-                        <table class="w-full">
+                        <table class="min-w-full">
                             <thead>
                                 <tr>
                                     @foreach ($viewData['table_header'] as $title)
-                                        <th class="text-left font-semibold">{{$title}}</th>
+                                        <th class="text-left font-semibold">{{ $title }}</th>
                                     @endforeach
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($viewData['products'] as $product)
+                                    <tr>
+                                        <td class="py-4">
+                                            <div class="flex items-center">
+                                                <img class="h-16 w-16 mr-4"
+                                                    src="{{ asset('storage/' . $product->getImage()) }}"
+                                                    alt="Product image">
+                                                <span class="font-semibold">{{ $product->getName() }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4">{{ $product->getPrice() }}</td>
+                                        <td class="py-4">
+                                            <div class="flex items-center">
+                                                <span
+                                                    class="text-center w-8">{{ session('products')[$product->getId()] }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4">
+                                            {{ $product->getPrice() * session('products')[$product->getId()] }}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td>
+                                            <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                                                role="alert">
+                                                <span class="font-medium">Info alert!</span> No products in cart
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                @endforelse
                                 <tr>
-                                    <td class="py-4">
-                                        <div class="flex items-center">
-                                            <img class="h-16 w-16 mr-4" src="https://via.placeholder.com/150"
-                                                alt="Product image">
-                                            <span class="font-semibold">Product name</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-4">$19.99</td>
-                                    <td class="py-4">
-                                        <div class="flex items-center">
-                                            <button class="border rounded-md py-2 px-4 mr-2">-</button>
-                                            <span class="text-center w-8">1</span>
-                                            <button class="border rounded-md py-2 px-4 ml-2">+</button>
-                                        </div>
-                                    </td>
-                                    <td class="py-4">$19.99</td>
+                                    <td>
+                                        <a href="{{ route('cart.delete') }}">
+                                            <button
+                                                class="px-4 py-2 bg-red-500 text-white rounded-md mb-2 hover:bg-red-600 focus:outline-none">
+                                                Remove all products from Cart
+                                            </button>
+                                        </a>
+                                    </td>        
                                 </tr>
-                                <!-- More product rows -->
                             </tbody>
                         </table>
                     </div>
@@ -57,7 +80,7 @@
                         <hr class="my-2">
                         <div class="flex justify-between mb-2">
                             <span class="font-semibold">Total</span>
-                            <span class="font-semibold">$21.98</span>
+                            <span class="font-semibold">{{ $viewData['total'] }}</span>
                         </div>
                         <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
                     </div>
