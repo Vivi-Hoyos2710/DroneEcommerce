@@ -92,15 +92,15 @@ class User extends Authenticatable
     {
         return $this->attributes['balance'];
     }
-    public function getCreatedAtColumn()
-    {
-        return $this->attributes['created_at'];
-    }
+    // public function getCreatedAtColumn()
+    // {
+    //     return $this->attributes['created_at'];
+    // }
 
-    public function getUpdatedAtColumn()
-    {
-        return $this->attributes['updated_at'];
-    }
+    // public function getUpdatedAtColumn()
+    // {
+    //     return $this->attributes['updated_at'];
+    // }
     //setters
     public function setName($name)
     {
@@ -126,14 +126,14 @@ class User extends Authenticatable
     {
         $this->attributes['balance'] = $balance;
     }
-    public function setCreatedAt($createdAt)
-    {
-        $this->attributes['created_at'] = $createdAt;
-    }
-    public function setUpdatedAt($updatedAt) 
-    { 
-    $this->attributes['updated_at'] = $updatedAt; 
-    }
+    // public function setCreatedAt($createdAt)
+    // {
+    //     $this->attributes['created_at'] = $createdAt;
+    // }
+    // public function setUpdatedAt($updatedAt) 
+    // { 
+    // $this->attributes['updated_at'] = $updatedAt; 
+    // }
     // Relationships
     //REVIEWS
     public function reviews(): HasMany
