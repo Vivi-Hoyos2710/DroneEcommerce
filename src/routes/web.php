@@ -22,6 +22,10 @@ Route::controller('App\Http\Controllers\User\ProductController')->group(function
     Route::get('/products', 'index')->name('product.index');
     Route::get('/products/{id}', 'show')->name('product.show');
 });
+Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(function (): void {
+    Route::get('/cart', 'index')->name('cart.index');
+});
+
 //User Routes WITH auth
 Route::middleware('auth')->group(function (){
     Route::controller('App\Http\Controllers\User\UserController')->group(function (): void {

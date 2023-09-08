@@ -92,15 +92,16 @@ class User extends Authenticatable
     {
         return $this->attributes['balance'];
     }
-    public function getCreatedAtColumn()
+ /*    public function getCreatedAtColumn()
     {
+       // dd($this->attributes);
         return $this->attributes['created_at'];
     }
 
     public function getUpdatedAtColumn()
     {
         return $this->attributes['updated_at'];
-    }
+    } */
     //setters
     public function setName($name)
     {
