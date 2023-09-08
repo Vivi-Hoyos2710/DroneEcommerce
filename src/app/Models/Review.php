@@ -53,15 +53,15 @@ class Review extends Model
         return $this->attributes['product_id'];
     }
 
-    // public function getCreatedAtColumn(): string
-    // {
-    //     return $this->attributes['created_at'];
-    // }
+    public function getCreatedAt(): int
+    {
+        return $this->attributes['created_at'];
+    }
 
-    // public function getUpdatedAtColumn(): string
-    // {
-    //     return $this->attributes['updated_at'];
-    // }
+    public function getUpdatedAt(): int
+    {
+        return $this->attributes['updated_at'];
+    }
 
     //Setters
     public function setDescription(string $description): void

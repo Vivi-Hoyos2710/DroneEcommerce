@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -20,7 +20,7 @@ class ReviewController extends Controller
         $viewData['title'] = __('review.name').' index'; 
         $viewData['reviews'] = Review::all();
 
-        return view('user.review.index')->with('viewData', $viewData);
+        return view('user.product.show')->with('viewData', $viewData);
     }
 
     /**
@@ -32,7 +32,7 @@ class ReviewController extends Controller
         $viewData['title'] = 'Create product';
         $viewData['reviews'] = Review::all();
         
-        return view('user.review.create')->with('viewData', $viewData);
+        return view('user.product.show')->with('viewData', $viewData);
     }
 
     /**

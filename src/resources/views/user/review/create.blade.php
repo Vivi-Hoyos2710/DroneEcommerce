@@ -2,8 +2,8 @@
 @section("title", $viewData["title"])
 @section('content')
 
-
 <div class="container">
+  
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
@@ -38,7 +38,7 @@
     </div>
   </div>  
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       @foreach ($viewData["reviews"] as $review)
         @if ($review["verified"] === 1)
           <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
@@ -65,10 +65,7 @@
           </div>
         @endif
       @endforeach
-    </div>
-
-
-
+  </div>
 </div>
 
 @endsection
