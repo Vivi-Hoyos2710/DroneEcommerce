@@ -20,6 +20,9 @@ class Review extends Model
      * attributes['updated_at'] : string => update of the review
      */
     //Getters
+
+    protected $fillable = ['description', 'rating'];
+
     public function getId(): int
     {
         return $this->attributes['id'];
@@ -50,12 +53,12 @@ class Review extends Model
         return $this->attributes['product_id'];
     }
 
-    public function getCreatedAtColumn(): int
+    public function getCreatedAt(): int
     {
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAtColumn(): int
+    public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
     }

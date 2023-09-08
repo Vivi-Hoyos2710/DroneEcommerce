@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\User;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
+
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class ReviewController extends Controller
 {
@@ -20,7 +19,7 @@ class ReviewController extends Controller
         $viewData['title'] = __('review.name').' index'; 
         $viewData['reviews'] = Review::all();
 
-        return view('user.product.show')->with('viewData', $viewData);
+        return view('user.review.index')->with('viewData', $viewData);
     }
 
     /**
@@ -32,13 +31,13 @@ class ReviewController extends Controller
         $viewData['title'] = 'Create product';
         $viewData['reviews'] = Review::all();
         
-        return view('user.product.show')->with('viewData', $viewData);
+        return view('user.review.create')->with('viewData', $viewData);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): \Illuminate\Http\RedirectResponse //CAMBIAR ESO 
     {
         $viewData = [];
         $viewData['title'] = 'Products - Online Store';
@@ -77,10 +76,8 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete($id)
+    public function destroy(Review $review): void
     {
-        Review::destroy($id);
-        return redirect()->route('user.review.list')->with('delete', 'Eliminada review con id #'.$id);
-    }
 
+    }
 }

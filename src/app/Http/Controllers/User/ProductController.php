@@ -46,7 +46,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): View
+
+     //UTILIZAR GET Y SET
+    public function show(string $id): View 
     {
         $viewData = [];
         $product = Product::findOrFail($id);

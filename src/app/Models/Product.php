@@ -63,16 +63,16 @@ class Product extends Model
         return $this->attributes['image'];
     }
 
-    // public function getCreatedAtColumn(): DateTime
-    // {
-    //     $date = new DateTime($this->attributes['created_at']);
+    public function getCreatedAt(): DateTime
+    {
+        $date = new DateTime($this->attributes['created_at']);
 
     //     return $date;
     // }
 
-    // public function getUpdatedAtColumn(): DateTime
-    // {
-    //     $date = new DateTime($this->attributes['updated_at']);
+    public function getUpdatedAt(): DateTime
+    {
+        $date = new DateTime($this->attributes['updated_at']);
 
     //     return $date;
     // }
@@ -114,7 +114,9 @@ class Product extends Model
     }
 
     //RelationShips
-    public function reviews(): HasMany
+
+    //faltan getters y setters de reviews
+    public function reviews(): HasMany 
     {
         return $this->hasMany(Review::class);
     }
