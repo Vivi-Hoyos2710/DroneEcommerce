@@ -6,7 +6,8 @@ namespace App\Http\Controllers\Admin;
 use App\Interfaces\ImageStorage;
 use Illuminate\View\View;
 use App\Models\Product;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\AdminProductRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse as Redirect;   
 
@@ -45,10 +46,10 @@ class AdminProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProductRequest  $request
+     * @param  AdminProductRequest  $request
      * @return Redirect
      */
-    public function store(ProductRequest $request): Redirect
+    public function store(AdminProductRequest $request): Redirect
     {
         $product = new Product();
 
@@ -90,29 +91,48 @@ class AdminProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ProductRequest  $request
+     * @param  AdminProductRequest  $request
      * @param  int  $id
      * @return Redirect
      */
-    public function update(ProductRequest $request, int $id): Redirect
+    public function update(AdminProductRequest $request, int $id): Redirect
     {
+
+
         $product = Product::findOrFail($id);
 
-        $validated = $request->validated();
+        if ($request->hasFile('image')) {
+            $storeInterface = app(ImageStorage::class);
+            $storeInterface->store($request);
+            $product->setImage($request->file('image')->getClientOriginalName());
+        }
 
-        $product->setName($validated['name']);
-        $product->setPrice($validated['price']);
-        $product->setDescription($validated['description']);
-        $product->setCategory($validated['category']);
-        $product->setSize($validated['size']);
-        $product->setBrand($validated['brand']);
+        if (isset($request['name'])) {
+            $product->setName($request['name']);
+        }
 
-        // Store the image in the public folder
-        $storeInterface = app(ImageStorage::class);
-        $storeInterface->store($request);
-        $product->setImage($request->file('image')->getClientOriginalName());
+        if (isset($request['price'])) {
+            $product->setPrice($request['price']);
+        }
+
+        if (isset($request['description'])) {
+            $product->setDescription($request['description']);
+        }
+
+        if (isset($request['category'])) {
+            $product->setCategory($request['category']);
+        }
+
+        if (isset($request['size'])) {
+            $product->setSize($request['size']);
+        }
+
+        if (isset($request['brand'])) {
+            $product->setBrand($request['brand']);
+        }
 
         $product->save();
+
 
         return redirect()->route('admin.products');
     }
