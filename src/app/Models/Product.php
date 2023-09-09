@@ -63,19 +63,19 @@ class Product extends Model
         return $this->attributes['image'];
     }
 
-    public function getCreatedAtColumn(): DateTime
-    {
-        $date = new DateTime($this->attributes['created_at']);
+    // public function getCreatedAtColumn(): DateTime
+    // {
+    //     $date = new DateTime($this->attributes['created_at']);
 
-        return $date;
-    }
+    //     return $date;
+    // }
 
-    public function getUpdatedAtColumn(): DateTime
-    {
-        $date = new DateTime($this->attributes['updated_at']);
+    // public function getUpdatedAtColumn(): DateTime
+    // {
+    //     $date = new DateTime($this->attributes['updated_at']);
 
-        return $date;
-    }
+    //     return $date;
+    // }
 
     //Setters
     public function setName(string $name): void
