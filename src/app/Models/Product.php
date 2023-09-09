@@ -67,15 +67,15 @@ class Product extends Model
     {
         $date = new DateTime($this->attributes['created_at']);
 
-    //     return $date;
-    // }
+        return $date;
+    }
 
     public function getUpdatedAt(): DateTime
     {
         $date = new DateTime($this->attributes['updated_at']);
 
-    //     return $date;
-    // }
+        return $date;
+    }
 
     //Setters
     public function setName(string $name): void

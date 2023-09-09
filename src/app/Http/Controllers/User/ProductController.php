@@ -65,9 +65,12 @@ class ProductController extends Controller
         // cart
         $viewData["cart_title"] = "Add to cart";
 
-
         // Product data
         $viewData["product"] = $product;
+
+        // Reviews
+        $viewData["reviews"] = Review::where('product_id', $id)->get();
+
         return view('user.product.show')->with("viewData", $viewData);
     }
 
@@ -90,5 +93,13 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): void
     {
+    }
+
+    public function delete($id)
+    {
+        Review::destroy($id);
+
+        return redirect()->route('user.product.show')->with('delete', 'Eliminada review con id #'.$id);
+        //el error es porque eso no es una ruta._. meco
     }
 }

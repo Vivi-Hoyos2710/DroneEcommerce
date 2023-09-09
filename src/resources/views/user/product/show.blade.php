@@ -1,11 +1,15 @@
 @extends('layouts.app')
 
-
 @section('title', $viewData["title"])
-
 @section('subtitle', $viewData["subtitle"])
-
 @section('content')
+
+@if (session('delete'))
+    <div class="bg-yellow-200 text-yellow-800 border-l-4 border-yellow-600 p-4" role="alert">
+        {{ session('delete') }}
+    </div>
+@endif
+
 
 <div class="md:flex md:items-center">
     <div class="w-full h-64 md:w-1/2 lg:h-96">
@@ -54,40 +58,9 @@
     </div>
 </div>
 
+
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header font-bold text-xl">Write a review</div>
-          <div class="card-body">
-            @if($errors->any())
-            <ul id="errors" class="alert alert-danger list-unstyled">
-              @foreach($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-            @endif
-            <form method="POST" action="{{ route('review.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="price">Description</label>
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" placeholder="Enter description" name="description">
-                </div>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="rating">Rating</label>
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="rating" placeholder="Enter rating from 0 to 5" name="rating">
-                </div>
-
-                <div class="mb-4">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Send</button>
-                </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>  
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       @foreach ($viewData["reviews"] as $review)
@@ -103,7 +76,7 @@
               <p class="text-gray-700">{{ $review["description"] }}</p>
 
               <!-- Delete Review Section -->
-              <form method="POST" action="{{ route('review.delete', $review->getId()) }}">
+              <form method="POST" action="{{ route('product.delete', $review->getId()) }}">
                   @csrf
                   @method('DELETE')
                   <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">
@@ -118,12 +91,6 @@
       @endforeach
     </div>
 </div>
-
-
-
-
-
-
 
 
 @endsection
