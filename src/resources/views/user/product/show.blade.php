@@ -1,15 +1,7 @@
 @extends('layouts.app')
-
 @section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
-
-@if (session('delete'))
-    <div class="bg-yellow-200 text-yellow-800 border-l-4 border-yellow-600 p-4" role="alert">
-        {{ session('delete') }}
-    </div>
-@endif
-
 
 <div class="md:flex md:items-center">
     <div class="w-full h-64 md:w-1/2 lg:h-96">
@@ -59,8 +51,42 @@
 </div>
 
 
-<div class="container">
+<div class="flex justify-center">
+    <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">                                   
+        <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
+            @csrf
+            
+            <div class="container mx-auto p-4">
+                <label for="customRange3" class="block text-gray-700 text-sm font-bold mb-2">Puntuación:</label>
+                <div class="flex items-center">
+                    <input name="rate" value="{{ old('rate') }}" type="range" class="form-range w-3/4"
+                        min="0" max="5" step="1" id="customRange3"
+                        oninput="this.form.valueRange.value=this.value">
+                    <input readonly class="form-input ml-2 w-1/4" name="valueRange"
+                        value="{{ old('valueRange') }}">
+                </div>
+            </div>
 
+            <div class="mb-4">
+                <label for="exampleFormControlTextarea1" class="block text-sm font-medium text-gray-700">Comentario:</label>
+                <textarea name="description" value="{{ old('description') }}"
+                          class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                          id="exampleFormControlTextarea1" rows="3">
+                </textarea>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit"
+                        class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
+                    Crear Review
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="container">
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       @foreach ($viewData["reviews"] as $review)

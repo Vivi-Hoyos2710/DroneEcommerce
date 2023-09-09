@@ -14,15 +14,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Route::controller('App\Http\Controllers\User\ReviewController')->group(function (): void {
-//     Route::get('/review/create', 'create')->name('review.create');
-//     Route::get('/list', 'listAll')->name('review.list');
-//     Route::delete('/review/{id}/delete', 'delete')->name('review.delete');
-//     Route::post('/store', 'store')->name('review.store'); 
-
-//     //test
-//     Route::get('/products/{id}', 'create')->name('review.create');
-// });
 
 //User Routes without auth
 Route::controller('App\Http\Controllers\HomeController')->group(function (): void {
@@ -30,8 +21,9 @@ Route::controller('App\Http\Controllers\HomeController')->group(function (): voi
 });
 Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
     Route::get('/products', 'index')->name('product.index');
-    Route::delete('products/{id}/delete', 'delete')->name('product.delete');
     Route::get('/products/{id}', 'show')->name('product.show');
+    Route::delete('products/{id}/delete', 'delete')->name('product.delete');
+    Route::post('products/{id}/save', 'saveReview')->name('product.saveReview');
 });
 
 //User Routes WITH auth
@@ -49,6 +41,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('admin')->group(function () {
     Route::controller('App\Http\Controllers\Admin\AdminPageController')->group(function (): void {
         Route::get('/admin', 'index')->name('admin.index');
+    });
+    Route::controller('App\Http\Controllers\Admin\AdminPageController')->group(function (): void {
+        Route::get('/admin/reviews', 'index')->name('admin.reviews');
     });
     Route::controller('App\Http\Controllers\Admin\AdminOrderController')->group(function (): void {
         Route::get('/admin/orders', 'index')->name('admin.orders');

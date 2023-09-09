@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; //si?
 use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests\ProductRequest;
@@ -99,7 +100,30 @@ class ProductController extends Controller
     {
         Review::destroy($id);
 
-        return redirect()->route('user.product.show')->with('delete', 'Eliminada review con id #'.$id);
-        //el error es porque eso no es una ruta._. meco
+        return redirect()->route('product.index')->with('delete', 'Eliminada review con id #'.$id);
+        //falta mostrar un mensaje de confirmacion
+    }
+
+    public function saveReview(Request $request, $productId)
+    {
+        // Create a new review instance with the validated data
+        $review = new Review([
+            'rate' => $request->input('rate'),
+            'description' => $request->input('description'),
+        ]);
+    
+        // Associate the review with the current user
+        $user = Auth::user();
+        $review->user()->associate($user);
+    
+        // Associate the review with the product
+        $product = Product::find($productId);
+        $review->product()->associate($product);
+    
+        // Save the review to the database
+        $review->save();
+    
+        // Redirect back
+        return redirect()->back();
     }
 }
