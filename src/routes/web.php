@@ -22,10 +22,6 @@ Route::controller('App\Http\Controllers\User\ProductController')->group(function
     Route::get('/products', 'index')->name('product.index');
     Route::get('/products/{id}', 'show')->name('product.show');
 });
-Route::controller('App\Http\Controllers\ImageController')->group(function (): void {
-    Route::get('/image', 'index')->name('image.index');
-    Route::post('/image/save', 'save')->name('image.save');
-});
 
 //User Routes WITH auth
 Route::middleware('auth')->group(function () {
@@ -55,6 +51,7 @@ Route::middleware('admin')->group(function () {
         Route::get('/admin/products/create', 'create')->name('admin.product.create');
         Route::post('/admin/products/store', 'store')->name('admin.product.store');
         Route::get('/admin/products/{id}/edit', 'edit')->name('admin.product.edit');
+        Route::post('/admin/products/{id}/update', 'update')->name('admin.product.update');
         Route::delete('/admin/products/{id}/delete', 'delete')->name('admin.product.delete');
     });
 });
