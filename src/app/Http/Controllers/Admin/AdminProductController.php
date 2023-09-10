@@ -7,6 +7,7 @@ use App\Interfaces\ImageStorage;
 use Illuminate\View\View;
 use App\Models\Product;
 use App\Http\Requests\AdminProductRequest;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse as Redirect;   
@@ -49,7 +50,7 @@ class AdminProductController extends Controller
      * @param  AdminProductRequest  $request
      * @return Redirect
      */
-    public function store(AdminProductRequest $request): Redirect
+    public function store(ProductRequest $request): Redirect
     {
         $product = new Product();
 
