@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -53,7 +54,15 @@ class ProductController extends Controller
         // View titles
         $viewData["title"] = $product["name"] . " - Online Store";
         $viewData["subtitle"] = $product["name"] . " - Product information";
-        $viewData["count_title"] = "Count";
+        $viewData["price_title"] = "Price";
+        $viewData["description_title"] = "Description";
+        $viewData["size_title"] = "Size";
+        $viewData["brand_title"] = "Brand";
+        $viewData["category_title"] = "Category";
+        $viewData["name_title"] = "Name";
+        // cart
+        $viewData["cart_title"] = "Add to cart";
+
 
         // Product data
         $viewData["product"] = $product;

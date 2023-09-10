@@ -8,7 +8,10 @@
     <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
         @foreach($viewData["products"] as $product)
         <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-            <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80')">
+            <div 
+            class="flex items-end justify-end h-56 w-full bg-cover" 
+            style="background-image: url('{{ URL::asset('storage/' . $product->getImage() )}}');"
+            >
                 <a href="{{ route('product.show', ['id' => $product['id']]) }}" class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 flex items-center justify-center">
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 20">
                         <circle cx="7" cy="7" r="7" fill="currentColor" />

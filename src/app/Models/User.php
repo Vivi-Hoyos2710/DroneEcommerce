@@ -117,7 +117,6 @@ class User extends Authenticatable
     {
         $this->attributes['balance'] = $balance;
     }
-  
     // Relationships
     //REVIEWS
     public function reviews(): HasMany
