@@ -15,8 +15,8 @@ class ReviewController extends Controller
      */
     public function index(): View
     {
-        $viewData = []; 
-        $viewData['title'] = __('review.name').' index'; 
+        $viewData = [];
+        $viewData['title'] = __('review.name').' index';
         $viewData['reviews'] = Review::all();
 
         return view('user.review.index')->with('viewData', $viewData);
@@ -27,17 +27,17 @@ class ReviewController extends Controller
      */
     public function create(): View
     {
-        $viewData = []; 
+        $viewData = [];
         $viewData['title'] = 'Create product';
         $viewData['reviews'] = Review::all();
-        
+
         return view('user.review.create')->with('viewData', $viewData);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\RedirectResponse //CAMBIAR ESO 
+    public function store(Request $request): \Illuminate\Http\RedirectResponse //CAMBIAR ESO
     {
         $viewData = [];
         $viewData['title'] = 'Products - Online Store';

@@ -6,10 +6,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Review;
-use App\Models\Product;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -47,8 +47,8 @@ class ProductController extends Controller
      * Display the specified resource.
      */
 
-     //UTILIZAR GET Y SET
-    public function show(string $id): View 
+    //UTILIZAR GET Y SET
+    public function show(string $id): View
     {
         $viewData = [];
         $product = Product::findOrFail($id);
@@ -67,12 +67,12 @@ class ProductController extends Controller
         $viewData['cart_title'] = 'Add to cart';
 
         // Product data
-        $viewData["product"] = $product;
+        $viewData['product'] = $product;
 
         // Reviews
-        $viewData["reviews"] = Review::where('product_id', $id)->get();
+        $viewData['reviews'] = Review::where('product_id', $id)->get();
 
-        return view('user.product.show')->with("viewData", $viewData);
+        return view('user.product.show')->with('viewData', $viewData);
     }
 
     /**
@@ -106,23 +106,33 @@ class ProductController extends Controller
 
     public function saveReview(Request $request, $productId)
     {
+        Review::validate($request);
+
         // Create a new review instance with the validated data
         $review = new Review();
 
-        $review ->setRating($request->input('rating'));
-        $review ->setDescription($request->input('description'));
-    
+        // $review ->setRating($request->input('rating'));
+        $stringToIntRating = (int) $request->input('rating');
+        $review->setRating($stringToIntRating);
+
+        $review->setDescription($request->input('description'));
+        $review->setVerified(false);
+
         // Associate the review with the current user
         $user = Auth::user();
-        $review->user()->associate($user);
-    
+        // $review->user()->associate($user);
+        $review->setUserId($user->getId());
+
         // Associate the review with the product
-        $product = Product::find($productId);
-        $review->product()->associate($product);
-    
+        // $product = Product::find($productId);
+        // $review->product()->associate($product);
+
+        $stringToIntProductId = intval($productId);
+        $review->setProductId($stringToIntProductId);
+
         // Save the review to the database
         $review->save();
-    
+
         // Redirect back
         return redirect()->back();
     }

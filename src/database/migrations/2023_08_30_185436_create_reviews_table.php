@@ -15,9 +15,9 @@ return new class() extends Migration
     {
         Schema::create('reviews', function (Blueprint $table): void {
             $table->id();
-            $table->integer('rating')->nullable();
-            $table->text('description')->nullable();
-            $table->boolean('verified')->nullable();
+            $table->integer('rating');
+            $table->text('description');
+            $table->boolean('verified');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();

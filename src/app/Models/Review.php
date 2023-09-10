@@ -23,6 +23,14 @@ class Review extends Model
 
     protected $fillable = ['description', 'rating'];
 
+    public static function validate($request): void
+    {
+        $request->validate([
+            'description' => 'required|string|min:10|max:255',
+            'rating' => 'required|numeric|between:0,5',
+        ]);
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];
