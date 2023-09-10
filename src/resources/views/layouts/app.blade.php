@@ -14,11 +14,11 @@
 <body>
     <!-- Nav bar -->
 
-    <nav class="bg-white border-gray-500 dark:bg-gray-900 shadow-md relative">
-        <div class="max-w-screen-xl flex flex-wrap justify-between mx-auto mt-5 p-4">
+    <nav class="bg-neutral-400 border-gray-500 dark:bg-gray-900 shadow-md relative">
+        <div class="max-w-screen-xl flex flex-wrap justify-between mx-auto  p-4">
             <div class="flex items-center justify-start">
                 <a href={{ route('home.index') }} class="flex items-center">
-                    <img src="{{ asset('/img/drone_logo.png') }}" class="w-auto h-auto max-h-12 max-w-12"
+                    <img src="{{ asset('/img/drone_logo.png') }}" class="w-auto h-auto max-h-12 max-w-12 dark:border-white"
                         alt={{ __('home.logo') }}>
                     <span
                         class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ __('home.name') }}</span>
@@ -49,7 +49,7 @@
                         placeholder="Search...">
                 </div>
                 <ul
-                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
                         <a href={{ route('home.index') }}
                             class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
@@ -147,14 +147,14 @@
     </nav>
 
     <!-- Starts content-->
-    <div class="@yield('background-class')" style="background-image: url('asset(@yield('ImageName')')">
+    <body class="{{$body_class ?? 'bg-gradient-to-b from-blue-900 via-emerald-300 to-gray-300'}}" >
         <div class="overflow-y-auto max-w-screen-xl min-h-screen flex-wrap items-center justify-between mx-auto p-4">
             @yield('content')
         </div>
     </div>
     <!-- FOOTER--->
     <footer
-        class=" left-0 z-20 w-full p-4 bg-gradient-to-r from-blue-900 to-blue-600 border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+        class=" left-0 z-20 w-full p-4 bg-gradient-to-r from-blue-900 to-blue-600 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
         <span class="text-sm text-white sm:text-center dark:text-gray-400">
             <a href={{ route('home.index') }} class="hover:underline">{{ __('home.copyright') }}</a>.
         </span>

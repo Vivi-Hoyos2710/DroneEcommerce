@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('title', $viewData['title'])
 @section('content')
-    <div class="bg-gray-100 h-screen py-8">
+    <div class="-sm bg-neutral-500 bg-opacity-50 py-8 dark:bg-gray-600 dark:bg-opacity-70">
         <div class="container mx-auto px-4">
             <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="md:w-3/4">
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-4">
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-4 ">
                         <table class="min-w-full">
                             <thead>
                                 <tr>
                                     @foreach ($viewData['table_header'] as $title)
-                                        <th class="text-left font-semibold">{{ $title }}</th>
+                                        <th class="text-left font-semibold ">{{ $title }}</th>
                                     @endforeach
                                 </tr>
                             </thead>

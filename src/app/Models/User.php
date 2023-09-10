@@ -164,7 +164,7 @@ class User extends Authenticatable
 
         } else {
             $request->validate([
-                $type => 'required|string|min:8',
+                $type => 'required|string|min:8|confirmed',
             ]);
         }
 

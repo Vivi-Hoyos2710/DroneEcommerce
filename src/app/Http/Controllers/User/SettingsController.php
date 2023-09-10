@@ -41,7 +41,7 @@ class SettingsController extends Controller
             $user->setUserName($request->input($updateInfo));
         }else{
             $updateInfo=User::validateEach($request,'password');
-            $user->setPassword($request->input($updateInfo));
+            $user->setPassword(Hash::make($request->input($updateInfo)));
         }
         $user->save();
 

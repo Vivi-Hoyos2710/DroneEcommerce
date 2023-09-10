@@ -37,7 +37,6 @@ class ShoppingCartController extends Controller
     }
     public function add(Request $request, $id): RedirectResponse
     {
-
         $products = $request->session()->get("products");
         $products[$id] = $request->input('quantity');
         $request->session()->put('products', $products);
@@ -76,13 +75,11 @@ class ShoppingCartController extends Controller
             $newBalance = Auth::user()->getBalance()-$total;
             Auth::user()->setBalance($newBalance);
             Auth::user()->save();
-
-            //$request->session()->forget('products');
-
             $viewData = [];
             $viewData["title"] = "Purchase - Online Store";
             $viewData["subtitle"] = "Purchase Status";
             $viewData["order"] = $order->getId();
+            $request->session()->forget('products');
             return view('user.cart.orderSuccess')->with("viewData", $viewData);
         } else {
             return redirect()->route('cart.index');

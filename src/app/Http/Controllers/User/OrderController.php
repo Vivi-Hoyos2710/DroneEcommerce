@@ -18,7 +18,7 @@ class OrderController extends Controller
         $viewData = [];
         $viewData["title"] = "My Orders - Online Store";
         $viewData["subtitle"] = "My Orders";
-        $viewData['table_header'] = ['Item ID', 'Product Name', 'Price', 'Quantity'];
+        $viewData['table_header'] = ['Product ID', 'Product Name', 'Price', 'Quantity'];
         $viewData["orders"] = Order::with(['items.product'])->where('user_id', Auth::user()->getId())->get();
         return view('user.order.index')->with("viewData", $viewData);
     }
