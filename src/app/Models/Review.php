@@ -95,6 +95,7 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function getUser(): BelongsTo
     {
         return $this->user;
@@ -104,6 +105,7 @@ class Review extends Model
     {
         $this->user = $user;
     }
+
     //Product
     public function product(): BelongsTo
     {

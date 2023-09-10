@@ -20,7 +20,7 @@ return new class() extends Migration
             $table->integer('price');
             $table->string('size')->default('s');
             $table->text('description');
-            $table->string('image');    
+            $table->string('image');
             $table->string('category')->default('accessory');
             $table->timestamps();
         });

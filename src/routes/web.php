@@ -26,11 +26,21 @@ Route::controller('App\Http\Controllers\User\ProductController')->group(function
     Route::post('products/{id}/save', 'saveReview')->name('product.saveReview');
 });
 
+Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(function (): void {
+    Route::get('/cart', 'index')->name('cart.index');
+    Route::get('/cart/delete', 'delete')->name('cart.delete');
+    Route::post('/cart/add/{id}', 'add')->name('cart.add');
+});
+
 //User Routes WITH auth
-Route::middleware('auth')->group(function () {
-    Route::controller('App\Http\Controllers\User\UserController')->group(function (): void {
+Route::middleware('auth')->group(function (): void {
+    Route::controller('App\Http\Controllers\User\SettingsController')->group(function (): void {
         Route::get('/my-account', 'index')->name('user.account');
-        Route::get('/my-account/update', 'index')->name('user.account.update');
+        Route::put('/my-account/update', 'update')->name('user.account.update');
+
+    });
+    Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(function (): void {
+        Route::post('/cart/purchase', 'purchase')->name('cart.purchase');
     });
     Route::controller('App\Http\Controllers\User\OrderController')->group(function (): void {
         Route::get('/my-account/orders', 'index')->name('user.orders');
@@ -38,7 +48,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //Admin Routes
-Route::middleware('admin')->group(function () {
+Route::middleware('admin')->group(function (): void {
     Route::controller('App\Http\Controllers\Admin\AdminPageController')->group(function (): void {
         Route::get('/admin', 'index')->name('admin.index');
     });
@@ -52,7 +62,7 @@ Route::middleware('admin')->group(function () {
         Route::delete('/admin/orders/{id}/delete', 'delete')->name('admin.orders.delete');
         Route::get('/admin/orders/{id}/show', 'show')->name('admin.orders.show');
         // Route::get('admin/products', 'index')->name('admin.product.index');
-        // Route::get('admin/products/create', 'create')->name('admin.product.create');
+        Route::get('admin/orders/create', 'create')->name('admin.product.create');
     });
     Route::controller('App\Http\Controllers\Admin\AdminProductController')->group(function (): void {
         Route::get('/admin/products', 'index')->name('admin.products');

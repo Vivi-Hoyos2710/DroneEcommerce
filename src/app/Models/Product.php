@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTime;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -22,6 +23,16 @@ class Product extends Model
      * attributes['created_at'] : string => Date of the creation of the product
      * attributes['updated_at'] : string => update of the product
      */
+    public static function sumPricesByQuantities($products, $productsInSession): int
+    {
+        $total = 0;
+        foreach ($products as $product) {
+            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]);
+        }
+
+        return $total;
+    }
+
     //Getters
     public function getId(): int
     {
@@ -114,15 +125,25 @@ class Product extends Model
     }
 
     //RelationShips
-
-    //faltan getters y setters de reviews
-    public function reviews(): HasMany 
+    //Reviews
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }
 
+    //Items
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function setItems(Collection $items): void
+    {
+        $this->items = $items;
     }
 }

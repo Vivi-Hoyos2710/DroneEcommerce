@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; //si?
-use Illuminate\Support\Facades\Redirect;
-
 use App\Http\Requests\ProductRequest;
-use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Review;
+use App\Models\Product;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -22,11 +20,12 @@ class ProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData["title"] = "Products";
-        $viewData["subtitle"] = "List of products";
-        $viewData["price_title"] = "Price";
-        $viewData["products"] = Product::with('reviews')->get();
-        return view('user.product.index')->with("viewData", $viewData);
+        $viewData['title'] = 'Products';
+        $viewData['subtitle'] = 'List of products';
+        $viewData['price_title'] = 'Price';
+        $viewData['products'] = Product::with('reviews')->get();
+
+        return view('user.product.index')->with('viewData', $viewData);
     }
 
     /**
@@ -55,16 +54,17 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         // View titles
-        $viewData["title"] = $product["name"] . " - Online Store";
-        $viewData["subtitle"] = $product["name"] . " - Product information";
-        $viewData["price_title"] = "Price";
-        $viewData["description_title"] = "Description";
-        $viewData["size_title"] = "Size";
-        $viewData["brand_title"] = "Brand";
-        $viewData["category_title"] = "Category";
-        $viewData["name_title"] = "Name";
+        $viewData['title'] = $product['name'].' - Online Store';
+        $viewData['subtitle'] = $product['name'].' - Product information';
+        $viewData['price_title'] = 'Price';
+        $viewData['description_title'] = 'Description';
+        $viewData['size_title'] = 'Size';
+        $viewData['brand_title'] = 'Brand';
+        $viewData['category_title'] = 'Category';
+        $viewData['name_title'] = 'Name';
+        $viewData['count_title'] = 'Count';
         // cart
-        $viewData["cart_title"] = "Add to cart";
+        $viewData['cart_title'] = 'Add to cart';
 
         // Product data
         $viewData["product"] = $product;
@@ -107,10 +107,10 @@ class ProductController extends Controller
     public function saveReview(Request $request, $productId)
     {
         // Create a new review instance with the validated data
-        $review = new Review([
-            'rating ' => $request->input('rating '),
-            'description' => $request->input('description'),
-        ]);
+        $review = new Review();
+
+        $review ->setRating($request->input('rating'));
+        $review ->setDescription($request->input('description'));
     
         // Associate the review with the current user
         $user = Auth::user();

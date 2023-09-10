@@ -109,7 +109,7 @@ class Item extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function getOrder():Order
+    public function getOrder(): Order
     {
         return $this->order;
     }
@@ -124,7 +124,7 @@ class Item extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function getProduct():Product
+    public function getProduct(): Product
     {
         return $this->product;
     }

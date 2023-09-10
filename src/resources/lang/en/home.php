@@ -15,5 +15,5 @@ return [
     'about' => 'About',
     'log' => 'Log In',
     'sign' => 'Sign In',
-    'settings'=> 'Settings'
+    'settings' => 'Settings',
 ];
