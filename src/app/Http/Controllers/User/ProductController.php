@@ -108,7 +108,7 @@ class ProductController extends Controller
     {
         // Create a new review instance with the validated data
         $review = new Review([
-            'rate' => $request->input('rate'),
+            'rating ' => $request->input('rating '),
             'description' => $request->input('description'),
         ]);
     

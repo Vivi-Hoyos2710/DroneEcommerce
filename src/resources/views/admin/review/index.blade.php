@@ -45,7 +45,8 @@
                                 @foreach ($product->reviews as $review)
                                     @if ($review["verified"] === 0 || $review["verified"] === null)
                                         <div class="bg-white rounded-lg shadow-md p-4">
-                                            <p class="font-semibold text-lg">{{ $review->rating }}</p>
+                                            <p class="font-semibold text-lg"> User: {{ $review->user->name }}</p>
+                                            <p class="font-semibold text-lg"> Rate: {{ $review->rating }}</p>
                                             <p class="text-gray-600">{{ $review->description }}</p>
                                             <form method="POST" action="{{ route('admin.reviews.accept', $review->id) }}" class="mt-4">
                                                 @csrf

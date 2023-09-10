@@ -52,29 +52,29 @@
 
 
 <div class="my-10"> <!-- Add margin to create space from the top -->
-    <h2 class="text-xl font-semibold mb-4">Dejanos tu opinion!</h2> <!-- Add your title here -->
+    <h3 class="text-xl font-semibold mb-4">Dejanos tu opinion!</h3> <!-- Add your title here -->
     <div class="flex justify-left">
         <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">                                   
             <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
                 @csrf
                 
-                <div class="container mx-auto p-4">
+                <!-- <div class="container mx-auto p-4">
                     <label for="reviewRate" class="block text-gray-700 text-sm font-bold mb-2">Puntuación:</label>
                     <div class="flex items-center">
-                        <input name="rate" value="{{ old('rate') }}" type="range" class="form-range w-3/4"
+                        <input name="rating" value="{{ old('rate') }}" type="range" class="form-range w-3/4"
                             min="0" max="5" step="1" id="reviewRate"
                             oninput="this.form.valueRange.value=this.value">
                         <input readonly class="form-input ml-2 w-1/4" name="valueRange"
                             value="{{ old('valueRange') }}">
                     </div>
-                </div>
+                </div> -->
 
-                <!-- <div class="mb-4">
+                <div class="mb-4">
                     <label for="rate" class="block text-sm font-medium text-gray-700">rate (from 1 to 5):</label>
-                    <input name="rate" value="{{ old('rate') }}"
+                    <input name="rating" value="{{ old('rate') }}"
                         class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                         id="rate" type="number" min="1" max="5" step="1">
-                </div> -->
+                </div>
 
                 <div class="mb-4">
                     <label for="reviewDescription" class="block text-sm font-medium text-gray-700">Comentario:</label>
@@ -98,7 +98,7 @@
 
 
 <div class="container">
-
+    <h3 class="text-xl font-semibold mb-4"> Opiniones de nuestros usuarios </h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       @foreach ($viewData["reviews"] as $review)
         @if ($review["verified"] === 1)

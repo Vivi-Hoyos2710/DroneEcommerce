@@ -2,11 +2,17 @@
 @section('title',$viewData['title'])
 @section('content')
 
-<h1 class="text-5xl font-extrabold dark:text-white">
-    {{"DRONE"}}
-    <small class="ml-2 font-semibold text-gray-500 dark:text-gray-400">
-        This is secondary text
-    </small>
-</h1>
+<div class="carousel">
+    @foreach ($products as $product)
+        <div class="carousel-slide">
+            <img src="{{ asset('/img/drone_logo.png') }}" alt="{{ $product->name }}">
+            <div class="carousel-caption">
+                <h3>{{ $product->name }}</h3>
+                <p>{{ $product->price }}</p>
+            </div>
+        </div>
+    @endforeach
+</div>
+
 
 @endsection
