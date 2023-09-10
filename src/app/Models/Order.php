@@ -9,8 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+
 class Order extends Model
 {
+    protected $fillable = [
+        'total_amount',
+        'address',
+        'user_id',
+        'user',
+        'items',
+    ];
+
     /**
      * ORDER ATTRIBUTES
      * $this->attributes['id'] - int - contains the order primary key (id)
@@ -31,13 +40,7 @@ class Order extends Model
             'user_id' => 'required|exists:users,id',
         ]);
     }
-    protected $fillable = [
-        'total_amount',
-        'address',
-        'user_id',
-        'user',
-        'items',
-    ];
+
     //Getters
     public function getId(): int
     {
@@ -72,18 +75,19 @@ class Order extends Model
     //Setters
     public function setTotalAmount(int $total): void
     {
-        $this->attributes['total_amount']=$total;
+        $this->attributes['total_amount'] = $total;
     }
 
     public function setAddress(string $address): void
     {
-        $this->attributes['address']=$address;
+        $this->attributes['address'] = $address;
     }
 
     public function setUserId(int $id): void
     {
-        $this->attributes['user_id']=$id;
+        $this->attributes['user_id'] = $id;
     }
+
     public function setCreatedAt($createdAt): void
     {
         $this->attributes['created_at'] = $createdAt;
@@ -117,7 +121,7 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser():User
+    public function getUser(): User
     {
         return $this->user;
     }

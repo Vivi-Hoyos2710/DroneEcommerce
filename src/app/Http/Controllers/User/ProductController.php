@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use App\Models\Review;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -21,11 +17,12 @@ class ProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData["title"] = "Products";
-        $viewData["subtitle"] = "List of products";
-        $viewData["price_title"] = "Price";
-        $viewData["products"] = Product::with('reviews')->get();
-        return view('user.product.index')->with("viewData", $viewData);
+        $viewData['title'] = 'Products';
+        $viewData['subtitle'] = 'List of products';
+        $viewData['price_title'] = 'Price';
+        $viewData['products'] = Product::with('reviews')->get();
+
+        return view('user.product.index')->with('viewData', $viewData);
     }
 
     /**
@@ -52,21 +49,22 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         // View titles
-        $viewData["title"] = $product["name"] . " - Online Store";
-        $viewData["subtitle"] = $product["name"] . " - Product information";
-        $viewData["price_title"] = "Price";
-        $viewData["description_title"] = "Description";
-        $viewData["size_title"] = "Size";
-        $viewData["brand_title"] = "Brand";
-        $viewData["category_title"] = "Category";
-        $viewData["name_title"] = "Name";
+        $viewData['title'] = $product['name'].' - Online Store';
+        $viewData['subtitle'] = $product['name'].' - Product information';
+        $viewData['price_title'] = 'Price';
+        $viewData['description_title'] = 'Description';
+        $viewData['size_title'] = 'Size';
+        $viewData['brand_title'] = 'Brand';
+        $viewData['category_title'] = 'Category';
+        $viewData['name_title'] = 'Name';
+        $viewData['count_title'] = 'Count';
         // cart
-        $viewData["cart_title"] = "Add to cart";
-
+        $viewData['cart_title'] = 'Add to cart';
 
         // Product data
-        $viewData["product"] = $product;
-        return view('user.product.show')->with("viewData", $viewData);
+        $viewData['product'] = $product;
+
+        return view('user.product.show')->with('viewData', $viewData);
     }
 
     /**
