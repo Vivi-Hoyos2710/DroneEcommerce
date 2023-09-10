@@ -50,7 +50,7 @@
                     <ul
                         class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         @foreach ($viewData['order']->getItems() as $item)
-                            <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">Item</li>
+                            <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">{{$item->getProduct()->getName()}}</li>
                         @endforeach
                     </ul>
                 </div>

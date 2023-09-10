@@ -23,18 +23,18 @@
         </div>
     @endif
     <!--settings view start-->
-    <div class="bg-white shadow-md mx-auto mt-8 p-4 w-96 rounded-lg">
-        <h1 class="text-2xl font-semibold mb-4">{{ $viewData['subtitle'] }}</h1>
+    <div class="bg-white shadow-md mx-auto mt-8 p-4 w-96 rounded-lg dark:bg-gray-700">
+        <h1 class="text-2xl font-semibold mb-4 dark:text-gray-100">{{ $viewData['subtitle'] }}</h1>
         <div class="flex items-center space-x-4 mb-6">
             <div class="w-16 h-16 bg-blue-500 rounded-full flex-shrink-0"></div>
             <div>
-                <h2 class="text-xl font-semibold">{{ $viewData['userData']->getName() }}</h2>
+                <h2 class="text-xl font-semibold dark:text-gray-200">{{ $viewData['userData']->getName() }}</h2>
                 <p class="text-gray-500">{{ $viewData['userData']->getUserName() }}#{{ $viewData['userData']->getId() }}
                 </p>
             </div>
         </div>
         <div class="border-t pt-4">
-            <h2 class="text-xl font-semibold">Account Settings</h2>
+            <h2 class="text-xl font-semibold dark:text-gray-200">Account Settings</h2>
             <div class="space-y-2">
                 <div>
                     <p class="text-base font-medium text-gray-900 dark:text-white">Name</p>
