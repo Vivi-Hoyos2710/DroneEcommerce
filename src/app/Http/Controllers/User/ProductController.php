@@ -7,6 +7,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\Review;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -43,6 +46,8 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
+
+    //UTILIZAR GET Y SET
     public function show(string $id): View
     {
         $viewData = [];
@@ -63,6 +68,9 @@ class ProductController extends Controller
 
         // Product data
         $viewData['product'] = $product;
+
+        // Reviews
+        $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
 
         return view('user.product.show')->with('viewData', $viewData);
     }
@@ -86,5 +94,36 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): void
     {
+    }
+
+    public function delete($id)
+    {
+        Review::destroy($id);
+
+        return redirect()->route('product.index')->with('delete', 'Eliminada review con id #'.$id);
+        //falta mostrar un mensaje de confirmacion
+    }
+
+    public function saveReview(Request $request, $productId)
+    {
+        Review::validate($request);
+
+        $review = new Review();
+
+        $stringToIntRating = (int) $request->input('rating');
+        $review->setRating($stringToIntRating);
+
+        $review->setDescription($request->input('description'));
+        $review->setVerified(false);
+
+        $user = Auth::user();
+        $review->setUserId($user->getId());
+
+        $stringToIntProductId = intval($productId);
+        $review->setProductId($stringToIntProductId);
+
+        $review->save();
+
+        return redirect()->back();
     }
 }

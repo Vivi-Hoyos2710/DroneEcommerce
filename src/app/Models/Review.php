@@ -18,8 +18,21 @@ class Review extends Model
      * attributes['product_id'] : int => id of product related to the review
      * attributes['created_at'] : string => Date of the creation of the review
      * attributes['updated_at'] : string => update of the review
+     * $this->user - User - contains the associated User
+     * $this->product - Product - contains the associated Product
      */
     //Getters
+
+    protected $fillable = ['description', 'rating'];
+
+    public static function validate($request): void
+    {
+        $request->validate([
+            'description' => 'required|string|min:10|max:255',
+            'rating' => 'required|numeric|between:0,5',
+        ]);
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];
@@ -50,12 +63,12 @@ class Review extends Model
         return $this->attributes['product_id'];
     }
 
-    public function getCreatedAtColumn(): int
+    public function getCreatedAt(): int
     {
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAtColumn(): int
+    public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
     }
@@ -71,7 +84,7 @@ class Review extends Model
         $this->attributes['rating'] = $rating;
     }
 
-    public function setVerified(int $verified): void
+    public function setVerified(bool $verified): void
     {
         $this->attributes['verified'] = $verified;
     }
@@ -93,12 +106,12 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(): BelongsTo
+    public function getUser(): User
     {
         return $this->user;
     }
 
-    public function setUser(BelongsTo $user): void
+    public function setUser(User $user): void
     {
         $this->user = $user;
     }
@@ -109,12 +122,12 @@ class Review extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function getProduct()
+    public function getProduct(): Product
     {
         return $this->product;
     }
 
-    public function setProduct($product): void
+    public function setProduct(Product $product): void
     {
         $this->product = $product;
     }
