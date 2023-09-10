@@ -22,6 +22,8 @@ class Product extends Model
      * attributes['image'] : string => Brand of the product
      * attributes['created_at'] : string => Date of the creation of the product
      * attributes['updated_at'] : string => update of the product
+     * this->reviews - Review[] - contains the associated reviews
+     * $this->items - Item[] - contains the associated items
      */
     public static function sumPricesByQuantities($products, $productsInSession): int
     {
@@ -129,6 +131,16 @@ class Product extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function setReviews(Collection $reviews): void
+    {
+        $this->reviews = $reviews;
     }
 
     //Items

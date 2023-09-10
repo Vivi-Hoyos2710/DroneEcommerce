@@ -18,6 +18,8 @@ class Review extends Model
      * attributes['product_id'] : int => id of product related to the review
      * attributes['created_at'] : string => Date of the creation of the review
      * attributes['updated_at'] : string => update of the review
+     * $this->user - User - contains the associated User
+     * $this->product - Product - contains the associated Product
      */
     //Getters
 
@@ -104,12 +106,12 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(): BelongsTo
+    public function getUser(): User
     {
         return $this->user;
     }
 
-    public function setUser(BelongsTo $user): void
+    public function setUser(User $user): void
     {
         $this->user = $user;
     }
@@ -120,12 +122,12 @@ class Review extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function getProduct()
+    public function getProduct(): Product
     {
         return $this->product;
     }
 
-    public function setProduct($product): void
+    public function setProduct(Product $product): void
     {
         $this->product = $product;
     }

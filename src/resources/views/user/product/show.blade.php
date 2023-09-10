@@ -3,7 +3,6 @@
 @section('subtitle', $viewData["subtitle"])
 @section('content')
 
-<!-- Section one -->
 <div class="container">
     <div class="md:flex md:items-center">
         <div class="w-full h-64 md:w-1/2 lg:h-96">
@@ -68,10 +67,9 @@
     </div>
 </div>
 
-<!-- Section two -->
 <div class="container">
     <div class="my-10"> 
-        <h3 class="text-xl font-semibold mb-4">Dejanos tu opinion!</h3> <!-- Add your title here -->
+        <h3 class="text-xl font-semibold mb-4">Dejanos tu opinion!</h3>
         <div class="flex justify-left">
             <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">                                   
                 <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
@@ -120,7 +118,7 @@
         <h3 class="text-xl font-semibold mb-4"> Opiniones de nuestros usuarios </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         @foreach ($viewData["reviews"] as $review)
-            @if ($review["verified"] === 1)
+
             <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
                 <div class="flex items-center mb-2">
                     <div class="ml-3">
@@ -130,9 +128,8 @@
                 </div>
 
                 <p class="text-gray-700">{{ $review["description"] }}</p>
-
             </div>
-            @endif
+
         @endforeach
         </div>
     </div>

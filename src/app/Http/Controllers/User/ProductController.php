@@ -70,7 +70,7 @@ class ProductController extends Controller
         $viewData['product'] = $product;
 
         // Reviews
-        $viewData['reviews'] = Review::where('product_id', $id)->get();
+        $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
 
         return view('user.product.show')->with('viewData', $viewData);
     }
@@ -108,32 +108,22 @@ class ProductController extends Controller
     {
         Review::validate($request);
 
-        // Create a new review instance with the validated data
         $review = new Review();
 
-        // $review ->setRating($request->input('rating'));
         $stringToIntRating = (int) $request->input('rating');
         $review->setRating($stringToIntRating);
 
         $review->setDescription($request->input('description'));
         $review->setVerified(false);
 
-        // Associate the review with the current user
         $user = Auth::user();
-        // $review->user()->associate($user);
         $review->setUserId($user->getId());
-
-        // Associate the review with the product
-        // $product = Product::find($productId);
-        // $review->product()->associate($product);
 
         $stringToIntProductId = intval($productId);
         $review->setProductId($stringToIntProductId);
 
-        // Save the review to the database
         $review->save();
 
-        // Redirect back
         return redirect()->back();
     }
 }
