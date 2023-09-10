@@ -6,13 +6,14 @@ namespace App\Http\Controllers\Admin;
 use App\Interfaces\ImageStorage;
 use Illuminate\View\View;
 use App\Models\Product;
+use App\Models\Review;
 use App\Http\Requests\AdminProductRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse as Redirect;   
 
 
-class AdminProductController extends Controller
+class AdminReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +22,35 @@ class AdminProductController extends Controller
      */
     public function index(): View
     {   
-        $products = Product::with('reviews')->get();
         $viewData = [
-            'title' => 'Products',
-            'table_header' => ['ID', 'Name', 'Price', 'Description', 'Image', 'Category', 'Size', 'Brand', 'Delete', 'Edit  '],
-            'products' => $products,
+            'title' => 'Reviews',
         ];
-        return view('admin.reviews.index', compact('viewData'));
+        $products = Product::all();
+        return view('admin.review.index', compact('products'), compact('viewData'));
     }
+
+    public function accept($id)
+    {
+        $review = Review::findOrFail($id);
+        $review->verified = 1;
+        $review->save();
+
+        return redirect()->back()->with('success', 'Review accepted successfully.');
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Redirect
+     */
+    public function delete($id)
+    {
+        Review::destroy($id);
+        return redirect()->back()->with('rejected', 'Review rejected and deleted successfully.');
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -73,13 +95,6 @@ class AdminProductController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Redirect
-     */
-    public function delete(int $id): Redirect {
-    }
+
 
 }

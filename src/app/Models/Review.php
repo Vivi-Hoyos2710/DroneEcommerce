@@ -74,7 +74,7 @@ class Review extends Model
         $this->attributes['rating'] = $rating;
     }
 
-    public function setVerified(int $verified): void
+    public function setVerified(bool $verified): void
     {
         $this->attributes['verified'] = $verified;
     }

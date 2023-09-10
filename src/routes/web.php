@@ -20,7 +20,7 @@ Route::controller('App\Http\Controllers\HomeController')->group(function (): voi
     Route::get('/', 'index')->name('home.index');
 });
 Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
-    Route::get('/products', 'index')->name('product.index');
+    Route::get('/products', 'index')->name( 'product.index');
     Route::get('/products/{id}', 'show')->name('product.show');
     Route::delete('products/{id}/delete', 'delete')->name('product.delete');
     Route::post('products/{id}/save', 'saveReview')->name('product.saveReview');
@@ -42,8 +42,10 @@ Route::middleware('admin')->group(function () {
     Route::controller('App\Http\Controllers\Admin\AdminPageController')->group(function (): void {
         Route::get('/admin', 'index')->name('admin.index');
     });
-    Route::controller('App\Http\Controllers\Admin\AdminPageController')->group(function (): void {
+    Route::controller('App\Http\Controllers\Admin\AdminReviewController')->group(function (): void {
         Route::get('/admin/reviews', 'index')->name('admin.reviews');
+        Route::post('/admin/reviews/accept/{id}', 'accept')->name('admin.reviews.accept');
+        Route::delete('/admin/reviews/reject/{id}', 'delete')->name('admin.reviews.reject');
     });
     Route::controller('App\Http\Controllers\Admin\AdminOrderController')->group(function (): void {
         Route::get('/admin/orders', 'index')->name('admin.orders');

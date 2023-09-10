@@ -51,39 +51,50 @@
 </div>
 
 
-<div class="flex justify-center">
-    <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">                                   
-        <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
-            @csrf
-            
-            <div class="container mx-auto p-4">
-                <label for="customRange3" class="block text-gray-700 text-sm font-bold mb-2">Puntuación:</label>
-                <div class="flex items-center">
-                    <input name="rate" value="{{ old('rate') }}" type="range" class="form-range w-3/4"
-                        min="0" max="5" step="1" id="customRange3"
-                        oninput="this.form.valueRange.value=this.value">
-                    <input readonly class="form-input ml-2 w-1/4" name="valueRange"
-                        value="{{ old('valueRange') }}">
+<div class="my-10"> <!-- Add margin to create space from the top -->
+    <h2 class="text-xl font-semibold mb-4">Dejanos tu opinion!</h2> <!-- Add your title here -->
+    <div class="flex justify-left">
+        <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">                                   
+            <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
+                @csrf
+                
+                <div class="container mx-auto p-4">
+                    <label for="reviewRate" class="block text-gray-700 text-sm font-bold mb-2">Puntuación:</label>
+                    <div class="flex items-center">
+                        <input name="rate" value="{{ old('rate') }}" type="range" class="form-range w-3/4"
+                            min="0" max="5" step="1" id="reviewRate"
+                            oninput="this.form.valueRange.value=this.value">
+                        <input readonly class="form-input ml-2 w-1/4" name="valueRange"
+                            value="{{ old('valueRange') }}">
+                    </div>
                 </div>
-            </div>
 
-            <div class="mb-4">
-                <label for="exampleFormControlTextarea1" class="block text-sm font-medium text-gray-700">Comentario:</label>
-                <textarea name="description" value="{{ old('description') }}"
-                          class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                          id="exampleFormControlTextarea1" rows="3">
-                </textarea>
-            </div>
+                <!-- <div class="mb-4">
+                    <label for="rate" class="block text-sm font-medium text-gray-700">rate (from 1 to 5):</label>
+                    <input name="rate" value="{{ old('rate') }}"
+                        class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        id="rate" type="number" min="1" max="5" step="1">
+                </div> -->
 
-            <div class="flex justify-end">
-                <button type="submit"
-                        class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
-                    Crear Review
-                </button>
-            </div>
-        </form>
+                <div class="mb-4">
+                    <label for="reviewDescription" class="block text-sm font-medium text-gray-700">Comentario:</label>
+                    <textarea name="description" value="{{ old('description') }}"
+                            class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                            id="reviewDescription" rows="3">
+                    </textarea>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit"
+                            class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
+                        Crear Review
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
 
 
 <div class="container">
@@ -101,17 +112,6 @@
 
               <p class="text-gray-700">{{ $review["description"] }}</p>
 
-              <!-- Delete Review Section -->
-              <form method="POST" action="{{ route('product.delete', $review->getId()) }}">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">
-                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M12 6v12m0-12v12"></path>
-                      </svg>
-                      Delete
-                  </button>
-              </form>
           </div>
         @endif
       @endforeach
