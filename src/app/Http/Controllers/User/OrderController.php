@@ -23,4 +23,14 @@ class OrderController extends Controller
 
         return view('user.order.index')->with('viewData', $viewData);
     }
+
+    /**
+     *  Get the location of the order.
+     *  
+     * @return \Illuminate\View\View
+     */
+    public function locate(): View
+    {
+        return view('user.order.locate');
+    }
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\View\View;
 
@@ -34,13 +33,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(ProductRequest $request): void
-    {
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id): View
@@ -65,26 +57,5 @@ class ProductController extends Controller
         $viewData['product'] = $product;
 
         return view('user.product.show')->with('viewData', $viewData);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product): void
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(ProductRequest $request, Product $product): void
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product): void
-    {
     }
 }
