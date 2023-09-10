@@ -64,7 +64,7 @@
                         <a href="{{ route('product.index') }}" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{__('home.products')}}</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 text-white transition-transform transform hover:scale-110">
+                        <a href="{{ route('cart.index') }}" class="flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 text-white transition-transform transform hover:scale-110">
                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
                             </svg>
@@ -126,7 +126,7 @@
                                         role="menuitem">My Order</a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="{{route('user.account')}}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">{{ __('home.settings') }}</a>
                                 </li>
@@ -147,8 +147,10 @@
     </nav>
 
     <!-- Starts content-->
-    <div class="overflow-y-auto max-w-screen-xl min-h-screen flex-wrap items-center justify-between mx-auto p-4">
-        @yield('content')
+    <div class="@yield('background-class')" style="background-image: url('asset(@yield('ImageName')')">
+        <div class="overflow-y-auto max-w-screen-xl min-h-screen flex-wrap items-center justify-between mx-auto p-4">
+            @yield('content')
+        </div>
     </div>
     <!-- FOOTER--->
     <footer

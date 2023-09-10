@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Http\Request;
 class User extends Authenticatable
 {
     /**
@@ -68,73 +68,56 @@ class User extends Authenticatable
     {
         return $this->attributes['id'];
     }
-    public function getName()
+    public function getName():string
     {
         return $this->attributes['name'];
     }
-    public function getEmail()
+    public function getEmail():string
     {
         return $this->attributes['email'];
     }
-    public function getUserName()
+    public function getUserName():string
     {
         return $this->attributes['username'];
     }
-    public function getPassword()
+    public function getPassword():string
     {
         return $this->attributes['password'];
     }
-    public function getRol()
+    public function getRol():string
     {
         return $this->attributes['rol'];
     }
-    public function getBalance()
+    public function getBalance():int
     {
         return $this->attributes['balance'];
     }
- /*    public function getCreatedAtColumn()
-    {
-       // dd($this->attributes);
-        return $this->attributes['created_at'];
-    }
-
-    public function getUpdatedAtColumn()
-    {
-        return $this->attributes['updated_at'];
-    } */
     //setters
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->attributes['name'] = $name;
     }
-    public function setUserName($name)
+    public function setUserName(string $name)
     {
-        $this->attributes['name'] = $name;
+        $this->attributes['username'] = $name;
     }
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->attributes['email'] = $email;
     }
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->attributes['password'] = $password;
     }
-    public function setRole($role)
+    public function setRole(string $role)
     {
         $this->attributes['role'] = $role;
     }
-    public function setBalance($balance)
+    public function setBalance(int $balance)
     {
         $this->attributes['balance'] = $balance;
     }
-    public function setCreatedAt($createdAt)
-    {
-        $this->attributes['created_at'] = $createdAt;
-    }
-    public function setUpdatedAt($updatedAt) 
-    { 
-    $this->attributes['updated_at'] = $updatedAt; 
-    }
+  
     // Relationships
     //REVIEWS
     public function reviews(): HasMany
@@ -164,5 +147,27 @@ class User extends Authenticatable
     public function setOrders(HasMany $orders)
     {
         $this->orders = $orders;
+    }
+
+    //Validations of each field to custom update
+    public static function validateEach(Request $request, string $type): string
+    {
+        if ($type == 'name' || $type == 'username') {
+            $request->validate([
+                $type => 'required|string|max:255',
+            ]);
+            
+        } elseif ($type == 'email') {
+            $request->validate([
+                $type => 'required|string|email|max:255|unique:users',
+            ]);
+
+        } else {
+            $request->validate([
+                $type => 'required|string|min:8',
+            ]);
+        }
+
+        return $type;
     }
 }

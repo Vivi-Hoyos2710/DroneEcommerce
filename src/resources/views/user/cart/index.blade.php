@@ -34,7 +34,7 @@
                                             </div>
                                         </td>
                                         <td class="py-4">
-                                            {{ $product->getPrice() * session('products')[$product->getId()] }}
+                                            ${{ $product->getPrice() * session('products')[$product->getId()] }}
                                         </td>
                                     </tr>
                                 @empty
@@ -42,7 +42,7 @@
                                         <td>
                                             <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
                                                 role="alert">
-                                                <span class="font-medium">Info alert!</span> No products in cart
+                                                <span class="font-medium">Is empty!</span> No products in cart
                                             </div>
                                         </td>
 
@@ -56,35 +56,49 @@
                                                 Remove all products from Cart
                                             </button>
                                         </a>
-                                    </td>        
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="md:w-1/4">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h2 class="text-lg font-semibold mb-4">Summary</h2>
-                        <div class="flex justify-between mb-2">
-                            <span>Subtotal</span>
-                            <span>$19.99</span>
+                @if (count($viewData['products']) > 0)
+                    <div class="md:w-1/4">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-lg font-semibold mb-4">Summary</h2>
+                            <div class="flex justify-between mb-2">
+                                <span>Subtotal</span>
+                                <span>${{ $viewData['total'] }}</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span>Taxes</span>
+                                <span>0</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span>Shipping</span>
+                                <span>$0</span>
+                            </div>
+                            <hr class="my-2">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Total</span>
+                                <span class="font-semibold">${{ $viewData['total'] }}</span>
+                            </div>
+                            <form method="POST" action="{{ route('cart.purchase') }}">
+                                @csrf <!-- CSRF token for security -->
+                                
+                                <!-- Address Input -->
+                                <div class="mb-4">
+                                    <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address</label>
+                                    <input type="text" id="address" name="address" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500" required>
+                                </div>
+                            
+                                <!-- Purchase Button -->
+                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Purchase</button>
+                            </form>
+                            
                         </div>
-                        <div class="flex justify-between mb-2">
-                            <span>Taxes</span>
-                            <span>$1.99</span>
-                        </div>
-                        <div class="flex justify-between mb-2">
-                            <span>Shipping</span>
-                            <span>$0.00</span>
-                        </div>
-                        <hr class="my-2">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-semibold">Total</span>
-                            <span class="font-semibold">{{ $viewData['total'] }}</span>
-                        </div>
-                        <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>

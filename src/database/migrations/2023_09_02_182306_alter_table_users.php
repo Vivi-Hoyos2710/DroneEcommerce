@@ -16,7 +16,7 @@ return new class() extends Migration
         Schema::table('users', function (Blueprint $table): void {
             $table->string('username')->unique();
             $table->string('rol')->default('customer'); //admin or customer.
-            $table->float('balance');
+            $table->integer('balance');
         });
     }
 
