@@ -23,8 +23,7 @@ class Product extends Model
      * attributes['created_at'] : string => Date of the creation of the product
      * attributes['updated_at'] : string => update of the product
      */
-
-    public static function sumPricesByQuantities($products, $productsInSession):int
+    public static function sumPricesByQuantities($products, $productsInSession): int
     {
         $total = 0;
         foreach ($products as $product) {
@@ -33,6 +32,7 @@ class Product extends Model
 
         return $total;
     }
+
     //Getters
     public function getId(): int
     {
@@ -136,6 +136,7 @@ class Product extends Model
     {
         return $this->hasMany(Item::class);
     }
+
     public function getItems(): Collection
     {
         return $this->items;
