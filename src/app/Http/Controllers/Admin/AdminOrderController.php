@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
+/* Made By Vivi  */
 class AdminOrderController extends Controller
 {
     public function index(): View
@@ -30,7 +31,7 @@ class AdminOrderController extends Controller
     {
         $viewData = [];
         $viewData["title"] =  __('adminpanel.orders')." Show";
-        $viewData["order"] = Order::with(['items.product'])->findOrFail($id);
+        $viewData["order"] = Order::findOrFail($id);
         return view('admin.order.show')->with("viewData", $viewData);
     }
     

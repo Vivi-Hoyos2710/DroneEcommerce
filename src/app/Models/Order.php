@@ -56,7 +56,7 @@ class Order extends Model
 
     public function getUserId(): int
     {
-        return $this->attributes['id'];
+        return $this->attributes['user_id'];
     }
 
     public function getCreatedAt()
@@ -70,6 +70,20 @@ class Order extends Model
     }
 
     //Setters
+    public function setTotalAmount(int $total): void
+    {
+        $this->attributes['total_amount']=$total;
+    }
+
+    public function setAddress(string $address): void
+    {
+        $this->attributes['address']=$address;
+    }
+
+    public function setUserId(int $id): void
+    {
+        $this->attributes['user_id']=$id;
+    }
     public function setCreatedAt($createdAt): void
     {
         $this->attributes['created_at'] = $createdAt;

@@ -23,11 +23,21 @@ Route::controller('App\Http\Controllers\User\ProductController')->group(function
     Route::get('/products/{id}', 'show')->name('product.show');
 });
 
+Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(function (): void {
+    Route::get('/cart', 'index')->name('cart.index');
+    Route::get('/cart/delete', 'delete')->name('cart.delete');
+    Route::post('/cart/add/{id}', 'add')->name('cart.add');
+});
+
 //User Routes WITH auth
-Route::middleware('auth')->group(function () {
-    Route::controller('App\Http\Controllers\User\UserController')->group(function (): void {
+Route::middleware('auth')->group(function (){
+    Route::controller('App\Http\Controllers\User\SettingsController')->group(function (): void {
         Route::get('/my-account', 'index')->name('user.account');
-        Route::get('/my-account/update', 'index')->name('user.account.update');
+        Route::put('/my-account/update', 'update')->name('user.account.update');
+        
+    });
+    Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(function (): void {
+        Route::post('/cart/purchase', 'purchase')->name("cart.purchase"); 
     });
     Route::controller('App\Http\Controllers\User\OrderController')->group(function (): void {
         Route::get('/my-account/orders', 'index')->name('user.orders');
