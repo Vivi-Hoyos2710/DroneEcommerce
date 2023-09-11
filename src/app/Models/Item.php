@@ -68,27 +68,27 @@ class Item extends Model
     }
 
     //Setters
-    public function setId($id): void
+    public function setId(int $id): void
     {
         $this->attributes['id'] = $id;
     }
 
-    public function setQuantity($quantity): void
+    public function setQuantity(int $quantity): void
     {
         $this->attributes['quantity'] = $quantity;
     }
 
-    public function setPrice($price): void
+    public function setPrice(int $price): void
     {
         $this->attributes['price'] = $price;
     }
 
-    public function setOrderId($orderId): void
+    public function setOrderId(int $orderId): void
     {
         $this->attributes['order_id'] = $orderId;
     }
 
-    public function setProductId($productId): void
+    public function setProductId(int $productId): void
     {
         $this->attributes['product_id'] = $productId;
     }

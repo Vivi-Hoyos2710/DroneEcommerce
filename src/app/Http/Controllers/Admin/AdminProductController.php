@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminProductRequest;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Interfaces\ImageStorage;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse as Redirect;
@@ -44,16 +44,16 @@ class AdminProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  AdminProductRequest  $request
+     * @param  CreateProductRequest  $request
      */
-    public function store(ProductRequest $request): Redirect
+    public function store(CreateProductRequest $request): Redirect
     {
         $product = new Product();
 
         $validated = $request->validated();
 
         $product->setName($validated['name']);
-        $product->setPrice($validated['price']);
+        $product->setPrice((int) $validated['price']);
         $product->setDescription($validated['description']);
         $product->setCategory($validated['category']);
         $product->setSize($validated['size']);
@@ -85,11 +85,17 @@ class AdminProductController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param  UpdateProductRequest  $request
+     * @param  int  $id
+     * 
+     * @return Redirect
      */
-    public function update(AdminProductRequest $request, int $id): Redirect
+    public function update(UpdateProductRequest $request, int $id): Redirect
     {
 
         $product = Product::findOrFail($id);
+        $validated = $request->validated();
 
         if ($request->hasFile('image')) {
             $storeInterface = app(ImageStorage::class);
@@ -97,28 +103,28 @@ class AdminProductController extends Controller
             $product->setImage($request->file('image')->getClientOriginalName());
         }
 
-        if (isset($request['name'])) {
-            $product->setName($request['name']);
+        if (isset($validated['name'])) {
+            $product->setName($validated['name']);
         }
 
-        if (isset($request['price'])) {
-            $product->setPrice($request['price']);
+        if (isset($validated['price'])) {
+            $product->setPrice((int) $validated['price']);
         }
 
-        if (isset($request['description'])) {
-            $product->setDescription($request['description']);
+        if (isset($validated['description'])) {
+            $product->setDescription($validated['description']);
         }
 
-        if (isset($request['category'])) {
-            $product->setCategory($request['category']);
+        if (isset($validated['category'])) {
+            $product->setCategory($validated['category']);
         }
 
-        if (isset($request['size'])) {
-            $product->setSize($request['size']);
+        if (isset($validated['size'])) {
+            $product->setSize($validated['size']);
         }
 
-        if (isset($request['brand'])) {
-            $product->setBrand($request['brand']);
+        if (isset($validated['brand'])) {
+            $product->setBrand($validated['brand']);
         }
 
         $product->save();
