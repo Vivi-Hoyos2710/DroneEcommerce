@@ -58,4 +58,18 @@ class ProductController extends Controller
 
         return view('user.product.show')->with('viewData', $viewData);
     }
+
+    /**
+     * Show the calculator for a drone range
+     */
+    public function calculator(): View
+    {
+        
+        $viewData = [];
+        $viewData['title'] = 'Calculator';
+        $viewData['subtitle'] = 'Drone range calculator';
+
+        return view('user.product.calculator')->with('viewData', $viewData);
+    }
+    
 }

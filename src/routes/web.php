@@ -20,6 +20,7 @@ Route::controller('App\Http\Controllers\HomeController')->group(function (): voi
 });
 Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
     Route::get('/products', 'index')->name('product.index');
+    Route::get('/products/calculator', 'calculator')->name('product.calculator');
     Route::get('/products/{id}', 'show')->name('product.show');
 });
 
