@@ -11,7 +11,6 @@ function initMap() {
   const CONFIGURATION = {
     "ctaTitle": "Select address",
     "mapOptions": {"center":{"lat":37.4221,"lng":-122.0841},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":true,"zoom":10,"zoomControl":true,"maxZoom":22,"mapId":""},
-    "mapsApiKey": "AIzaSyAp0xD9szVZuzH2-R0lKL9nTYifnYQXuEE",
     "capabilities": {"addressAutocompleteControl":true,"mapDisplayControl":true,"ctaControl":true}
   };
 
@@ -92,8 +91,6 @@ function getAddress() {
   // if data is not empty set input to data and enable purchase button
   // check if address is not empty or composed only of spaces
   if (address.trim() !== '') {
-    console.log(address);
-    console.log(address.length);
     document.getElementById('address').placeholder = address;
     document.getElementById('address').value = address;
     document.getElementById('purchase').disabled = false;
