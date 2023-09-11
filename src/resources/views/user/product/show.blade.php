@@ -69,7 +69,7 @@
 
 <div class="container">
     <div class="my-10"> 
-        <h3 class="text-xl font-semibold mb-4">Dejanos tu opinion!</h3>
+        <h3 class="text-xl font-semibold mb-4">{{$viewData['review_title_comment']}}</h3>
         <div class="flex justify-left">
             <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">                                   
                 <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
