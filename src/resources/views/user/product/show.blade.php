@@ -71,5 +71,6 @@
         </div>
     </div>
 </div>
+
 <script src="{{ asset('/js/count.js') }}"></script>
 @endsection

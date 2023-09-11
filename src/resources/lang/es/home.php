@@ -11,6 +11,7 @@ return [
     'es' => 'Español',
     'search_placeholder' => 'Buscar un dron...',
     'products' => 'Productos',
+    'calculator' => 'Calculadora',
     'about' => 'Acerca de',
     'log' => 'Iniciar sesión',
     'sign' => 'Registrarse',
