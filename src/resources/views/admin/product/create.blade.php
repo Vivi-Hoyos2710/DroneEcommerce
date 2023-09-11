@@ -33,11 +33,25 @@
                         </div>
                         <div class="flex flex-col gap-4">
                             <label for="category">Category</label>
-                            <input type="text" name="category" id="category" class="border border-gray-300 p-2 rounded-lg" placeholder="Category" value="{{ old('category') }}">
+                            <!-- <input type="text" name="category" id="category" class="border border-gray-300 p-2 rounded-lg" placeholder="Category" value="{{ old('category') }}"> -->
+                            <!-- use select instead of input -->
+                            <select name="size" id="size" class="border border-gray-300 p-2 rounded-lg">
+                                <!-- choose from base and accessory -->
+                                <option value="base">Base</option>
+                                <option value="accessory">Accessory</option>
+                            </select>
                         </div>
                         <div class="flex flex-col gap- 4">
                             <label for="size">Size</label>
-                            <input type="text" name="size" id="size" class="border border-gray-300 p-2 rounded-lg" placeholder="Size" value="{{ old('size') }}">
+                            <!-- <input type="text" name="size" id="size" class="border border-gray-300 p-2 rounded-lg" placeholder="Size" value="{{ old('size') }}"> -->
+                            <!-- use select instead of input -->
+                            <select name="size" id="size" class="border border-gray-300 p-2 rounded-lg">
+                                <!-- choose from s, m and l -->
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                            </select>
+
                         </div>
                         <div class="flex flex-col gap-4">
                             <label for="brand">Brand</label>
