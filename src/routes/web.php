@@ -22,6 +22,7 @@ Route::controller('App\Http\Controllers\HomeController')->group(function (): voi
 Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
     Route::get('/products', 'index')->name('product.index');
     Route::get('/products/search/', 'searchProducts')->name('product.search');
+    Route::get('/products/calculator', 'calculator')->name('product.calculator');
     Route::get('/products/{id}', 'show')->name('product.show');
     Route::delete('products/{id}/delete', 'delete')->name('product.delete');
     Route::post('products/{id}/save', 'saveReview')->name('product.saveReview');
@@ -45,7 +46,10 @@ Route::middleware('auth')->group(function (): void {
     });
     Route::controller('App\Http\Controllers\User\OrderController')->group(function (): void {
         Route::get('/my-account/orders', 'index')->name('user.orders');
+        Route::get('/my-account/orders/location', 'locate')->name('user.orders.locate');
     });
+
+
 });
 
 //Admin Routes
