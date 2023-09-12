@@ -12,14 +12,11 @@ class HomeController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = __('z.name').' index';
+        $viewData['title'] = __('home.name').' index';
 
-        $products = Product::whereHas('reviews')->get();
+       
 
-        return view('user.home.index', compact('products'))->with('viewData', $viewData);
+        return view('user.home.index')->with('viewData',$viewData);
 
-        // $productsWithReviews = Product::whereHas('reviews')->get();
-
-        // return view('home', compact('productsWithReviews'));
     }
 }
