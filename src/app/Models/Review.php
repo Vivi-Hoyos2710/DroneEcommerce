@@ -99,7 +99,7 @@ class Review extends Model
         $this->attributes['product_id'] = $productId;
     }
 
-    //RelationShips
+    //Relationships
     //USER
     public function user(): BelongsTo
     {

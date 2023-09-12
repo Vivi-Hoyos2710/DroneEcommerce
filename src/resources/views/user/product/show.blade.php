@@ -56,11 +56,11 @@
                     </button>
             </div>
             <div class="flex items-center mt-6">
-                
                 <form method="POST" action="{{ route('cart.add', ['id' => $viewData['product']->getId()]) }}">
                     @csrf
                     <input type="hidden" name="quantity" id="quantity" value="1">
                     <button type="submit" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to cart</button>
+                    <a href="{{ route('wishlist.index') }}" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to wish list </a>
                 </form>
             </div>
         </div>
@@ -74,7 +74,6 @@
             <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">                                   
                 <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
                     @csrf
-                    
                     <div class="container mx-auto p-4">
                         <label for="reviewRate" class="block text-gray-700 text-sm font-bold mb-2">Puntuación:</label>
                         <div class="flex items-center">
@@ -118,7 +117,6 @@
         <h3 class="text-xl font-semibold mb-4"> Opiniones de nuestros usuarios </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         @foreach ($viewData["reviews"] as $review)
-
             <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
                 <div class="flex items-center mb-2">
                     <div class="ml-3">
@@ -129,7 +127,6 @@
 
                 <p class="text-gray-700">{{ $review["description"] }}</p>
             </div>
-
         @endforeach
         </div>
     </div>
