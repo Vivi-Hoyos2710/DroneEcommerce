@@ -32,6 +32,10 @@ Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(fun
     Route::post('/cart/add/{id}', 'add')->name('cart.add');
 });
 
+Route::controller('App\Http\Controllers\User\WishListController')->group(function (): void {
+    Route::get('/wishList', 'index')->name('wishlist.index');
+});
+
 //User Routes WITH auth
 Route::middleware('auth')->group(function (): void {
     Route::controller('App\Http\Controllers\User\SettingsController')->group(function (): void {
