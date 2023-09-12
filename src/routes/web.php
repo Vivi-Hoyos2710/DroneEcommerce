@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function (): void {
     });
     Route::controller('App\Http\Controllers\User\OrderController')->group(function (): void {
         Route::get('/my-account/orders', 'index')->name('user.orders');
+        Route::get('/my-account/orders/date', 'filterDAte')->name('user.orders.date');
         Route::get('/my-account/orders/location', 'locate')->name('user.orders.locate');
     });
 
@@ -75,6 +76,10 @@ Route::middleware('admin')->group(function (): void {
         Route::get('/admin/products/{id}/edit', 'edit')->name('admin.product.edit');
         Route::post('/admin/products/{id}/update', 'update')->name('admin.product.update');
         Route::delete('/admin/products/{id}/delete', 'delete')->name('admin.product.delete');
+    });
+    Route::controller('App\Http\Controllers\Admin\AdminUserController')->group(function (): void {
+        Route::get('/admin/users', 'index')->name('admin.user.index');
+        Route::delete('/admin/users/{id}/delete', 'delete')->name('admin.user.delete');
     });
 });
 Auth::routes();

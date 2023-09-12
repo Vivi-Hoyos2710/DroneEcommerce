@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 class Item extends Model
 {
@@ -21,7 +22,7 @@ class Item extends Model
      * $this->order - Order - contains the associated Order
      * $this->product - Product - contains the associated Product
      */
-    public static function validate($request): void
+    public static function validate(Request $request): void
     {
         $request->validate([
             'price' => 'required|numeric|gt:0',
