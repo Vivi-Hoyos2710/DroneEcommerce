@@ -13,9 +13,14 @@
                         <b class="dark:text-gray-300">Date:</b> <p class=" dark:text-gray-400">{{ $order->getCreatedAt() }}</p>
                     </div>
                     <div class="mx-10">
-                        <b class="dark:text-gray-300">Total:</b> <p>${{ $order->getTotalAmount() }}</p>
+                        <b class="dark:text-gray-300">Total:</b> <p class=" dark:text-gray-400">${{ $order->getTotalAmount() }}</p>
                         
                     </div>
+                    <div class="mx-10">
+                        <b class="dark:text-gray-300">Adress:</b> <p class=" dark:text-gray-400">{{ $order->getAddress() }}</p>
+                        
+                    </div>
+                    
                     
                 </div>
                

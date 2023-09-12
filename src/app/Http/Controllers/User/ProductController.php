@@ -99,4 +99,14 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+    //by Julian
+    public function calculator(): View
+    {
+
+        $viewData = [];
+        $viewData['title'] = 'Calculator';
+        $viewData['subtitle'] = 'Drone range calculator';
+
+        return view('user.product.calculator')->with('viewData', $viewData);
+    }
 }
