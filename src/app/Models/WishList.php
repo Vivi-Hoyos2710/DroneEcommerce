@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class WishList extends Model
 {
@@ -44,7 +44,31 @@ class WishList extends Model
  
     //Relationships
 
-    //User
+    // PRODUCTS
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function getProducts(): Collection
+    {
+        return $this -> products;
+    }
+
+    public function setProducts(Collection $products): void
+    {
+        $this -> products = $products;
+    }
+
+    public function setUserId(int $userId): void
+    {
+        $this->attributes['user_id'] = $userId;
+    }
+
+
+
+    // USER
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -52,27 +76,11 @@ class WishList extends Model
 
     public function getUser(): User
     {
-        return $this->user;
+        return $this -> user;
     }
 
     public function setUser(User $user): void
     {
-        $this->user = $user;
-    }
-
-    //Products
-    public function products(): HasMany
-    {
-        return $this->hasMany(Review::class);
-    }
-
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
-
-    public function setProducts(Collection $products): void
-    {
-        $this->products = $products;
+        $this -> user = $user;
     }
 }

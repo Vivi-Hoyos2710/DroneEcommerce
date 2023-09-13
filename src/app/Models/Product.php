@@ -7,6 +7,7 @@ namespace App\Models;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
@@ -26,10 +27,11 @@ class Product extends Model
      * $this->items - Item[] - contains the associated items
      */
     public static function sumPricesByQuantities($products, $productsInSession): int
-    {
+    {   
+        
         $total = 0;
         foreach ($products as $product) {
-            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]);
+            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]['quantity']);
         }
 
         return $total;
@@ -156,6 +158,23 @@ class Product extends Model
 
     public function setItems(Collection $items): void
     {
+     
         $this->items = $items;
+    }
+
+    // WISHLIST
+    public function wishlists(): BelongsToMany
+    {
+        return $this -> belongsToMany(WishList::class);
+    }
+
+    public function getWishlists(): Collection
+    {
+        return $this -> wishlists;
+    }
+    
+    public function setWishlists(Collection $wishlists): void
+    {
+        $this -> wishlists = $wishlists;
     }
 }

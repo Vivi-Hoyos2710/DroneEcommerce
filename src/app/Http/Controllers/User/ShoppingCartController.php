@@ -26,7 +26,10 @@ class ShoppingCartController extends Controller
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
+            $productsInSession['total']=$total;
+            $request->session()->put('products',$productsInSession);
         }
+        
         $viewData = [];
         $viewData['title'] = 'Cart - Online Store';
         $viewData['table_header'] = ['Product', 'Price', 'Quantity', 'Total'];
@@ -39,12 +42,11 @@ class ShoppingCartController extends Controller
     public function add(Request $request, $id): RedirectResponse
     {
         $products = $request->session()->get('products');
-        $products[$id] = $request->input('quantity');
+        $products[$id] = ['quantity'=>$request->input('quantity')];
         $request->session()->put('products', $products);
 
         return redirect()->route('cart.index');
     }
-
     public function delete(Request $request): RedirectResponse
     {
         $request->session()->forget('products');
@@ -59,7 +61,7 @@ class ShoppingCartController extends Controller
         $currentBalance=Auth::user()->getBalance();
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
+            $total = $productsInSession["total"];
             $userId = Auth::user()->getId();
             $order = new Order();
             $order->setUserId($userId);

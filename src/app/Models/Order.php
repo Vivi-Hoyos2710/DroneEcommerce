@@ -40,6 +40,13 @@ class Order extends Model
             'user_id' => 'required|exists:users,id',
         ]);
     }
+    public static function validateDates(Request $request): void
+    {
+        $request->validate([
+            'start' => 'required|date',
+            'end' => 'required|date',
+        ]);
+    }
 
     //Getters
     public function getId(): int

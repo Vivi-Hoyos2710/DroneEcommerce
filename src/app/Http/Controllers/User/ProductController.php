@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\WishList;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class ProductController extends Controller
     public function show(string $id): View|RedirectResponse
     {
         $viewData = [];
-        
+
         try {
             $product = Product::with('reviews')->findOrFail($id);
             $viewData['title'] = $product['name'] . ' - Online Store';
@@ -48,7 +49,7 @@ class ProductController extends Controller
             $viewData['name_title'] = 'Name';
             $viewData['count_title'] = 'Count';
             $viewData['cart_title'] = 'Add to cart';
-            $viewData['review_title_comment']='Leave us your opinion!';
+            $viewData['review_title_comment'] = 'Leave us your opinion!';
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
 
@@ -60,7 +61,7 @@ class ProductController extends Controller
 
     }
     //Search function by Viviana.
-    public function searchProducts(Request $request):View
+    public function searchProducts(Request $request): View
     {
         $viewData = [];
         $viewData['title'] = 'Products';
@@ -70,7 +71,7 @@ class ProductController extends Controller
         $viewData['products'] = Product::where('name', 'LIKE', '%' . $request->input('search') . '%')->latest()->paginate(15);
         return view('user.product.index')->with('viewData', $viewData);
     }
-    public function delete(string $id):RedirectResponse
+    public function deleteReview(string $id): RedirectResponse
     {
         Review::destroy($id);
 
@@ -99,7 +100,25 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
-    //by Julian
+    //Collab Julian Romero & Vivi
+    public function saveWishList($productId)
+    {
+        $user = Auth::user();
+        if (!$user->getWishList()) {
+            $wishList = new WishList();
+            $wishList->setUserId($user->getId());
+            $wishList->save();
+            $wishList->products()->attach($productId);
+        } else {
+            $wishList = $user->getWishList();
+            if (!$wishList->getProducts()->contains($productId)) {
+                $wishList->products()->attach($productId);
+            }
+            dd($wishList->getProducts());
+        }
+        return redirect()->back();
+    }
+    //by Julian David
     public function calculator(): View
     {
 

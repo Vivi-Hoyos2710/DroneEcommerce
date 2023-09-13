@@ -38,11 +38,11 @@
                                         <td class="py-4">
                                             <div class="flex items-center">
                                                 <span
-                                                    class="text-center w-8">{{ session('products')[$product->getId()] }}</span>
+                                                    class="text-center w-8">{{ session('products')[$product->getId()]['quantity'] }}</span>
                                             </div>
                                         </td>
                                         <td class="py-4">
-                                            ${{ $product->getPrice() * session('products')[$product->getId()] }}
+                                           {{ $product->getPrice() * session('products')[$product->getId()]['quantity'] }}
                                         </td>
                                     </tr>
                                 @empty

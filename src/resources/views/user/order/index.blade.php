@@ -1,8 +1,11 @@
 @extends('layouts.app')
 @section('title', $viewData['title'])
 @section('content')
-    <div class="container mx-auto mt-auto">
 
+    <div class="container mx-auto mt-auto">
+        <!--Date Filters-->
+        @include('components.filters.date-filter')
+        <!--end date filters-->
         @forelse ($viewData["orders"] as $order)
             <div class="bg-white shadow-md rounded-lg mb-4 p-4 dark:bg-gray-800 ">
                 <div class="bg-gray-200 text-gray-800 py-2 px-4 font-semibold  dark:bg-gray-600 dark:text-gray-200">
@@ -64,4 +67,5 @@
 
         @endforelse
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
 @endsection

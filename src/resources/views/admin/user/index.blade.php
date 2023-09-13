@@ -4,39 +4,39 @@
 
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class=" text-xs text-gray-700 border-b uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 border-b uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     @foreach ($viewData['table_header'] as $title)
-                        <th scope="sticky top-0 col " class="px-6 py-3">{{ $title }}</th>
+                        <th scope="sticky top-0 col" class="px-6 py-3">{{ $title }}</th>
                     @endforeach
                 </tr>
             </thead>
             <tbody>
-                @foreach ($viewData['orders'] as $order)
+                @foreach ($viewData['users'] as $user)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="px-6 py-4">
-                            {{ $order->getId() }}
+                            {{ $user->getId() }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $order->getTotalAmount() }}
+                            {{ $user->getName() }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $order->getAddress() }}
+                            {{ $user->getEmail() }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $order->getUserId() }}
+                            {{ $user->getUserName() }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $order->getUser()->getName() }}
+                           $ {{ $user->getBalance() }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $order->getCreatedAt() }}
+                            {{ $user->created_at }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $order->getUpdatedAt() }}
+                            {{ $user->updated_at }}
                         </td>
                         <td class="px-6 py-4">
-                            <form action="{{ route('admin.orders.delete', $order->getId()) }}" method="POST">
+                            <form action="{{ route('admin.user.delete', $user->getId()) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button
@@ -49,11 +49,6 @@
                                     Delete
                                 </button>
                             </form>
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="{{ route('admin.orders.show',$order->getId()) }}">
-                                <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">+</button>
-                            </a>
                         </td>
                     </tr>
                 @endforeach
