@@ -77,7 +77,7 @@
                     </li>
                     <li>
                         <a href="{{ route('product.calculator') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ 'calculator' }}</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ 'Calculator' }}</a>
                     </li>
                     <li>
                         <a href="{{ route('cart.index') }}"
@@ -94,7 +94,7 @@
                     <div class="vr bg-white mx-2 hidden lg:block"></div>
                     @guest
                         <li>
-                            <a href="{{ route('login') }}"
+                            <a href="{{ route('login') }}" 
                                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.log') }}</a>
                         </li>
                         <li>
@@ -135,7 +135,7 @@
                             <ul class="py-1" role="none">
 
                                 <li>
-                                    <a href="#"
+                                    <a href="{{ route('wishlist.index') }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">My Wishlist</a>
                                 </li>

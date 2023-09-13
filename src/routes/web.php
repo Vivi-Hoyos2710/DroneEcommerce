@@ -49,8 +49,13 @@ Route::middleware('auth')->group(function (): void {
         Route::get('/my-account/orders/date', 'filterDAte')->name('user.orders.date');
         Route::get('/my-account/orders/location', 'locate')->name('user.orders.locate');
     });
-
-
+    Route::controller('App\Http\Controllers\User\WishListController')->group(function (): void {
+        Route::get('/wishList', 'index')->name('wishlist.index');
+        
+    });
+    Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
+        Route::post('/wishList/{id}/save', 'saveWishList')->name('wishlist.save');
+    });
 });
 
 //Admin Routes

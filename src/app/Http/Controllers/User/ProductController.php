@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\WishList;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +71,7 @@ class ProductController extends Controller
         $viewData['products'] = Product::where('name', 'LIKE', '%' . $request->input('search') . '%')->latest()->paginate(15);
         return view('user.product.index')->with('viewData', $viewData);
     }
-    public function delete(string $id):RedirectResponse
+    public function deleteReview(string $id):RedirectResponse
     {
         Review::destroy($id);
 
@@ -99,7 +100,56 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
-    //by Julian
+
+    public function saveWishList($productId)
+    {
+        $currentProducts = WishList::where('user_id', Auth::user()->getId())->with('products');
+
+        $user = Auth::user() -> getId();
+        $product = Product::find($productId);
+        $wishList = new WishList();
+        $wishList -> setUserId($user);
+
+        if(!in_array($product, $currentProducts)){
+            $currentProducts[] = $product;
+        }
+
+        $wishList -> setProducts($currentProducts);
+        $wishList -> save();
+
+        return redirect()->back();
+    }
+
+    //Gepeto Help:
+    //     public function saveWishList($productId)
+    // {
+    //     // Retrieve the user's wishlist as an array of products
+    //     $currentProducts = WishList::where('user_id', Auth::user()->getId())
+    //         ->with('products')
+    //         ->first(); // Use 'first()' to execute the query and get the result
+
+    //     $user = Auth::user()->getId();
+    //     $product = Product::find($productId);
+
+    //     // Create a new wishlist if it doesn't exist
+    //     if (!$currentProducts) {
+    //         $currentProducts = new WishList();
+    //         $currentProducts->setUserId($user);
+    //         $currentProducts->save();
+    //     }
+
+    //     // Check if the product is already in the wishlist
+    //     if (!$currentProducts->products->contains($product->getId())) {
+    //         // Add the product to the wishlist
+    //         $currentProducts->products()->attach($product);
+    //     }
+
+    //     return redirect()->back();
+    // }
+
+
+
+    //by Julian David
     public function calculator(): View
     {
 
