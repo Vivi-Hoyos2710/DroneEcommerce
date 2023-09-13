@@ -60,9 +60,13 @@
                     @csrf
                     <input type="hidden" name="quantity" id="quantity" value="1">
                     <button type="submit" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to cart</button>
-                    <a href="{{ route('wishlist.index') }}" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to wish list </a>
                 </form>
-            </div>
+                <form method="POST" action="{{ route('wishlist.save' , ['id' => $viewData['product']->getId() ] ) }}">
+                    @csrf
+                    <input type="hidden" name="quantity" id="quantity" value="1">
+                    <button type="submit" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to cart</button>
+                </form>
+            </div> 
         </div>
     </div>
 </div>
@@ -124,7 +128,6 @@
                         <div class="text-sm text-gray-500">Rating: {{ $review["rating"] }}/5</div>
                     </div>
                 </div>
-
                 <p class="text-gray-700">{{ $review["description"] }}</p>
             </div>
         @endforeach

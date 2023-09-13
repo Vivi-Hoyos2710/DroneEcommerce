@@ -3,11 +3,6 @@
 @section('title', $viewData['title'])
 @section('content')
 
-
-
-
-
-
 <div class="bg-[#F9FAFB] min-h-screen flex items-center">
     <div class="max-w-screen-md mx-auto flex flex-col items-center w-full">
         <h1 cass="text-2xl font-bold text-gray-800">{{$viewData["title"]}} form</h1>
@@ -35,7 +30,7 @@
                             <label for="category">Category</label>
                             <!-- <input type="text" name="category" id="category" class="border border-gray-300 p-2 rounded-lg" placeholder="Category" value="{{ old('category') }}"> -->
                             <!-- use select instead of input -->
-                            <select name="size" id="size" class="border border-gray-300 p-2 rounded-lg">
+                            <select name="category" id="size" class="border border-gray-300 p-2 rounded-lg">
                                 <!-- choose from base and accessory -->
                                 <option value="base">Base</option>
                                 <option value="accessory">Accessory</option>

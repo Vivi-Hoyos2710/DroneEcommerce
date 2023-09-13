@@ -6,6 +6,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
@@ -185,5 +186,22 @@ class User extends Authenticatable
     public function setOrders(HasMany $orders): void
     {
         $this->orders = $orders;
+    }
+
+    //WISHLIST
+
+    public function wishList(): HasOne
+    {
+        return $this-> hasOne(WishList::class);
+    }
+
+    public function getWishList(): WishList
+    {
+        return $this->wishList;
+    }
+
+    public function setWishList(WishList $wishList): void
+    {
+        $this->wishList = $wishList;
     }
 }
