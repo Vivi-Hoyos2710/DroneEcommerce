@@ -52,12 +52,12 @@ class WishList extends Model
 
     public function getProducts(): Collection
     {
-        return $this -> product;
+        return $this -> products;
     }
 
-    public function setProducts(Collection $product): void
+    public function setProducts(Collection $products): void
     {
-        $this -> product = $product;
+        $this -> products = $products;
     }
 
     public function setUserId(int $userId): void

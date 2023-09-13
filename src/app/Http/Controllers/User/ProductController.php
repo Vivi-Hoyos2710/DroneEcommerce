@@ -36,7 +36,7 @@ class ProductController extends Controller
     public function show(string $id): View|RedirectResponse
     {
         $viewData = [];
-        
+
         try {
             $product = Product::with('reviews')->findOrFail($id);
             $viewData['title'] = $product['name'] . ' - Online Store';
@@ -49,7 +49,7 @@ class ProductController extends Controller
             $viewData['name_title'] = 'Name';
             $viewData['count_title'] = 'Count';
             $viewData['cart_title'] = 'Add to cart';
-            $viewData['review_title_comment']='Leave us your opinion!';
+            $viewData['review_title_comment'] = 'Leave us your opinion!';
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
 
@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     }
     //Search function by Viviana.
-    public function searchProducts(Request $request):View
+    public function searchProducts(Request $request): View
     {
         $viewData = [];
         $viewData['title'] = 'Products';
@@ -71,7 +71,7 @@ class ProductController extends Controller
         $viewData['products'] = Product::where('name', 'LIKE', '%' . $request->input('search') . '%')->latest()->paginate(15);
         return view('user.product.index')->with('viewData', $viewData);
     }
-    public function deleteReview(string $id):RedirectResponse
+    public function deleteReview(string $id): RedirectResponse
     {
         Review::destroy($id);
 
@@ -100,55 +100,24 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
-
+    //Collab Julian Romero & Vivi
     public function saveWishList($productId)
     {
-        $currentProducts = WishList::where('user_id', Auth::user()->getId())->with('products');
-
-        $user = Auth::user() -> getId();
-        $product = Product::find($productId);
-        $wishList = new WishList();
-        $wishList -> setUserId($user);
-
-        if(!in_array($product, $currentProducts)){
-            $currentProducts[] = $product;
+        $user = Auth::user();
+        if (!$user->getWishList()) {
+            $wishList = new WishList();
+            $wishList->setUserId($user->getId());
+            $wishList->save();
+            $wishList->products()->attach($productId);
+        } else {
+            $wishList = $user->getWishList();
+            if (!$wishList->getProducts()->contains($productId)) {
+                $wishList->products()->attach($productId);
+            }
+            dd($wishList->getProducts());
         }
-
-        $wishList -> setProducts($currentProducts);
-        $wishList -> save();
-
         return redirect()->back();
     }
-
-    //Gepeto Help:
-    //     public function saveWishList($productId)
-    // {
-    //     // Retrieve the user's wishlist as an array of products
-    //     $currentProducts = WishList::where('user_id', Auth::user()->getId())
-    //         ->with('products')
-    //         ->first(); // Use 'first()' to execute the query and get the result
-
-    //     $user = Auth::user()->getId();
-    //     $product = Product::find($productId);
-
-    //     // Create a new wishlist if it doesn't exist
-    //     if (!$currentProducts) {
-    //         $currentProducts = new WishList();
-    //         $currentProducts->setUserId($user);
-    //         $currentProducts->save();
-    //     }
-
-    //     // Check if the product is already in the wishlist
-    //     if (!$currentProducts->products->contains($product->getId())) {
-    //         // Add the product to the wishlist
-    //         $currentProducts->products()->attach($product);
-    //     }
-
-    //     return redirect()->back();
-    // }
-
-
-
     //by Julian David
     public function calculator(): View
     {

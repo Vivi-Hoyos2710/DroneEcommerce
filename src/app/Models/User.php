@@ -197,11 +197,11 @@ class User extends Authenticatable
 
     public function getWishList(): WishList
     {
-        return $this->wishList;
+        return $this->wishlist;
     }
 
     public function setWishList(WishList $wishList): void
     {
-        $this->wishList = $wishList;
+        $this->wishlist = $wishList;
     }
 }
