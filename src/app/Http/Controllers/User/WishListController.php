@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\WishList;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +20,13 @@ class WishListController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Cart - Online Store';
+        //$viewData['wishList'] = WishList::where('user_id', Auth::user()->getId())->get();   
+        $viewData['wishList'] = WishList::with('product')->where('user_id', Auth::user()->getId())->get();
+
+        //$viewData['orders'] = Order::with(['items.product'])->where('user_id', Auth::user()->getId())->get();
 
         
         return view('user.wishList.index')->with('viewData', $viewData);
     }
-
-
 
 }
