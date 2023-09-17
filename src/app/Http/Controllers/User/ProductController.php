@@ -114,7 +114,6 @@ class ProductController extends Controller
             if (!$wishList->getProducts()->contains($productId)) {
                 $wishList->products()->attach($productId);
             }
-            //dd($wishList->getProducts());
         }
         return redirect()->back();
     }

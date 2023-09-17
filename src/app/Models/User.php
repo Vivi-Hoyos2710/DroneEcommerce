@@ -195,7 +195,7 @@ class User extends Authenticatable
         return $this-> hasOne(WishList::class);
     }
 
-    public function getWishList(): WishList
+    public function getWishList(): WishList | null
     {
         return $this->wishlist;
     }
