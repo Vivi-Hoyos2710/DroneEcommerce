@@ -11,7 +11,6 @@ use Illuminate\View\View;
 use Carbon\Carbon;
 class OrderController extends Controller
 {
-    /* Made by Vivi */
 
     public function index(): View
     {

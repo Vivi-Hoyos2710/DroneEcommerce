@@ -44,7 +44,6 @@
                 </div>
 
 
-                <!-- This is the add to cart button -->
                 <label class="text-gray-700 text-sm" for="count"> {{ $viewData['count_title'] }}</label>
                 <div class="flex items-center mt-1">
                     <button id="less" class="text-gray-500 focus:outline-none focus:text-gray-600" onclick="decrementCount()">
@@ -54,7 +53,8 @@
                     <button id="more" class="text-gray-500 focus:outline-none focus:text-gray-600" onclick="incrementCount()">
                         <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </button>
-            </div>
+                </div>
+                
             <div class="flex items-center mt-6">
                 <form method="POST" action="{{ route('cart.add', ['id' => $viewData['product']->getId()]) }}">
                     @csrf

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\WishList;
@@ -60,7 +59,7 @@ class ProductController extends Controller
         }
 
     }
-    //Search function by Viviana.
+
     public function searchProducts(Request $request): View
     {
         $viewData = [];
@@ -69,6 +68,7 @@ class ProductController extends Controller
         $viewData['price_title'] = 'Price';
         $viewData['empty_message'] = 'No products match the query';
         $viewData['products'] = Product::where('name', 'LIKE', '%' . $request->input('search') . '%')->latest()->paginate(15);
+        
         return view('user.product.index')->with('viewData', $viewData);
     }
     public function deleteReview(string $id): RedirectResponse
@@ -100,7 +100,7 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
-    //Collab Julian Romero & Vivi
+
     public function saveWishList($productId)
     {
         $user = Auth::user();
@@ -114,14 +114,12 @@ class ProductController extends Controller
             if (!$wishList->getProducts()->contains($productId)) {
                 $wishList->products()->attach($productId);
             }
-            //dd($wishList->getProducts());
         }
         return redirect()->back();
     }
-    //by Julian David
+
     public function calculator(): View
     {
-
         $viewData = [];
         $viewData['title'] = 'Calculator';
         $viewData['subtitle'] = 'Drone range calculator';

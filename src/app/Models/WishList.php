@@ -20,6 +20,12 @@ class WishList extends Model
      */
 
     //Getters
+
+    public function getId(): int
+    {
+        return $this->attributes['id'];
+    }
+    
     public function getCreatedAt()
     {
         return $this->attributes['created_at'];
