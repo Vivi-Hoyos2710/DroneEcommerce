@@ -86,6 +86,7 @@
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
         
@@ -118,6 +119,7 @@
                                         </div>
                                     </div>
 
+
                                     @if ($errors->any())
                                         <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                                             role="alert">
@@ -127,14 +129,17 @@
                                         </div>
                                     @endif
 
+
                                     <div class="mb-4">
                                         <label for="reviewDescription"
                                             class="block text-sm font-medium text-gray-700">Comment:</label>
                                         <textarea name="description" value="{{ old('description') }}"
                                             class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                             id="reviewDescription" rows="3">
+
                         </textarea>
                                     </div>
+
 
                                     <div class="flex justify-end">
                                         <button type="submit"
@@ -145,9 +150,11 @@
                                 </form>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+
         <div class="container mt-5">
             <h3 class="text-xl font-semibold mb-4"> Opinions from our users! </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -160,6 +167,7 @@
                             </div>
                         </div>
                         <p class="text-gray-700">{{ $review['description'] }}</p>
+
                     </div>
                 @endforeach
             </div>

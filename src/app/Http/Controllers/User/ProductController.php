@@ -54,6 +54,11 @@ class ProductController extends Controller
             $viewData['stars']=Review::countRatingsByStars($viewData['reviews']);
             $viewData['total_review_count']=count( $viewData['reviews']);
             $viewData['average_rating']=$viewData['reviews']->avg('rating');
+            $viewData['opinions'] = __('product.opinions');
+            $viewData['rating'] = __('product.rating');
+            $viewData['ratingComment'] = __('product.ratingComment');
+            $viewData['sendReview'] = __('product.sendReview');
+            $viewData['comment'] = __('product.comment');
             return view('user.product.show')->with('viewData', $viewData);
         } catch (Throwable $th) {
             return redirect()->route('product.index');

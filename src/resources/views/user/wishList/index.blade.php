@@ -20,13 +20,13 @@
                         <form method="POST" action="{{ route('cart.add', ['id' => $product -> getId()]) }}">
                             @csrf
                             <input type="hidden" name="quantity" id="quantity" value="1">
-                            <button type="submit" class="flex-shrink-0 px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500" style="width: 150px;" > Add product To cart </button>
+                            <button type="submit" class="flex-shrink-0 px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500" style="width: 150px;" > {{ ($viewData['productToCart'] ) }} </button>
                         </form>
 
                         <form method="POST" action="{{ route('wishlist.delete', ['id' => $product -> getId() , 'WishListId' => $viewData['wishList'] -> getId()  ]) }}" class="mt-2">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class=" flex-shrink-0 px-8 py-2 bg-red-600 text-white text-sm font-medium rounded hover:bg-red-500 focus:outline-none focus:bg-red-500 " style="width: 150px;" > Delete from WishList </button>
+                                <button type="submit" class=" flex-shrink-0 px-8 py-2 bg-red-600 text-white text-sm font-medium rounded hover:bg-red-500 focus:outline-none focus:bg-red-500 " style="width: 150px;" > {{ ($viewData['deleteFromList'] ) }}</button>
                         </form>
                     </div> 
                     

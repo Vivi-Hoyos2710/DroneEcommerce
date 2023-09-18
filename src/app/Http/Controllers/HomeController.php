@@ -19,21 +19,9 @@ class HomeController extends Controller
             ->limit(3)
             ->get();
 
-        // dd($topReviewedProducts);
         $viewData['products'] = $topReviewedProducts;
     
         return view('user.home.index')->with('viewData', $viewData);
     }
 
-    public function getTopReviewedProducts()
-    {
-        // Use Eloquent to query the top 5 products with the most reviews
-        $topReviewedProducts = Product::withCount('reviews')
-            ->orderBy('reviews_count', 'desc')
-            ->limit(5)
-            ->get();
-
-        dd($topReviewedProducts);
-        return $topReviewedProducts;
-    }
 }
