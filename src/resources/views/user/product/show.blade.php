@@ -55,12 +55,17 @@
                     </button>
                 </div>
                 
+                </div>
+                
             <div class="flex items-center mt-6">
                 <form method="POST" action="{{ route('cart.add', ['id' => $viewData['product']->getId()]) }}">
                     @csrf
                     <input type="hidden" name="quantity" id="quantity" value="1">
                     <button type="submit" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to cart</button>
                 </form>
+            </div> 
+
+            <div class="flex items-center mt-6">
             </div> 
 
             <div class="flex items-center mt-6">
