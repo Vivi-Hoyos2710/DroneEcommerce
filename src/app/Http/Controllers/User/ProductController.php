@@ -40,24 +40,9 @@ class ProductController extends Controller
             $product = Product::with('reviews')->findOrFail($id);
             $viewData['title'] = $product['name'] . ' - Online Store';
             $viewData['subtitle'] = $product['name'] . ' - Product information';
-            $viewData['price_title'] = 'Price';
-            $viewData['description_title'] = 'Description';
-            $viewData['size_title'] = 'Size';
-            $viewData['brand_title'] = 'Brand';
-            $viewData['category_title'] = 'Category';
-            $viewData['name_title'] = 'Name';
-            $viewData['count_title'] = 'Count';
-            $viewData['cart_title'] = 'Add to cart';
-            $viewData['review_title_comment'] = 'Leave us your opinion!';
+
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
-
-            $viewData['opinions'] = __('product.opinions');
-            $viewData['rating'] = __('product.rating');
-            $viewData['ratingComment'] = __('product.ratingComment');
-            $viewData['sendReview'] = __('product.sendReview');
-            $viewData['comment'] = __('product.comment');
-
 
             return view('user.product.show')->with('viewData', $viewData);
         } catch (Throwable $th) {
