@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
+
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
@@ -23,14 +25,14 @@
 <body>
     <!-- Nav bar -->
 
-    <nav class="bg-neutral-400 border-gray-500 dark:bg-gray-900 shadow-md relative">
+    <nav class=" bg-gray-900  dark:bg-gray-900 shadow-md relative">
         <div class="max-w-screen-xl flex flex-wrap justify-between mx-auto  p-4">
             <div class="flex items-center justify-start">
                 <a href={{ route('home.index') }} class="flex items-center">
                     <img src="{{ asset('/img/drone_logo.png') }}"
                         class="w-auto h-auto max-h-12 max-w-12 dark:border-white" alt={{ __('home.logo') }}>
                     <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ __('home.name') }}</span>
+                        class="self-center text-white text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ __('home.name') }}</span>
                 </a>
             </div>
             <button data-collapse-toggle="navbar-default" type="button"
@@ -69,15 +71,15 @@
                     </li>
                     <li>
                         <a href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.about') }}</a>
+                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.about') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('product.index') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.products') }}</a>
+                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.products') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('product.calculator') }}"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ 'Calculator' }}</a>
+                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ 'Calculator' }}</a>
                     </li>
                     <li>
                         <a href="{{ route('cart.index') }}"
@@ -87,6 +89,7 @@
                                     stroke-width="2"
                                     d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                             </svg>
+                            <div class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{{ session('products') ? count(session('products')) : 0 }}</div>
                         </a>
                     </li>
 
@@ -95,11 +98,11 @@
                     @guest
                         <li>
                             <a href="{{ route('login') }}" 
-                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.log') }}</a>
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.log') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('register') }}"
-                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.sign') }}</a>
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.sign') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -168,7 +171,7 @@
     <!-- Starts content-->
 
     <body
-        class="{{ $body_class ?? 'bg-white dark:bg-gray-900 bg-[url("https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg")]' }}">
+        class="{{ $body_class ?? 'bg-white dark:bg-gray-800' }}">
         <div class="overflow-y-auto max-w-screen-xl min-h-screen flex-wrap items-center justify-between mx-auto p-4">
             @yield('content')
         </div>

@@ -35,7 +35,7 @@ class ProductController extends Controller
     public function show(string $id): View|RedirectResponse
     {
         $viewData = [];
-
+        
         try {
             $product = Product::with('reviews')->findOrFail($id);
             $viewData['title'] = $product['name'] . ' - Online Store';
@@ -51,7 +51,9 @@ class ProductController extends Controller
             $viewData['review_title_comment'] = 'Leave us your opinion!';
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
-
+            $viewData['stars']=Review::countRatingsByStars($viewData['reviews']);
+            $viewData['total_review_count']=count( $viewData['reviews']);
+            $viewData['average_rating']=$viewData['reviews']->avg('rating');
             return view('user.product.show')->with('viewData', $viewData);
         } catch (Throwable $th) {
             return redirect()->route('product.index');

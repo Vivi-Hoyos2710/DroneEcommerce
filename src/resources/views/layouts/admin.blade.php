@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     @yield('import')
     <title>@yield('title', __('app.app_name'))</title>
@@ -14,13 +15,13 @@
 <body>
     <!-- nav bar -->
 
-    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+    <nav class="fixed top-0 z-50 w-full bg-teal-950 dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-3 py-4 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-start">
                     <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
                         aria-controls="logo-sidebar" type="button"
-                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                         <span class="sr-only">Open sidebar</span>
                         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +34,7 @@
                         <img src="{{ asset('/img/drone_logo.png') }}" class="w-auto h-auto max-h-12 max-w-12"
                             alt="drone Logo">
                         <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ __('adminpanel.title') }}</span>
+                            class="self-center text-white text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ __('adminpanel.title') }}</span>
                     </a>
                 </div>
                 <!-- User info part-->
@@ -63,23 +64,23 @@
                             <ul class="py-1" role="none">
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Settings</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Earnings</a>
                                 </li>
                                 <li>
                                     <form id="logout" action="{{ route('logout') }}" method="POST">
                                         <button type="submit"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
                                         @csrf
                                     </form>
                                 </li>
@@ -94,11 +95,11 @@
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
-        <div class="h-full px-3 pb-4 overflow-y-auto bg-white via-green-300 to-blue-900 dark:bg-gray-800">
-            <ul class="space-y-2 font-medium">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-800 dark:bg-gray-800">
+            <ul class="space-y-5 font-medium">
                 <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('admin.user.index') }}"
+                        class="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 22 21">
@@ -112,7 +113,7 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.user.index') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 18">
@@ -124,7 +125,7 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.orders') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
                             <path
@@ -135,7 +136,7 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.products') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 20">
@@ -147,7 +148,7 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.reviews') }}"  
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path
@@ -161,12 +162,15 @@
     </aside>
 
     <!--DashBoard content (RIGHT)-->
-    <div class="p-4 sm:ml-64">
-        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-            <!-- Starts content-->
-            @yield('content')
+    <div class="{{ $body_class ?? 'bg-white dark:bg-gray-900'  }}">
+        <div class="p-4 sm:ml-64 ">
+            <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+                <!-- Starts content-->
+                @yield('content')
+            </div>
         </div>
     </div>
+   
 
 
 
