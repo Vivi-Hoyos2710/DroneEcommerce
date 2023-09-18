@@ -5,7 +5,7 @@
 
     <div class="-sm bg-neutral-500 bg-opacity-50 py-8 dark:bg-gray-600 dark:bg-opacity-70">
         <div class="container mx-auto px-4">
-            <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
+            <h1 class="text-2xl font-semibold mb-4">{{$viewData['subtitle']}}</h1>
             @if (session('error'))
                 <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
                     role="alert">
@@ -36,13 +36,40 @@
                                         </td>
                                         <td class="py-4">{{ $product->getPrice() }}</td>
                                         <td class="py-4">
+
                                             <div class="flex items-center">
+                                                <form method="POST"
+                                                    action="{{ route('cart.add', ['id' => $product->getId()]) }}">
+                                                    @csrf
+                                                    <input type="hidden" name="quantity" id="quantity"
+                                                        value={{ session('products')[$product->getId()]['quantity'] - 1 }}>
+                                                    <button type="submit"
+                                                        class="px-2 py-2 bg-red-600 text-white text-sm font-medium rounded hover:bg-red-500 focus:outline-none focus:bg-red-500">-</button>
+                                                </form>
                                                 <span
                                                     class="text-center w-8">{{ session('products')[$product->getId()]['quantity'] }}</span>
+                                                <form method="POST"
+                                                    action="{{ route('cart.add', ['id' => $product->getId()]) }}">
+                                                    @csrf
+                                                    <input type="hidden" name="quantity" id="quantity"
+                                                        value={{ session('products')[$product->getId()]['quantity'] + 1 }}>
+                                                    <button type="submit"
+                                                        class="px-2 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500">+</button>
+                                                </form>
                                             </div>
                                         </td>
                                         <td class="py-4">
-                                           {{ $product->getPrice() * session('products')[$product->getId()]['quantity'] }}
+                                            {{ $product->getPrice() * session('products')[$product->getId()]['quantity'] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('cart.delete') }}">
+                                                <button
+                                                    class="px-4 py-2 bg-red-500 text-white rounded-md mb-2 hover:bg-red-600 focus:outline-none">
+                                                    Remove all products from Cart
+                                                </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty
@@ -56,16 +83,7 @@
 
                                     </tr>
                                 @endforelse
-                                <tr>
-                                    <td>
-                                        <a href="{{ route('cart.delete') }}">
-                                            <button
-                                                class="px-4 py-2 bg-red-500 text-white rounded-md mb-2 hover:bg-red-600 focus:outline-none">
-                                                Remove all products from Cart
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -91,7 +109,7 @@
                                 <span class="font-semibold">Total</span>
                                 <span class="font-semibold">${{ $viewData['total'] }}</span>
                             </div>
-                            
+
                             <!-- Create a next step button which looks like others in this project-->
                             <a href="{{ route('user.orders.locate') }}">
                                 <button
@@ -99,7 +117,7 @@
                                     Next Step
                                 </button>
                             </a>
-                            
+
                         </div>
                     </div>
                 @endif

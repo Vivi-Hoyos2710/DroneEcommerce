@@ -25,6 +25,19 @@ class Review extends Model
 
     protected $fillable = ['description', 'rating'];
 
+    public static function countRatingsByStars($reviews): array
+    {
+        $listCount = [];
+        foreach ($reviews as $review) {
+            $rating=$review->getRating();
+            if (!isset($listCount[$rating])) {
+                $listCount[$rating] = 1;
+            } else {
+                $listCount[$rating]++;
+            }
+        }
+        return $listCount;
+    }
     public static function validate($request): void
     {
         $request->validate([

@@ -85,6 +85,8 @@ Route::middleware('admin')->group(function (): void {
     });
     Route::controller('App\Http\Controllers\Admin\AdminUserController')->group(function (): void {
         Route::get('/admin/users', 'index')->name('admin.user.index');
+        Route::get('/admin/users/{id}/edit', 'edit')->name('admin.user.edit');
+        Route::put('/admin/products/{id}/update', 'update')->name('admin.user.update');
         Route::delete('/admin/users/{id}/delete', 'delete')->name('admin.user.delete');
     });
 });

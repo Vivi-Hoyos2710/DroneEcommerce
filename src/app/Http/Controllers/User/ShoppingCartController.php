@@ -26,12 +26,12 @@ class ShoppingCartController extends Controller
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
-            $productsInSession['total']=$total;
-            $request->session()->put('products',$productsInSession);
+            
         }
         
         $viewData = [];
         $viewData['title'] = 'Cart - Online Store';
+        $viewData['subtitle']='Shopping Cart';
         $viewData['table_header'] = ['Product', 'Price', 'Quantity', 'Total'];
         $viewData['products'] = $productsInCart;
         $viewData['total'] = $total;
@@ -39,11 +39,18 @@ class ShoppingCartController extends Controller
         return view('user.cart.index')->with('viewData', $viewData);
     }
 
-    public function add(Request $request, $id): RedirectResponse
+    public function add(Request $request, string $id): RedirectResponse
     {
         $products = $request->session()->get('products');
-        $products[$id] = ['quantity'=>$request->input('quantity')];
-        $request->session()->put('products', $products);
+        $quantityInput=$request->input('quantity');
+        if ($quantityInput>0) {
+            $products[$id] = ['quantity'=>$quantityInput];
+            $request->session()->put('products', $products);
+        }
+        else{
+            $request->session()->forget('products.' . $id);
+        }
+       
 
         return redirect()->route('cart.index');
     }
@@ -61,7 +68,7 @@ class ShoppingCartController extends Controller
         $currentBalance=Auth::user()->getBalance();
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = $productsInSession["total"];
+            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
             $userId = Auth::user()->getId();
             $order = new Order();
             $order->setUserId($userId);

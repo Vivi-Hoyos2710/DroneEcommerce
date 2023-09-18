@@ -20,7 +20,7 @@
                         
                     </div>
                     <div class="mx-10">
-                        <b class="dark:text-gray-300">Adress:</b> <p class=" dark:text-gray-400">{{ $order->getAddress() }}</p>
+                        <b class="dark:text-gray-300">Address:</b> <p class=" dark:text-gray-400">{{ $order->getAddress() }}</p>
                         
                     </div>
                     
