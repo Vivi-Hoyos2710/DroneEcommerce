@@ -52,6 +52,13 @@ class ProductController extends Controller
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
 
+            $viewData['opinions'] = __('product.opinions');
+            $viewData['rating'] = __('product.rating');
+            $viewData['ratingComment'] = __('product.ratingComment');
+            $viewData['sendReview'] = __('product.sendReview');
+            $viewData['comment'] = __('product.comment');
+
+
             return view('user.product.show')->with('viewData', $viewData);
         } catch (Throwable $th) {
             return redirect()->route('product.index');

@@ -1,4 +1,3 @@
-<!--Code by Vivi-->
 @extends('layouts.app', ['body_class' => "bg-cover backdrop-blur-sm bg-white bg-center bg-no-repeat bg-[url('https://e0.pxfuel.com/wallpapers/924/464/desktop-wallpaper-pixel-art-8-bit-%E2%80%A2-for-you-for-mobile-pixel-sunset.jpg')] bg-gray-300 bg-blend-multiply "])
 @section('title', $viewData['title'])
 @section('content')

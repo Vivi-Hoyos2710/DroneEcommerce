@@ -15,8 +15,10 @@ class WishListController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Cart - Online Store';
+        $viewData['title'] = 'Drone - WishList';
         $viewData['wishList'] = WishList::with('products')->where('user_id', Auth::user()->getId())->get() -> first();
+        $viewData['productToCart'] = __('wishList.productToCart'); 
+        $viewData['deleteFromList'] = __('wishList.deleteFromList');
 
         return view('user.wishList.index')->with('viewData', $viewData);
     }

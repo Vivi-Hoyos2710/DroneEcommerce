@@ -14,9 +14,6 @@ use Illuminate\View\View;
 
 class SettingsController extends Controller
 {
-    /**
-     * Made by Vivi
-     */
     public function index(): View
     {
         $viewData = [];

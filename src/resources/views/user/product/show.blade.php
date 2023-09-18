@@ -82,7 +82,7 @@
                 <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
                     @csrf
                     <div class="container mx-auto p-4">
-                        <label for="reviewRate" class="block text-gray-700 text-sm font-bold mb-2">Rating:</label>
+                        <label for="reviewRate" class="block text-gray-700 text-sm font-bold mb-2"> {{ $viewData['rating'] }} </label>
                         <div class="flex items-center">
                             <input name="rating" value="{{ old('rate') }}" type="range" class="form-range w-3/4"
                                 min="0" max="5" step="1" id="reviewRate"
@@ -101,7 +101,7 @@
                     @endif
 
                     <div class="mb-4">
-                        <label for="reviewDescription" class="block text-sm font-medium text-gray-700">Comment:</label>
+                        <label for="reviewDescription" class="block text-sm font-medium text-gray-700"> {{ $viewData['comment'] }} </label>
                         <textarea name="description" value="{{ old('description') }}"
                                 class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                 id="reviewDescription" rows="3">
@@ -110,8 +110,8 @@
 
                     <div class="flex justify-end">
                         <button type="submit"
-                                class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
-                            Send Review
+                            class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
+                            {{ $viewData['sendReview'] }}
                         </button>
                     </div>
                 </form>
@@ -120,14 +120,14 @@
     </div>
 
     <div class="container">
-        <h3 class="text-xl font-semibold mb-4"> Opinions from our users! </h3>
+        <h3 class="text-xl font-semibold mb-4"> {{ $viewData['opinions'] }} </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         @foreach ($viewData["reviews"] as $review)
             <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
                 <div class="flex items-center mb-2">
                     <div class="ml-3">
                         <div class="text-sm font-medium text-gray-900">{{ $review->user->name }}</div>
-                        <div class="text-sm text-gray-500">Rating: {{ $review["rating"] }}/5</div>
+                        <div class="text-sm text-gray-500"> {{ $viewData['ratingComment'] }} {{ $review["rating"] }}/5</div> 
                     </div>
                 </div>
                 <p class="text-gray-700">{{ $review["description"] }}</p>

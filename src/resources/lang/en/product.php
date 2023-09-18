@@ -15,11 +15,10 @@ return [
     'about' => 'About',
     'log' => 'Log In',
     'sign' => 'Sign In',
-    'reviewTitle' => 'Reviews for All Products',
-    'accept' => 'Accept',
-    'reject' => 'Reject',
-    'user' => 'User:',
-    'rating' => 'Rating:',
-    'reviewAccept' => 'Review accepted successfully.',
-    'reviewReject' => 'Review rejected and deleted successfully.',
+    'opinions' => 'Opinions from our users!', 
+    'rating' => 'Rating:', 
+    'ratingComment' => 'rating:',
+    'sendReview' => 'Send Review',
+    'comment' => 'Comment:',
+
 ];

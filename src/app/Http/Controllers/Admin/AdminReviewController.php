@@ -14,7 +14,12 @@ class AdminReviewController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Reviews';
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle'); 
+        $viewData['accept'] = __('review.accept');
+        $viewData['reject'] = __('review.reject');
+        $viewData['user'] = __('review.user');
+        $viewData['rating'] = __('review.rating');
         $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', false)->get();
 
         return view('admin.review.index')->with('viewData', $viewData);
@@ -22,17 +27,19 @@ class AdminReviewController extends Controller
 
     public function accept(string $id): Redirect
     {
+        $viewData['reviewAccept'] = __('review.reviewAccept');
         $review = Review::findOrFail($id);
         $review->setVerified(true);
         $review->save();
 
-        return redirect()->back()->with('success', 'Review accepted successfully.');
+        return redirect()->back()->with('success', $viewData['reviewAccept']);
     }
 
     public function delete(string $id): Redirect
     {
+        $viewData['reviewReject'] = __('review.reviewReject');
         Review::destroy($id);
 
-        return redirect()->back()->with('rejected', 'Review rejected and deleted successfully.');
+        return redirect()->back()->with('rejected', $viewData['reviewReject']);
     }
 }
