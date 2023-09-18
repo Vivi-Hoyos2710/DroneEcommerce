@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function (): void {
     });
     Route::controller('App\Http\Controllers\User\WishListController')->group(function (): void {
         Route::get('/wishList', 'index')->name('wishlist.index');
+        Route::delete('wishList/{id}/{WishListId}/delete', 'delete')->name('wishlist.delete');
         
     });
     Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {

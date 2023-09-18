@@ -44,7 +44,6 @@
                 </div>
 
 
-                <!-- This is the add to cart button -->
                 <label class="text-gray-700 text-sm" for="count"> {{ $viewData['count_title'] }}</label>
                 <div class="flex items-center mt-1">
                     <button id="less" class="text-gray-500 focus:outline-none focus:text-gray-600" onclick="decrementCount()">
@@ -54,19 +53,23 @@
                     <button id="more" class="text-gray-500 focus:outline-none focus:text-gray-600" onclick="incrementCount()">
                         <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </button>
-            </div>
+                </div>
+                
             <div class="flex items-center mt-6">
                 <form method="POST" action="{{ route('cart.add', ['id' => $viewData['product']->getId()]) }}">
                     @csrf
                     <input type="hidden" name="quantity" id="quantity" value="1">
                     <button type="submit" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to cart</button>
                 </form>
+            </div> 
+
+            <div class="flex items-center mt-6">
                 <form method="POST" action="{{ route('wishlist.save' , ['id' => $viewData['product']->getId() ] ) }}">
                     @csrf
                     <input type="hidden" name="quantity" id="quantity" value="1">
-                    <button type="submit" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to cart</button>
+                    <button type="submit" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to wish list</button>
                 </form>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -79,7 +82,7 @@
                 <form class="form-group" method="POST" action="{{ route('product.saveReview', [$viewData['product'] -> getId() ]) }}">
                     @csrf
                     <div class="container mx-auto p-4">
-                        <label for="reviewRate" class="block text-gray-700 text-sm font-bold mb-2">Puntuación:</label>
+                        <label for="reviewRate" class="block text-gray-700 text-sm font-bold mb-2">Rating:</label>
                         <div class="flex items-center">
                             <input name="rating" value="{{ old('rate') }}" type="range" class="form-range w-3/4"
                                 min="0" max="5" step="1" id="reviewRate"
@@ -98,7 +101,7 @@
                     @endif
 
                     <div class="mb-4">
-                        <label for="reviewDescription" class="block text-sm font-medium text-gray-700">Comentario:</label>
+                        <label for="reviewDescription" class="block text-sm font-medium text-gray-700">Comment:</label>
                         <textarea name="description" value="{{ old('description') }}"
                                 class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                 id="reviewDescription" rows="3">
@@ -108,7 +111,7 @@
                     <div class="flex justify-end">
                         <button type="submit"
                                 class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
-                            Crear Review
+                            Send Review
                         </button>
                     </div>
                 </form>
@@ -116,9 +119,8 @@
         </div>
     </div>
 
-
     <div class="container">
-        <h3 class="text-xl font-semibold mb-4"> Opiniones de nuestros usuarios </h3>
+        <h3 class="text-xl font-semibold mb-4"> Opinions from our users! </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         @foreach ($viewData["reviews"] as $review)
             <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
