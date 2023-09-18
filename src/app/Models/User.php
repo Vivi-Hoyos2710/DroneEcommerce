@@ -11,6 +11,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Enums\RolType;
+use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\Rule;
 
 class User extends Authenticatable
 {
@@ -51,7 +54,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'rol',
         'password',
         'remember_token',
     ];
@@ -65,7 +67,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
+    public static function validateAllFields(Request $request,string $id):void
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'rol'=> 'string',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($id),
+            ],
+            'balance' => 'required|numeric|min:0',
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
+            
+        ]);
+    }
     //Validations of each field to custom update
     public static function validateEach(Request $request, string $type): string
     {
@@ -147,7 +163,7 @@ class User extends Authenticatable
 
     public function setRole(string $role): void
     {
-        $this->attributes['role'] = $role;
+        $this->attributes['rol'] = $role;
     }
 
     public function setBalance(int $balance): void

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['body_class' => "backdrop-blur-sm bg-cover bg-center bg-no-repeat bg-[url('https://static.vecteezy.com/system/resources/previews/009/877/659/original/pixel-art-city-background-blue-with-buildings-constructions-bridge-and-cloudy-sky-for-8bit-game-vector.jpg')] bg-gray-300"])
+@extends('layouts.app', ['body_class' => "bg-home-background"])
 @section('title', $viewData['title'])
 @section('content')
 

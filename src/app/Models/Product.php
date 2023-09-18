@@ -36,6 +36,8 @@ class Product extends Model
 
         return $total;
     }
+   
+
 
     //Getters
     public function getId(): int
