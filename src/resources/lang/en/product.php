@@ -10,9 +10,9 @@ return [
     'en' => 'English',
     'es' => 'Spanish',
     'search_placeholder' => 'Search a drone...',
-    'products' => 'Products',
+    'title' => 'Products',
 
-    'price_title' => 'Price: ',
+    'price_title' => 'Price',
     'description_title' => 'Description',
     'size_title' => 'Size',
     'brand_title' => 'Brand',
@@ -24,8 +24,11 @@ return [
     'rating' => 'Rating:', 
     'ratingComment' => 'rating:',
     'sendReview' => 'Send Review',
+    'reviewTitle' => 'Review Title:',
     'comment' => 'Comment:',
     'addCart' => 'Add to cart',
     'addWishList' => 'Add to wish list',
+    'empty_message' => 'No products',
+    'image_title' => 'Image',
 
 ];

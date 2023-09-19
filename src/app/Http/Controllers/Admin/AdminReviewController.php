@@ -16,10 +16,7 @@ class AdminReviewController extends Controller
         $viewData = [];
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle'); 
-        $viewData['accept'] = __('review.accept');
-        $viewData['reject'] = __('review.reject');
-        $viewData['user'] = __('review.user');
-        $viewData['rating'] = __('review.rating');
+
         $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', false)->get();
 
         return view('admin.review.index')->with('viewData', $viewData);

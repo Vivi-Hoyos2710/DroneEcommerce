@@ -25,7 +25,6 @@ Route::controller('App\Http\Controllers\User\ProductController')->group(function
     Route::get('/products/calculator', 'calculator')->name('product.calculator');
     Route::get('/products/{id}', 'show')->name('product.show');
     Route::delete('products/{id}/delete', 'delete')->name('product.delete');
-    Route::post('products/{id}/save', 'saveReview')->name('product.saveReview');
 });
 
 Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(function (): void {
@@ -56,6 +55,8 @@ Route::middleware('auth')->group(function (): void {
     });
     Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
         Route::post('/wishList/{id}/save', 'saveWishList')->name('wishlist.save');
+        Route::post('products/{id}/save', 'saveReview')->name('product.saveReview');
+
     });
 });
 

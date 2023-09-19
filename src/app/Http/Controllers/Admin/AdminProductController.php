@@ -14,38 +14,23 @@ use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(): View
     {
         $products = Product::with('reviews')->get();
-        $viewData = [
-            'title' => 'Products',
-            'table_header' => ['ID', 'Name', 'Price', 'Description', 'Image', 'Category', 'Size', 'Brand', 'Delete', 'Edit  '],
-            'products' => $products,
-        ];
 
-        return view('admin.product.index', compact('viewData'));
+        $viewData['title'] = 'Products';
+        $viewData['table_header'] = ['ID', 'Name', 'Price', 'Description', 'Image', 'Category', 'Size', 'Brand', 'Delete', 'Edit  '];
+        $viewData['products'] = $products;
+        return view('admin.product.index')->with('viewData', $viewData);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): View
     {
-        $viewData = [
-            'title' => 'Create Product',
-        ];
+        $viewData['title'] = 'Create Product';
 
-        return view('admin.product.create', compact('viewData'));
+        return view('admin.product.create') ->with('viewData', $viewData);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  CreateProductRequest  $request
-     */
     public function store(CreateProductRequest $request): Redirect
     {
         $product = new Product();
@@ -69,28 +54,15 @@ class AdminProductController extends Controller
         return redirect()->route('admin.products');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(int $id): View
     {
         $product = Product::findOrFail($id);
-        $viewData = [
-            'title' => 'Edit Product',
-            'product' => $product,
-        ];
-
-        return view('admin.product.edit', compact('viewData'));
+        
+        $viewData['title'] = 'Edit Product';
+        $viewData['product'] = $product;
+        return view('admin.product.edit')->with('viewData', $viewData);
     }
 
-    /**
-     * Update the specified resource in storage.
-     * 
-     * @param  UpdateProductRequest  $request
-     * @param  int  $id
-     * 
-     * @return Redirect
-     */
     public function update(UpdateProductRequest $request, int $id): Redirect
     {
 
@@ -132,9 +104,6 @@ class AdminProductController extends Controller
         return redirect()->route('admin.products');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function delete(int $id): Redirect
     {
         $product = Product::findOrFail($id);
