@@ -41,6 +41,16 @@ class ProductController extends Controller
             $viewData['title'] = $product['name'] . ' - Online Store';
             $viewData['subtitle'] = $product['name'] . ' - Product information';
 
+            $viewData['price_title'] = 'Price';
+            $viewData['description_title'] = 'Description';
+            $viewData['size_title'] = 'Size';
+            $viewData['brand_title'] = 'Brand';
+            $viewData['category_title'] = 'Category';
+            $viewData['name_title'] = 'Name';
+            $viewData['count_title'] = 'Count';
+            $viewData['cart_title'] = 'Add to cart';
+            $viewData['review_title_comment'] = 'Leave us your opinion!';
+
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
             $viewData['stars']=Review::countRatingsByStars($viewData['reviews']);

@@ -19,8 +19,7 @@ return [
     'category_title' => 'Category',
     'name_title' => 'Name',
     'count_title' => 'Count',
-
-    'leaveReview' => 'Leave us a review!',
+    'leaveReview' => 'Leave us your opinion!',
     'opinions' => 'Opinions from our users!', 
     'rating' => 'Rating:', 
     'ratingComment' => 'rating:',
