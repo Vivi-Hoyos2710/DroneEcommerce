@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="mt-16">
-        <h3 class="text-gray-600 text-2xl font-medium">{{ $viewData['title'] }}</h3>
+        <h3 class="text-gray-600 text-2xl font-medium">{{ __('product.title') }}</h3>
         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
             @forelse($viewData["products"] as $product)
                 <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
@@ -22,14 +22,14 @@
                     </div>
                     <div class="px-5 py-3">
                         <h3 class="text-gray-700 uppercase">{{ $product['name'] }}</h3>
-                        <span class="text-gray-500 mt-2">{{ $viewData['price_title'] }}: {{ $product->getPrice() }}</span>
+                        <span class="text-gray-500 mt-2">{{ __('product.price_title') }}: {{ $product->getPrice() }}</span>
                     </div>
                 </div>
             @empty
                 <div class="flex justify-center items-center">
                     <div class="p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
                         role="alert">
-                        <span class="font-medium">{{ $viewData['empty_message'] }}</span>
+                        <span class="font-medium">{{ __('product.empty_message') }}</span>
                     </div>
                 </div>
             @endforelse

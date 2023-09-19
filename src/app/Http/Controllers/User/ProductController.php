@@ -22,8 +22,7 @@ class ProductController extends Controller
         $viewData = [];
         $viewData['title'] = 'Products';
         $viewData['subtitle'] = 'List of products';
-        $viewData['price_title'] = 'Price';
-        $viewData['empty_message'] = 'No products';
+        
         $viewData['products'] = Product::with('reviews')->get();
 
         return view('user.product.index')->with('viewData', $viewData);
@@ -41,26 +40,12 @@ class ProductController extends Controller
             $viewData['title'] = $product['name'] . ' - Online Store';
             $viewData['subtitle'] = $product['name'] . ' - Product information';
 
-            $viewData['price_title'] = 'Price';
-            $viewData['description_title'] = 'Description';
-            $viewData['size_title'] = 'Size';
-            $viewData['brand_title'] = 'Brand';
-            $viewData['category_title'] = 'Category';
-            $viewData['name_title'] = 'Name';
-            $viewData['count_title'] = 'Count';
-            $viewData['cart_title'] = 'Add to cart';
-            $viewData['review_title_comment'] = 'Leave us your opinion!';
-
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
             $viewData['stars']=Review::countRatingsByStars($viewData['reviews']);
             $viewData['total_review_count']=count( $viewData['reviews']);
             $viewData['average_rating']=$viewData['reviews']->avg('rating');
-            $viewData['opinions'] = __('product.opinions');
-            $viewData['rating'] = __('product.rating');
-            $viewData['ratingComment'] = __('product.ratingComment');
-            $viewData['sendReview'] = __('product.sendReview');
-            $viewData['comment'] = __('product.comment');
+ 
             return view('user.product.show')->with('viewData', $viewData);
         } catch (Throwable $th) {
             return redirect()->route('product.index');
@@ -74,8 +59,6 @@ class ProductController extends Controller
         $viewData = [];
         $viewData['title'] = 'Products';
         $viewData['subtitle'] = 'Search results';
-        $viewData['price_title'] = 'Price';
-        $viewData['empty_message'] = 'No products match the query';
         $viewData['products'] = Product::where('name', 'LIKE', '%' . $request->input('search') . '%')->latest()->paginate(15);
         
         return view('user.product.index')->with('viewData', $viewData);

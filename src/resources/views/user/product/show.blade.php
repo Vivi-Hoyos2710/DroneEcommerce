@@ -159,11 +159,11 @@
                     <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
                         <div class="flex items-center mb-2">
                             <div class="ml-3">
-                                <div class="text-sm font-medium text-gray-900">{{ $review->user->name }}</div>
-                                <div class="text-sm text-gray-500"> {{ __('product.rating') }} {{ $review['rating'] }}/5</div>
+                                <div class="text-sm font-medium text-gray-900">{{ $review-> getUser() -> getName()}}</div>
+                                <div class="text-sm text-gray-500"> {{ __('product.rating') }} {{ $review -> getRating() }}/5</div>
                             </div>
                         </div>
-                        <p class="text-gray-700">{{ $review['description'] }}</p>
+                        <p class="text-gray-700">{{ $review -> getDescription() }}</p>
 
                     </div>
                 @endforeach
