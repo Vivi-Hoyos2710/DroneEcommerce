@@ -14,9 +14,6 @@ use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(): View
     {
         $products = Product::with('reviews')->get();
@@ -29,9 +26,6 @@ class AdminProductController extends Controller
         return view('admin.product.index', compact('viewData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): View
     {
         $viewData = [
@@ -41,11 +35,6 @@ class AdminProductController extends Controller
         return view('admin.product.create', compact('viewData'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  CreateProductRequest  $request
-     */
     public function store(CreateProductRequest $request): Redirect
     {
         $product = new Product();
@@ -69,9 +58,6 @@ class AdminProductController extends Controller
         return redirect()->route('admin.products');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(int $id): View
     {
         $product = Product::findOrFail($id);
@@ -83,14 +69,6 @@ class AdminProductController extends Controller
         return view('admin.product.edit', compact('viewData'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * 
-     * @param  UpdateProductRequest  $request
-     * @param  int  $id
-     * 
-     * @return Redirect
-     */
     public function update(UpdateProductRequest $request, int $id): Redirect
     {
 
@@ -132,9 +110,6 @@ class AdminProductController extends Controller
         return redirect()->route('admin.products');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function delete(int $id): Redirect
     {
         $product = Product::findOrFail($id);
