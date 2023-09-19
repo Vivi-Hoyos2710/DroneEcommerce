@@ -12,7 +12,6 @@ use Illuminate\View\View;
 
 class WishListController extends Controller
 {
-    
     public function index(): View
     {
         $viewData = [];
@@ -31,6 +30,5 @@ class WishListController extends Controller
 
         return redirect() -> route('wishlist.index');
     }
-
 
 }

@@ -7,7 +7,7 @@
 
             <tbody>
                 <div class="container mx-auto p-4">
-                    <h1 class="text-2xl font-semibold mb-4">{{ $viewData['reviewTitle'] }}</h1>
+                    <h1 class="text-2xl font-semibold mb-4">{{ __('product.reviewTitle') }}</h1>
 
                     @if (session('success'))
                         <div class="bg-green-200 text-green-800 border border-green-400 rounded p-2 mb-4">
@@ -25,13 +25,13 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">        
                                     
                                 <div class="bg-white rounded-lg shadow-md p-4">
-                                    <p class="font-semibold text-lg"> {{ $viewData['user'] }} {{ $review -> getUser() -> getName() }}</p>
-                                    <p class="font-semibold text-lg"> {{ $viewData['rating'] }} {{ $review-> getRating() }}</p>
+                                    <p class="font-semibold text-lg"> {{ __('review.user') }} {{ $review -> getUser() -> getName() }}</p>
+                                    <p class="font-semibold text-lg"> {{ __('review.rating')}} {{ $review-> getRating() }}</p>
                                     <p class="text-gray-600">{{ $review-> getDescription() }}</p>
                                     <form method="POST" action="{{ route('admin.reviews.accept', $review->id) }}" class="mt-4">
                                         @csrf
                                         <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
-                                            {{ $viewData['accept'] }}
+                                            {{ __('review.accept') }}
                                         </button>
                                     </form>
 
@@ -39,7 +39,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
-                                            {{ $viewData['reject'] }}
+                                            {{ __('review.reject') }}
                                         </button>
                                     </form>
                                 </div>

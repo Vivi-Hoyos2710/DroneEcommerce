@@ -5,7 +5,7 @@
 
 <div class="bg-[#F9FAFB] min-h-screen flex items-center">
     <div class="max-w-screen-md mx-auto flex flex-col items-center w-full">
-        <h1 cass="text-2xl font-bold text-gray-800">{{$viewData["title"]}} form</h1>
+        <h1 cass="text-2xl font-bold text-gray-800">{{__('product.title')}} form</h1>
         
         <div class="bg-white shadow-xl p-10 flex flex-col gap-4 text-sm">
             <!-- Creation form for the product -->
@@ -17,19 +17,19 @@
                     @endforeach
 
                     <div class="flex flex-col gap-4">
-                        <label for="name">Name</label>
+                        <label for="name">{{ __('product.name_title') }}</label>
                         <input type="text" name="name" id="name" value="{{ $viewData['product']->getName() }}" class="border border-gray-300 p-2 rounded-lg">
                     </div>
                     <div class="flex flex-col gap-4">
-                        <label for="price">Price</label>
+                        <label for="price">{{ __('product.price_title') }}</label>
                         <input type="number" name="price" id="price" value="{{ $viewData['product']->getPrice() }}" class="border border-gray-300 p-2 rounded-lg">
                     </div>
                     <div class="flex flex-col gap-4">
-                        <label for="description">Description</label>
+                        <label for="description">{{ __('product.description_title') }}</label>
                         <textarea name="description" id="description" cols="30" rows="10" class="border border-gray-300 p-2 rounded-lg">{{ $viewData['product']->getDescription() }}</textarea>
                     </div>
                     <div class="flex flex-col gap-4">
-                            <label for="category">Category</label>
+                            <label for="category">{{ __('product.category_title') }}</label>
                             <!-- <input type="text" name="category" id="category" class="border border-gray-300 p-2 rounded-lg" placeholder="Category" value="{{ old('category') }}"> -->
                             <!-- use select instead of input -->
                             <select name="size" id="size" class="border border-gray-300 p-2 rounded-lg">
@@ -51,11 +51,11 @@
 
                         </div>
                     <div class="flex flex-col gap-4">
-                        <label for="brand">Brand</label>
+                        <label for="brand">{{ __('product.brand_title') }}</label>
                         <input type="text" name="brand" id="brand" value="{{ $viewData['product']->getBrand() }}" class="border border-gray-300 p-2 rounded-lg">
                     </div>
                     <div class="flex flex-col gap-4">
-                        <label for="image">Image</label>
+                        <label for="image">{{ __('product.image_title') }}</label>
                         <input type="file" name="image" id="image" class="border border-gray-300 p-2 rounded-lg">
                     </div>
                     <div class="flex flex-col gap-4">

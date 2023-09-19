@@ -5,7 +5,7 @@
 
 <div class="bg-[#F9FAFB] min-h-screen flex items-center">
     <div class="max-w-screen-md mx-auto flex flex-col items-center w-full">
-        <h1 cass="text-2xl font-bold text-gray-800">{{$viewData["title"]}} form</h1>
+        <h1 cass="text-2xl font-bold text-gray-800">{{__('product.title')}} form</h1>
         <div class="bg-white shadow-xl p-10 flex flex-col gap-4 text-sm">
             <!-- Creation form for the product -->
             <div class="flex flex-col gap-4">
@@ -15,19 +15,19 @@
                         <p class="text-red-500">{{ $error }}</p>
                     @endforeach
                     <div class="flex flex-col gap-4">
-                        <label for="name">Name</label>
+                        <label for="name">{{ __('product.name_title') }}</label>
                         <input type="text" name="name" id="name" class="border border-gray-300 p-2 rounded-lg" placeholder="Name" value="{{ old('name') }}">
                     </div>
                         <div class="flex flex-col gap-4">
-                            <label for="price">Price</label>
+                            <label for="price">{{ __('product.price_title') }}</label>
                             <input type="number" name="price" id="price" class="border border-gray-300 p-2 rounded-lg" placeholder="Price" value="{{ old('price') }}">
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="description">Description</label>
+                            <label for="description">{{ __('product.description_title') }}</label>
                             <input type="text" name="description" id="description" class="border border-gray-300 p-2 rounded-lg" placeholder="Description" value="{{ old('description') }}">
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="category">Category</label>
+                            <label for="category">{{ __('product.category_title') }}</label>
                             <!-- <input type="text" name="category" id="category" class="border border-gray-300 p-2 rounded-lg" placeholder="Category" value="{{ old('category') }}"> -->
                             <!-- use select instead of input -->
                             <select name="category" id="size" class="border border-gray-300 p-2 rounded-lg">
@@ -37,7 +37,7 @@
                             </select>
                         </div>
                         <div class="flex flex-col gap- 4">
-                            <label for="size">Size</label>
+                            <label for="size">{{ __('product.size_title') }}</label>
                             <!-- <input type="text" name="size" id="size" class="border border-gray-300 p-2 rounded-lg" placeholder="Size" value="{{ old('size') }}"> -->
                             <!-- use select instead of input -->
                             <select name="size" id="size" class="border border-gray-300 p-2 rounded-lg">
@@ -49,11 +49,11 @@
 
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="brand">Brand</label>
+                            <label for="brand">{{ __('product.brand_title') }}</label>
                             <input type="text" name="brand" id="brand" class="border border-gray-300 p-2 rounded-lg" placeholder="Brand" value="{{ old('brand') }}">
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="image">Image</label>
+                            <label for="image">{{ __('product.image_title') }}</label>
                             <input type="file" name="image" id="image" class="border border-gray-300 p-2 rounded-lg" placeholder="Image" value="{{ old('image') }}">
                         </div>
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Submit</button>

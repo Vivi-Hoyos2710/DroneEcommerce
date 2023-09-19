@@ -17,36 +17,32 @@
                 <hr class="my-3">
 
                 <div class="mt-2">
-                    <!-- Here we write the product data -->
 
                     <div class="grid grid-cols-2 gap-4">
-                        <!-- Description -->
+
                         <div>
-                            <label class="text-gray-700 text-sm" for="count">{{ $viewData['description_title'] }}</label>
+                            <label class="text-gray-700 text-sm" for="count"> {{ __('product.description_title') }} </label>
                             <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getDescription() }}</p>
                         </div>
 
-                        <!-- Size -->
                         <div>
-                            <label class="text-gray-700 text-sm" for="count">{{ $viewData['size_title'] }}</label>
+                            <label class="text-gray-700 text-sm" for="count"> {{ __('product.size_title') }} </label>
                             <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getSize() }}</p>
                         </div>
 
-                        <!-- Brand -->
                         <div>
-                            <label class="text-gray-700 text-sm" for="count">{{ $viewData['brand_title'] }}</label>
+                            <label class="text-gray-700 text-sm" for="count">{{ __('product.brand_title') }}</label>
                             <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getBrand() }}</p>
                         </div>
 
-                        <!-- Category -->
                         <div>
-                            <label class="text-gray-700 text-sm" for="count">{{ $viewData['category_title'] }}</label>
+                            <label class="text-gray-700 text-sm" for="count">{{ __('product.category_title') }}</label>
                             <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getCategory() }}</p>
                         </div>
                     </div>
 
 
-                    <label class="text-gray-700 text-sm" for="count"> {{ $viewData['count_title'] }}</label>
+                    <label class="text-gray-700 text-sm" for="count"> {{ __('product.count_title') }} </label>
                     <div class="flex items-center mt-1">
                         <button id="less" class="text-gray-500 focus:outline-none focus:text-gray-600"
                             onclick="decrementCount()">
@@ -70,8 +66,9 @@
                             @csrf
                             <input type="hidden" name="quantity" id="quantity" value="1">
                             <button type="submit"
-                                class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add
-                                to cart</button>
+                                class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+                                {{ __('product.addCart') }}
+                            </button>
                         </form>
                     </div>
 
@@ -81,8 +78,9 @@
                             @csrf
                             <input type="hidden" name="quantity" id="quantity" value="1">
                             <button type="submit"
-                                class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add
-                                to wish list</button>
+                                class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+                                {{ __('product.addWishList') }}
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -101,7 +99,7 @@
                 </div>
                 <div class="w-full max md:w-1/2">
                     <div class="my-10">
-                        <h3 class="text-xl font-semibold mb-4">{{ $viewData['review_title_comment'] }}</h3>
+                        <h3 class="text-xl font-semibold mb-4"> {{ __('product.leaveReview') }} </h3>
                         <div class="flex justify-left">
                             <div class="w-1/2 p-6 bg-white shadow-md rounded-lg">
                                 <form class="form-group" method="POST"
@@ -109,7 +107,7 @@
                                     @csrf
                                     <div class="container mx-auto p-4">
                                         <label for="reviewRate"
-                                            class="block text-gray-700 text-sm font-bold mb-2">Rating:</label>
+                                            class="block text-gray-700 text-sm font-bold mb-2"> {{ __('product.rating') }} </label>
                                         <div class="flex items-center">
                                             <input name="rating" value="{{ old('rate') }}" type="range"
                                                 class="form-range w-3/4" min="0" max="5" step="1"
@@ -132,19 +130,18 @@
 
                                     <div class="mb-4">
                                         <label for="reviewDescription"
-                                            class="block text-sm font-medium text-gray-700">Comment:</label>
+                                            class="block text-sm font-medium text-gray-700"> {{ __('product.comment') }} </label>
                                         <textarea name="description" value="{{ old('description') }}"
                                             class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                             id="reviewDescription" rows="3">
-
-                        </textarea>
+                                        </textarea>
                                     </div>
 
 
                                     <div class="flex justify-end">
                                         <button type="submit"
                                             class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
-                                            Send Review
+                                            {{ __('product.sendReview') }}
                                         </button>
                                     </div>
                                 </form>
@@ -156,17 +153,17 @@
             </div>
 
         <div class="container mt-5">
-            <h3 class="text-xl font-semibold mb-4"> Opinions from our users! </h3>
+            <h3 class="text-xl font-semibold mb-4"> {{ __('product.opinions') }} </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @foreach ($viewData['reviews'] as $review)
                     <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
                         <div class="flex items-center mb-2">
                             <div class="ml-3">
-                                <div class="text-sm font-medium text-gray-900">{{ $review->user->name }}</div>
-                                <div class="text-sm text-gray-500">Rating: {{ $review['rating'] }}/5</div>
+                                <div class="text-sm font-medium text-gray-900">{{ $review-> getUser() -> getName()}}</div>
+                                <div class="text-sm text-gray-500"> {{ __('product.rating') }} {{ $review -> getRating() }}/5</div>
                             </div>
                         </div>
-                        <p class="text-gray-700">{{ $review['description'] }}</p>
+                        <p class="text-gray-700">{{ $review -> getDescription() }}</p>
 
                     </div>
                 @endforeach
