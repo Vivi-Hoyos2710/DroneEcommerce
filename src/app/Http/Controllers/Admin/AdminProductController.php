@@ -17,22 +17,18 @@ class AdminProductController extends Controller
     public function index(): View
     {
         $products = Product::with('reviews')->get();
-        $viewData = [
-            'title' => 'Products',
-            'table_header' => ['ID', 'Name', 'Price', 'Description', 'Image', 'Category', 'Size', 'Brand', 'Delete', 'Edit  '],
-            'products' => $products,
-        ];
 
-        return view('admin.product.index', compact('viewData'));
+        $viewData['title'] = 'Products';
+        $viewData['table_header'] = ['ID', 'Name', 'Price', 'Description', 'Image', 'Category', 'Size', 'Brand', 'Delete', 'Edit  '];
+        $viewData['products'] = $products;
+        return view('admin.product.index')->with('viewData', $viewData);
     }
 
     public function create(): View
     {
-        $viewData = [
-            'title' => 'Create Product',
-        ];
+        $viewData['title'] = 'Create Product';
 
-        return view('admin.product.create', compact('viewData'));
+        return view('admin.product.create') ->with('viewData', $viewData);
     }
 
     public function store(CreateProductRequest $request): Redirect
@@ -61,12 +57,10 @@ class AdminProductController extends Controller
     public function edit(int $id): View
     {
         $product = Product::findOrFail($id);
-        $viewData = [
-            'title' => 'Edit Product',
-            'product' => $product,
-        ];
-
-        return view('admin.product.edit', compact('viewData'));
+        
+        $viewData['title'] = 'Edit Product';
+        $viewData['product'] = $product;
+        return view('admin.product.edit')->with('viewData', $viewData);
     }
 
     public function update(UpdateProductRequest $request, int $id): Redirect
