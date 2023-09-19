@@ -13,12 +13,18 @@
             </div>
             <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
                 <h3 class="text-gray-700 uppercase text-lg"> {{ $viewData['product']->getName() }} </h3>
-                <span class="text-2xl  text-gray-500 mt-3">${{ $viewData['product']->getPrice() }}</span>
+                <span class="text-2xl  text-gray-500 mt-3"> {{ __('product.price_title') }} ${{ $viewData['product']->getPrice() }}</span>
                 <hr class="my-3">
 
                 <div class="mt-2">
                     <!-- Here we write the product data -->
 
+                <div class="grid grid-cols-2 gap-4">
+
+                    <div>
+                        <label class="text-gray-700 text-sm" for="count"> {{ __('product.description_title') }} </label>
+                        <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getDescription() }}</p>
+                    </div>
                     <div class="grid grid-cols-2 gap-4">
                         <!-- Description -->
                         <div>
@@ -26,18 +32,31 @@
                             <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getDescription() }}</p>
                         </div>
 
+                    <div>
+                        <label class="text-gray-700 text-sm" for="count"> {{ __('product.size_title') }} </label>
+                        <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getSize() }}</p>
+                    </div>
                         <!-- Size -->
                         <div>
                             <label class="text-gray-700 text-sm" for="count">{{ $viewData['size_title'] }}</label>
                             <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getSize() }}</p>
                         </div>
 
+                    <div>
+                        <label class="text-gray-700 text-sm" for="count"> {{ __('product.brand_title') }} </label>
+                        <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getBrand() }}</p>
+                    </div>
                         <!-- Brand -->
                         <div>
                             <label class="text-gray-700 text-sm" for="count">{{ $viewData['brand_title'] }}</label>
                             <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getBrand() }}</p>
                         </div>
 
+                    <div>
+                        <label class="text-gray-700 text-sm" for="count">{{ __('product.category_title') }}</label>
+                        <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getCategory() }}</p>
+                    </div>
+                </div>
                         <!-- Category -->
                         <div>
                             <label class="text-gray-700 text-sm" for="count">{{ $viewData['category_title'] }}</label>
@@ -46,7 +65,7 @@
                     </div>
 
 
-                    <label class="text-gray-700 text-sm" for="count"> {{ $viewData['count_title'] }}</label>
+                    <label class="text-gray-700 text-sm" for="count"> {{ __('product.count_title') }} </label>
                     <div class="flex items-center mt-1">
                         <button id="less" class="text-gray-500 focus:outline-none focus:text-gray-600"
                             onclick="decrementCount()">
@@ -130,31 +149,35 @@
                                     @endif
 
 
-                                    <div class="mb-4">
-                                        <label for="reviewDescription"
-                                            class="block text-sm font-medium text-gray-700">Comment:</label>
-                                        <textarea name="description" value="{{ old('description') }}"
-                                            class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                            id="reviewDescription" rows="3">
-
+                    <div class="mb-4">
+                        <label for="reviewDescription" class="block text-sm font-medium text-gray-700"> {{ $viewData['comment'] }} </label>
+                        <textarea name="description" value="{{ old('description') }}"
+                                class="form-input mt-1 block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                id="reviewDescription" rows="3">
                         </textarea>
                                     </div>
 
 
-                                    <div class="flex justify-end">
-                                        <button type="submit"
-                                            class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
-                                            Send Review
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700">
+                            {{ $viewData['sendReview'] }}
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
+        </div>
+    </div>
 
+    <div class="container">
+        <h3 class="text-xl font-semibold mb-4"> {{ __('product.opinions') }} </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        @foreach ($viewData["reviews"] as $review)
+            <div class="bg-white rounded-lg overflow-hidden shadow-md p-4 mb-4">
+                <div class="flex items-center mb-2">
+                    <div class="ml-3">
+                        <div class="text-sm font-medium text-gray-900">{{ $review->user->name }}</div>
+                        <div class="text-sm text-gray-500"> {{ __('product.ratingComment') }}  {{ $review["rating"] }}/5</div> 
         <div class="container mt-5">
             <h3 class="text-xl font-semibold mb-4"> Opinions from our users! </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
