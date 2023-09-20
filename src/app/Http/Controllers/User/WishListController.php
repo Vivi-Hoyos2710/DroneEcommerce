@@ -19,8 +19,7 @@ class WishListController extends Controller
 
         $wishList=WishList::with('products')->where('user_id', Auth::user()->getId())->get()->first();
         if ($wishList) {
-            $viewData['wishList'] =$wishList->getProducts();
-            $viewData['wishListId']=$wishList->getId();
+            $viewData['wishList'] =$wishList
             $viewData['productToCart'] = __('wishList.productToCart');
             $viewData['deleteFromList'] = __('wishList.deleteFromList');
             return view('user.wishList.index')->with('viewData', $viewData);
