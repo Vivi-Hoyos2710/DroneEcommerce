@@ -12,7 +12,7 @@ use Illuminate\View\View;
 
 class WishListController extends Controller
 {
-    public function index(): View
+    public function index(): View|RedirectResponse
     {
         $viewData = [];
         $viewData['title'] = 'Drone - WishList';
@@ -20,16 +20,18 @@ class WishListController extends Controller
         $wishList=WishList::with('products')->where('user_id', Auth::user()->getId())->get()->first();
         if ($wishList) {
             $viewData['wishList'] =$wishList->getProducts();
+            $viewData['wishListId']=$wishList->getId();
+            $viewData['productToCart'] = __('wishList.productToCart');
+            $viewData['deleteFromList'] = __('wishList.deleteFromList');
+            return view('user.wishList.index')->with('viewData', $viewData);
+    
         }
         else{
-            $viewData['wishList'] =[];
+           
+            return redirect()->back();
         }
-        $viewData['wishListId']=$wishList->getId();
-
-        $viewData['productToCart'] = __('wishList.productToCart');
-        $viewData['deleteFromList'] = __('wishList.deleteFromList');
-
-        return view('user.wishList.index')->with('viewData', $viewData);
+       
+        
     }
 
     public function delete(string $id, string $WishListId): RedirectResponse
