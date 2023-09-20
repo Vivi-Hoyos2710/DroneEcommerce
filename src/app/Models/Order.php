@@ -31,7 +31,7 @@ class Order extends Model
      * $this->user - User - contains the associated User
      * $this->items - Item[] - contains the associated items
      */
-    
+
     //Validation
     public static function validate(Request $request): void
     {
@@ -41,6 +41,7 @@ class Order extends Model
             'user_id' => 'required|exists:users,id',
         ]);
     }
+
     public static function validateDates(Request $request): void
     {
         $request->validate([

@@ -27,8 +27,8 @@ class Product extends Model
      * $this->items - Item[] - contains the associated items
      */
     public static function sumPricesByQuantities($products, $productsInSession): int
-    {   
-        
+    {
+
         $total = 0;
         foreach ($products as $product) {
             $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]['quantity']);
@@ -36,8 +36,6 @@ class Product extends Model
 
         return $total;
     }
-   
-
 
     //Getters
     public function getId(): int
@@ -160,23 +158,23 @@ class Product extends Model
 
     public function setItems(Collection $items): void
     {
-     
+
         $this->items = $items;
     }
 
     // WISHLIST
     public function wishlists(): BelongsToMany
     {
-        return $this -> belongsToMany(WishList::class);
+        return $this->belongsToMany(WishList::class);
     }
 
     public function getWishlists(): Collection
     {
-        return $this -> wishlists;
+        return $this->wishlists;
     }
-    
+
     public function setWishlists(Collection $wishlists): void
     {
-        $this -> wishlists = $wishlists;
+        $this->wishlists = $wishlists;
     }
 }

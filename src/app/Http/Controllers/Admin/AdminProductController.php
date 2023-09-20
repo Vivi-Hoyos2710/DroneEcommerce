@@ -21,6 +21,7 @@ class AdminProductController extends Controller
         $viewData['title'] = 'Products';
         $viewData['table_header'] = ['ID', 'Name', 'Price', 'Description', 'Image', 'Category', 'Size', 'Brand', 'Delete', 'Edit  '];
         $viewData['products'] = $products;
+
         return view('admin.product.index')->with('viewData', $viewData);
     }
 
@@ -28,7 +29,7 @@ class AdminProductController extends Controller
     {
         $viewData['title'] = 'Create Product';
 
-        return view('admin.product.create') ->with('viewData', $viewData);
+        return view('admin.product.create')->with('viewData', $viewData);
     }
 
     public function store(CreateProductRequest $request): Redirect
@@ -57,9 +58,10 @@ class AdminProductController extends Controller
     public function edit(int $id): View
     {
         $product = Product::findOrFail($id);
-        
+
         $viewData['title'] = 'Edit Product';
         $viewData['product'] = $product;
+
         return view('admin.product.edit')->with('viewData', $viewData);
     }
 
