@@ -4,9 +4,7 @@
 @section('content')
     <div>
         <div class="px-32 py-20 bg-gray-100 grid  gap-10">
-
-            @foreach ($viewData['wishList'] as $product)
-
+            @foreach ($viewData['wishList'] -> getProducts() as $product)
                 <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer">
             
                     <div>
@@ -25,9 +23,7 @@
                             <button type="submit" class="flex-shrink-0 px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500" style="width: 150px;" > {{ ($viewData['productToCart'] ) }} </button>
                         </form>
 
-
-                        <form method="POST" action="{{ route('wishlist.delete', ['id' => $product -> getId() , $viewData['wishListId']  ]) }}" class="mt-2">
-
+                        <form method="POST" action="{{ route('wishlist.delete', ['id' => $product -> getId() , 'WishListId' => $viewData['wishList'] -> getId()  ]) }}" class="mt-2">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class=" flex-shrink-0 px-8 py-2 bg-red-600 text-white text-sm font-medium rounded hover:bg-red-500 focus:outline-none focus:bg-red-500 " style="width: 150px;" > {{ ($viewData['deleteFromList'] ) }}</button>
