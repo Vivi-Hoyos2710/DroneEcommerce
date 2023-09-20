@@ -10,10 +10,10 @@ You can read about the project, it's structure and objective in the `wiki` secti
 4. Create a database named `droneinventory` or create one with any name
 6. `cd` into the `src` directory
 7. Copy the `.env.example` file into a `.env` file
-8. Edit the `.env` file and change the:
+8. Edit the `.env` file and change the following files to the expected values:
 	- Database name
  	- Database user and password
-  - Google maps key  
+ 	- Google maps key  
 9. `cd` back to the root folder and run `make run`
 
 # Access as admin
