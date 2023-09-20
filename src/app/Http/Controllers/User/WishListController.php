@@ -16,8 +16,8 @@ class WishListController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Drone - WishList';
-        $viewData['wishList'] = WishList::with('products')->where('user_id', Auth::user()->getId())->get() -> first();
-        $viewData['productToCart'] = __('wishList.productToCart'); 
+        $viewData['wishList'] = WishList::with('products')->where('user_id', Auth::user()->getId())->get()->first();
+        $viewData['productToCart'] = __('wishList.productToCart');
         $viewData['deleteFromList'] = __('wishList.deleteFromList');
 
         return view('user.wishList.index')->with('viewData', $viewData);
@@ -28,7 +28,6 @@ class WishListController extends Controller
         $wishlist = WishList::find($WishListId);
         $wishlist->products()->detach($id);
 
-        return redirect() -> route('wishlist.index');
+        return redirect()->route('wishlist.index');
     }
-
 }

@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title', $viewData['title'])
+@section('title', __('cart.title'))
 @section('content')
 
 
     <div class="-sm bg-neutral-500 bg-opacity-50 py-8 dark:bg-gray-600 dark:bg-opacity-70">
         <div class="container mx-auto px-4">
-            <h1 class="text-2xl font-semibold mb-4">{{$viewData['subtitle']}}</h1>
+            <h1 class="text-2xl font-semibold mb-4">{{ __('cart.subtitle') }}</h1>
             @if (session('error'))
                 <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
                     role="alert">
@@ -16,10 +16,10 @@
                 <div class="md:w-3/4">
                     <div class="bg-white rounded-lg shadow-md p-6 mb-4 ">
                         <table class="min-w-full">
-                            <thead>
+                            <thead class="w-full text-xl text-left text-gray-900 dark:text-gray-400">
                                 <tr>
                                     @foreach ($viewData['table_header'] as $title)
-                                        <th class="text-left font-semibold ">{{ $title }}</th>
+                                        <th class="text-left font-semibold ">{{ __($title) }}</th>
                                     @endforeach
                                 </tr>
                             </thead>
@@ -34,7 +34,7 @@
                                                 <span class="font-semibold">{{ $product->getName() }}</span>
                                             </div>
                                         </td>
-                                        <td class="py-4">{{ $product->getPrice() }}</td>
+                                        <td class="py-4">${{ $product->getPrice() }}</td>
                                         <td class="py-4">
 
                                             <div class="flex items-center">
@@ -59,19 +59,10 @@
                                             </div>
                                         </td>
                                         <td class="py-4">
-                                            {{ $product->getPrice() * session('products')[$product->getId()]['quantity'] }}
+                                            ${{ $product->getPrice() * session('products')[$product->getId()]['quantity'] }}
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('cart.delete') }}">
-                                                <button
-                                                    class="px-4 py-2 bg-red-500 text-white rounded-md mb-2 hover:bg-red-600 focus:outline-none">
-                                                    Remove all products from Cart
-                                                </button>
-                                            </a>
-                                        </td>
-                                    </tr>
+
                                 @empty
                                     <tr>
                                         <td>
@@ -83,7 +74,19 @@
 
                                     </tr>
                                 @endforelse
-                                
+                                @if (count($viewData['products']) > 0)
+                                    <tr>
+                                        <td  >
+                                            <a href="{{ route('cart.delete') }}">
+                                                <button
+                                                    class="px-4 py-2 bg-red-300 text-white rounded-md mb-2 hover:bg-red-600 focus:outline-none">
+                                                    {{ __('cart.remove') }}
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
                     </div>
@@ -91,22 +94,19 @@
                 @if (count($viewData['products']) > 0)
                     <div class="md:w-1/4">
                         <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-lg font-semibold mb-4">Summary</h2>
+                            <h2 class="text-lg font-semibold mb-4">{{ __('cart.summary') }}</h2>
                             <div class="flex justify-between mb-2">
-                                <span>Subtotal</span>
+                                <span>{{ __('cart.subtotal') }}</span>
                                 <span>${{ $viewData['total'] }}</span>
                             </div>
                             <div class="flex justify-between mb-2">
-                                <span>Taxes</span>
-                                <span>0</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span>Shipping</span>
+                                <span>{{ __('cart.taxes') }}</span>
                                 <span>$0</span>
                             </div>
+
                             <hr class="my-2">
                             <div class="flex justify-between mb-2">
-                                <span class="font-semibold">Total</span>
+                                <span class="font-semibold">{{ __('cart.total') }}</span>
                                 <span class="font-semibold">${{ $viewData['total'] }}</span>
                             </div>
 
@@ -114,7 +114,7 @@
                             <a href="{{ route('user.orders.locate') }}">
                                 <button
                                     class="px-4 py-2 bg-blue-500 text-white rounded-md mb-2 hover:bg-blue-600 focus:outline-none">
-                                    Next Step
+                                   {{__('cart.next_step')}}
                                 </button>
                             </a>
 

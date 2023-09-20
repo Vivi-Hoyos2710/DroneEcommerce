@@ -24,6 +24,6 @@
         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">No date:</span> put end date</p>
       @endif
     </div>
-    <button type="submit"> Filter By date</button>
+    <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="submit"> Filter By date</button>
 </form>
 </div>
