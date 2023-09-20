@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('title', __('order.title'))
+
 @section('content')
 
     <div class="container mx-auto mt-auto">

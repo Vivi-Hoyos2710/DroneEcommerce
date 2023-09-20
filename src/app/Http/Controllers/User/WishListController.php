@@ -16,6 +16,7 @@ class WishListController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Drone - WishList';
+
         $wishList=WishList::with('products')->where('user_id', Auth::user()->getId())->get()->first();
         if ($wishList) {
             $viewData['wishList'] =$wishList->getProducts();
@@ -24,6 +25,7 @@ class WishListController extends Controller
             $viewData['wishList'] =[];
         }
         $viewData['wishListId']=$wishList->getId();
+
         $viewData['productToCart'] = __('wishList.productToCart');
         $viewData['deleteFromList'] = __('wishList.deleteFromList');
 
