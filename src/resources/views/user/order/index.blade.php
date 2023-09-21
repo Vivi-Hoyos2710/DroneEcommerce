@@ -3,6 +3,8 @@
 @section('content')
 
     <div class="container mx-auto mt-auto">
+        <h2 class="mb-4 text-sm leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{{__('order.title')}}</h2>
+
         <!--Date Filters-->
         @include('components.filters.date-filter')
         <!--end date filters-->
@@ -13,14 +15,14 @@
                 </div>
                 <div class="flex flex-wrap justify-init ">
                     <div class="mx-10">
-                        <b class="dark:text-gray-300">Date:</b> <p class=" dark:text-gray-400">{{ $order->getCreatedAt() }}</p>
+                        <b class="dark:text-gray-300">{{__('order.date')}}: </b> <p class=" dark:text-gray-400">{{ $order->getCreatedAt() }}</p>
                     </div>
                     <div class="mx-10">
-                        <b class="dark:text-gray-300">Total:</b> <p class=" dark:text-gray-400">${{ $order->getTotalAmount() }}</p>
+                        <b class="dark:text-gray-300">{{__('order.total')}}: </b> <p class=" dark:text-gray-400">${{ $order->getTotalAmount() }}</p>
                         
                     </div>
                     <div class="mx-10">
-                        <b class="dark:text-gray-300">Address:</b> <p class=" dark:text-gray-400">{{ $order->getAddress() }}</p>
+                        <b class="dark:text-gray-300">{{__('order.address')}}: </b> <p class=" dark:text-gray-400">{{ $order->getAddress() }}</p>
                         
                     </div>
                     
@@ -62,7 +64,7 @@
 
         @empty
             <div class="bg-red-500 text-white px-4 py-2 rounded" role="alert">
-                Seems to be that you have not purchased anything in our store.
+                {{__('order.empty')}}
             </div>
 
         @endforelse

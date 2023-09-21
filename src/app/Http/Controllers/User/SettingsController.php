@@ -17,8 +17,6 @@ class SettingsController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Settings';
-        $viewData['subtitle'] = 'My Account';
         $viewData['userData'] = Auth::user();
 
         return view('user.settings.index')->with('viewData', $viewData);

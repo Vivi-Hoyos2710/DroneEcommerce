@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,7 +26,7 @@ class WishList extends Model
     {
         return $this->attributes['id'];
     }
-    
+
     public function getCreatedAt()
     {
         return $this->attributes['created_at'];
@@ -47,7 +48,7 @@ class WishList extends Model
     {
         $this->attributes['updated_at'] = $updatedAt;
     }
- 
+
     //Relationships
 
     // PRODUCTS
@@ -58,20 +59,18 @@ class WishList extends Model
 
     public function getProducts(): Collection
     {
-        return $this -> products;
+        return $this->products;
     }
 
     public function setProducts(Collection $products): void
     {
-        $this -> products = $products;
+        $this->products = $products;
     }
 
     public function setUserId(int $userId): void
     {
         $this->attributes['user_id'] = $userId;
     }
-
-
 
     // USER
 
@@ -82,11 +81,11 @@ class WishList extends Model
 
     public function getUser(): User
     {
-        return $this -> user;
+        return $this->user;
     }
 
     public function setUser(User $user): void
     {
-        $this -> user = $user;
+        $this->user = $user;
     }
 }

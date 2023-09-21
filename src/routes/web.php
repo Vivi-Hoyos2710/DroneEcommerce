@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::controller('App\Http\Controllers\HomeController')->group(function (): void {
     Route::get('/', 'index')->name('home.index');
 });
+
+Route::controller('App\Http\Controllers\LocaleController')->group(function (): void {
+    Route::get('set-locale/{locale}', 'setLocale')->name('set.locale');
+});
 Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
     Route::get('/products', 'index')->name('product.index');
     Route::get('/products/search/', 'searchProducts')->name('product.search');
@@ -51,7 +55,7 @@ Route::middleware('auth')->group(function (): void {
     Route::controller('App\Http\Controllers\User\WishListController')->group(function (): void {
         Route::get('/wishList', 'index')->name('wishlist.index');
         Route::delete('wishList/{id}/{WishListId}/delete', 'delete')->name('wishlist.delete');
-        
+
     });
     Route::controller('App\Http\Controllers\User\ProductController')->group(function (): void {
         Route::post('/wishList/{id}/save', 'saveWishList')->name('wishlist.save');

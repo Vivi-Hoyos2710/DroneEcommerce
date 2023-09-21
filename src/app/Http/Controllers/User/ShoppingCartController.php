@@ -26,13 +26,11 @@ class ShoppingCartController extends Controller
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
-            
+
         }
-        
+
         $viewData = [];
-        $viewData['title'] = 'Cart - Online Store';
-        $viewData['subtitle']='Shopping Cart';
-        $viewData['table_header'] = ['Product', 'Price', 'Quantity', 'Total'];
+        $viewData['table_header'] = ['cart.product', 'cart.price', 'cart.quantity', 'cart.total'];
         $viewData['products'] = $productsInCart;
         $viewData['total'] = $total;
 
@@ -42,18 +40,17 @@ class ShoppingCartController extends Controller
     public function add(Request $request, string $id): RedirectResponse
     {
         $products = $request->session()->get('products');
-        $quantityInput=$request->input('quantity');
-        if ($quantityInput>0) {
-            $products[$id] = ['quantity'=>$quantityInput];
+        $quantityInput = $request->input('quantity');
+        if ($quantityInput > 0) {
+            $products[$id] = ['quantity' => $quantityInput];
             $request->session()->put('products', $products);
+        } else {
+            $request->session()->forget('products.'.$id);
         }
-        else{
-            $request->session()->forget('products.' . $id);
-        }
-       
 
         return redirect()->route('cart.index');
     }
+
     public function delete(Request $request): RedirectResponse
     {
         $request->session()->forget('products');
@@ -64,8 +61,8 @@ class ShoppingCartController extends Controller
     public function purchase(Request $request): View|RedirectResponse
     {
         $productsInSession = $request->session()->get('products');
-        $total=0;
-        $currentBalance=Auth::user()->getBalance();
+        $total = 0;
+        $currentBalance = Auth::user()->getBalance();
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
@@ -75,12 +72,12 @@ class ShoppingCartController extends Controller
             $order->setTotalAmount($total);
             $order->setAddress($request->input('address'));
             $newBalance = $currentBalance - $total;
-            
-            if ($newBalance<0) {
+
+            if ($newBalance < 0) {
                 return redirect()->route('cart.index')->with('error', 'Not enough money to purchase');
             }
-            
-            $order->save();            
+
+            $order->save();
             foreach ($productsInCart as $product) {
                 $quantity = $productsInSession[$product->getId()];
                 $item = new Item();
@@ -89,7 +86,7 @@ class ShoppingCartController extends Controller
                 $item->setProductId($product->getId());
                 $item->setOrderId($order->getId());
                 $item->save();
-            }              
+            }
             Auth::user()->setBalance($newBalance);
             Auth::user()->save();
             $viewData = [];
@@ -97,6 +94,7 @@ class ShoppingCartController extends Controller
             $viewData['subtitle'] = 'Purchase Status';
             $viewData['order'] = $order->getId();
             $request->session()->forget('products');
+
             return view('user.cart.orderSuccess')->with('viewData', $viewData);
         } else {
             return redirect()->route('cart.index');

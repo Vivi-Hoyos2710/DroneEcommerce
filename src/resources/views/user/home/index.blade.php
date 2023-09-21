@@ -7,11 +7,11 @@
         <div class="w-full md:w-1/2 rounded-lg bg-white dark:bg-gray-700 p-6 shadow-lg relative">
             <div class="backdrop-blur-sm bg-black-100git rounded-lg"></div>
             <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                Elevate Your Drone Experience
-                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">with Customized Creations</span>        
+                {{__('indexHome.elevate_drone_experience')}}
+                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{{__('indexHome.customized_creations')}}</span>        
             </h1>
             <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-                Welcome to our drone customization eCommerce platform, where we blend technology, innovation, and creativity to unlock the full potential of your drones. Discover unique, tailor-made solutions that enhance your drone capabilities and bring your aerial visions to life.
+                {{__('indexHome.welcome_message')}}
             </p>
         </div>
         <!-- Right Side (Image) -->
@@ -25,10 +25,10 @@
         <div class="w-full md:w-1/2 rounded-lg bg-white dark:bg-gray-700 p-6 shadow-lg relative">
             <div class="h-16 md:w-1/2 lg:h-24">
                 <h1 class="mb-2 text-2xl font-semibold leading-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
-                    Opinions from our users!
+                    {{__('indexHome.opinions_from_users')}}
                 </h1>
                 <p class="mb-2 text-xl font-medium text-gray-600 dark:text-gray-300">
-                    Most Reviewed Products
+                    {{__('indexHome.most_reviewed_products')}}
                 </p>
             </div>
         </div>
@@ -55,7 +55,7 @@
                         <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
                         </svg>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only">{{__('indexHome.previous_slide')}}</span>
                     </span>
                 </button>
                 <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
@@ -63,7 +63,7 @@
                         <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                         </svg>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only">{{__('indexHome.next_slide')}}</span>
                     </span>
                 </button>
             </div>

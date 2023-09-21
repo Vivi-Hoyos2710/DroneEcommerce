@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components;
 
 use Closure;
@@ -13,7 +15,7 @@ class Filter extends Component
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
