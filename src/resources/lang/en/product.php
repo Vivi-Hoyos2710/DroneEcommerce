@@ -3,22 +3,30 @@
 declare(strict_types=1);
 
 return [
-    'name' => 'DroneStore',
+
     'home' => 'Home',
     'logo' => "DroneStore's logo",
     'language' => 'Language',
     'en' => 'English',
     'es' => 'Spanish',
     'search_placeholder' => 'Search a drone...',
-    'title' => 'Products',
-
-    'price_title' => 'Price',
-    'description_title' => 'Description',
-    'size_title' => 'Size',
-    'brand_title' => 'Brand',
-    'category_title' => 'Category',
-    'name_title' => 'Name',
-    'count_title' => 'Count',
+    'title' => 'Products form',
+    'submit' => 'Submit',
+    'base' => 'Base',
+    'accessory' => 'Accessory',
+    'save' => 'Save',
+    'create' => 'Create',
+    'calculator_title' => 'Check where your drone could go!',
+    'size' => 'Size',
+    'small' => 'Small',
+    'medium' => 'Medium',
+    'large' => 'Large',
+    'price' => 'Price',
+    'description' => 'Description',
+    'brand' => 'Brand',
+    'category' => 'Category',
+    'name' => 'Name',
+    'count' => 'Count',
     'leaveReview' => 'Leave us your opinion!',
     'opinions' => 'Opinions from our users!',
     'rating' => 'Rating:',
@@ -29,6 +37,6 @@ return [
     'addCart' => 'Add to cart',
     'addWishList' => 'Add to wish list',
     'empty_message' => 'No products',
-    'image_title' => 'Image',
+    'image' => 'Image',
 
 ];

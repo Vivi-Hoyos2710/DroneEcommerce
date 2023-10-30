@@ -2,7 +2,6 @@
 @section('title', __('cart.title'))
 @section('content')
 
-
     <div class="-sm bg-neutral-500 bg-opacity-50 py-8 dark:bg-gray-600 dark:bg-opacity-70">
         <div class="container mx-auto px-4">
             <h1 class="text-2xl font-semibold mb-4">{{ __('cart.subtitle') }}</h1>
@@ -68,10 +67,9 @@
                                         <td>
                                             <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
                                                 role="alert">
-                                                <span class="font-medium">Is empty!</span> No products in cart
+                                                <span class="font-medium"> {{__('cart.empty_cart')}} </span> {{__('cart.empty_cart2')}}
                                             </div>
                                         </td>
-
                                     </tr>
                                 @endforelse
                                 @if (count($viewData['products']) > 0)

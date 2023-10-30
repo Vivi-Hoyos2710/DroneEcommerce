@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', $viewData['title'])
 @section('subtitle', $viewData['subtitle'])
-
 @section('content')
     <div class="mt-16">
         <h3 class="text-gray-600 text-2xl font-medium">{{ __('product.title') }}</h3>

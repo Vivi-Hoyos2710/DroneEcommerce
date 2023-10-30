@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', __('order.title'))
-
 @section('content')
 
     <div class="container mx-auto mt-auto">
@@ -13,7 +11,7 @@
         @forelse ($viewData["orders"] as $order)
             <div class="bg-white shadow-md rounded-lg mb-4 p-4 dark:bg-gray-800 ">
                 <div class="bg-gray-200 text-gray-800 py-2 px-4 font-semibold  dark:bg-gray-600 dark:text-gray-200">
-                    Order #{{ $order->getId() }}
+                    {{__('order.order')}} {{ $order->getId() }}
                 </div>
                 <div class="flex flex-wrap justify-init ">
                     <div class="mx-10">
@@ -21,14 +19,10 @@
                     </div>
                     <div class="mx-10">
                         <b class="dark:text-gray-300">{{__('order.total')}}: </b> <p class=" dark:text-gray-400">${{ $order->getTotalAmount() }}</p>
-                        
                     </div>
                     <div class="mx-10">
                         <b class="dark:text-gray-300">{{__('order.address')}}: </b> <p class=" dark:text-gray-400">{{ $order->getAddress() }}</p>
-                        
                     </div>
-                    
-                    
                 </div>
                
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -62,13 +56,10 @@
                     </tbody>
                 </table>
             </div>      
-
-
         @empty
             <div class="bg-red-500 text-white px-4 py-2 rounded" role="alert">
                 {{__('order.empty')}}
             </div>
-
         @endforelse
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>

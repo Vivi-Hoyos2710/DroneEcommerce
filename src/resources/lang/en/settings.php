@@ -23,5 +23,6 @@ return [
     'password_label' => 'Current Password',
     'new_password' => 'New Password',
     'confirm_password' => 'Confirm New Password',
+    'close_window' => 'Close Window',
 
 ];

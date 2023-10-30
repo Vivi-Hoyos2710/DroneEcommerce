@@ -11,7 +11,7 @@
                     <path fill-rule="evenodd"
                         d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm-1-5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2h-2z" />
                 </svg>
-                Create
+                {{ __('product.create') }}
             </button>
         </a>
 

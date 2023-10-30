@@ -1,11 +1,10 @@
 @extends('layouts.admin')
-
 @section('title', $viewData['title'])
 @section('content')
 
 <div class="bg-[#F9FAFB] min-h-screen flex items-center">
     <div class="max-w-screen-md mx-auto flex flex-col items-center w-full">
-        <h1 cass="text-2xl font-bold text-gray-800">{{__('product.title')}} form</h1>
+        <h1 cass="text-2xl font-bold text-gray-800">{{__('product.title')}}</h1> 
         <div class="bg-white shadow-xl p-10 flex flex-col gap-4 text-sm">
             <!-- Creation form for the product -->
             <div class="flex flex-col gap-4">
@@ -28,12 +27,9 @@
                         </div>
                         <div class="flex flex-col gap-4">
                             <label for="category">{{ __('product.category_title') }}</label>
-                            <!-- <input type="text" name="category" id="category" class="border border-gray-300 p-2 rounded-lg" placeholder="Category" value="{{ old('category') }}"> -->
-                            <!-- use select instead of input -->
                             <select name="category" id="size" class="border border-gray-300 p-2 rounded-lg">
-                                <!-- choose from base and accessory -->
-                                <option value="base">Base</option>
-                                <option value="accessory">Accessory</option>
+                                <option value="base">{{__('product.base')}}</option>
+                                <option value="accessory">{{__('product.accessory')}}</option>
                             </select>
                         </div>
                         <div class="flex flex-col gap- 4">
@@ -56,7 +52,7 @@
                             <label for="image">{{ __('product.image_title') }}</label>
                             <input type="file" name="image" id="image" class="border border-gray-300 p-2 rounded-lg" placeholder="Image" value="{{ old('image') }}">
                         </div>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Submit</button>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"> {{__('product.submit')}} </button>
                 </form>
             </div>
         </div>
