@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = __('home.name').' index';
+        $viewData['title'] = __('app.app_name').' index';
 
         $topReviewedProducts = Product::withCount('reviews')
             ->orderBy('reviews_count', 'desc')
