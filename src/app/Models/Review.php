@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Review extends Model
 {
@@ -26,7 +27,7 @@ class Review extends Model
 
     protected $fillable = ['description', 'rating'];
 
-    public static function countRatingsByStars(Review $reviews): array
+    public static function countRatingsByStars(Collection $reviews): array
     {
         $listCount = [];
         foreach ($reviews as $review) {
