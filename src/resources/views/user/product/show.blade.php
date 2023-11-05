@@ -16,23 +16,23 @@
             <div class="mt-2">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="text-gray-700 text-sm" for="count"> {{ __('product.description_title') }} </label>
+                        <label class="text-gray-700 text-sm" for="count"> {{ __('product.description') }} </label>
                         <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getDescription() }}</p>
                     </div>
                     <div>
-                        <label class="text-gray-700 text-sm" for="count"> {{ __('product.size_title') }} </label>
+                        <label class="text-gray-700 text-sm" for="count"> {{ __('product.size') }} </label>
                         <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getSize() }}</p>
                     </div>
                     <div>
-                        <label class="text-gray-700 text-sm" for="count">{{ __('product.brand_title') }}</label>
+                        <label class="text-gray-700 text-sm" for="count">{{ __('product.brand') }}</label>
                         <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getBrand() }}</p>
                     </div>
                     <div>
-                        <label class="text-gray-700 text-sm" for="count">{{ __('product.category_title') }}</label>
+                        <label class="text-gray-700 text-sm" for="count">{{ __('product.category') }}</label>
                         <p class="mt-1 text-gray-600 text-sm">{{ $viewData['product']->getCategory() }}</p>
                     </div>
                 </div>
-                <label class="text-gray-700 text-sm" for="count"> {{ __('product.count_title') }} </label>
+                <label class="text-gray-700 text-sm" for="count"> {{ __('product.count') }} </label>
                 <div class="flex items-center mt-1">
                     <button id="less" class="text-gray-500 focus:outline-none focus:text-gray-600" onclick="decrementCount()">
                         <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

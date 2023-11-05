@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', $viewData['title'])
-@section('subtitle', $viewData['subtitle'])
+@section('title', __('product.title'))
+@section('subtitle',__('products_list') )
 @section('content')
     <div class="mt-16">
         <h3 class="text-gray-600 text-2xl font-medium">{{ __('product.title') }}</h3>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="px-5 py-3">
                         <h3 class="text-gray-700 uppercase">{{ $product['name'] }}</h3>
-                        <span class="text-gray-500 mt-2">{{ __('product.price_title') }}: {{ $product->getPrice() }}</span>
+                        <span class="text-gray-500 mt-2">{{ __('product.price') }}: {{ $product->getPrice() }}</span>
                     </div>
                 </div>
             @empty
