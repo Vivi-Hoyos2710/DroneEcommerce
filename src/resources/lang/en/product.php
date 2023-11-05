@@ -3,14 +3,9 @@
 declare(strict_types=1);
 
 return [
-
-    'home' => 'Home',
-    'logo' => "DroneStore's logo",
-    'language' => 'Language',
-    'en' => 'English',
-    'es' => 'Spanish',
     'search_placeholder' => 'Search a drone...',
-    'title' => 'Products form',
+    'products_list'=> 'Product List',
+    'title' => 'Products',
     'submit' => 'Submit',
     'base' => 'Base',
     'accessory' => 'Accessory',
@@ -37,6 +32,7 @@ return [
     'addCart' => 'Add to cart',
     'addWishList' => 'Add to wish list',
     'empty_message' => 'No products',
+    'search_title' => 'Products Result',
     'image' => 'Image',
 
 ];
