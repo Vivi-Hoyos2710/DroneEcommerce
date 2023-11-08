@@ -23,4 +23,9 @@ return [
     'quantity' => 'Quantity',
     'select_address' => 'Select Address',
     'address_selection' => 'Address Selection',
+    'no_date' => 'No date:',
+    'filter_by_date' => 'Filter By date',
+    'start_date' => 'Put Start Date',
+    'end_date' => 'Put End Date',
+    'select_date' => 'Select Date',
 ];
