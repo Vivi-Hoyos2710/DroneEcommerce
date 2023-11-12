@@ -40,7 +40,7 @@ class CreateProductRequestTest extends TestCase
             'price' => 'not a number',
             'description' => '',
             'category' => '',
-            'size' =>  '',
+            'size' => '',
             'brand' => '',
             'image' => UploadedFile::fake()->create('test.txt'),
         ];
@@ -48,7 +48,7 @@ class CreateProductRequestTest extends TestCase
         $request = new CreateProductRequest();
         $validator = Validator::make($data, $request->rules());
 
-        $this->assertFalse($validator->passes());   
+        $this->assertFalse($validator->passes());
         $this->assertCount(8, $validator->errors());
     }
 }

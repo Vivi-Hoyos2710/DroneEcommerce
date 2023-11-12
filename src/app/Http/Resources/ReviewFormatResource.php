@@ -15,7 +15,7 @@ class ReviewFormatResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            
+
             'rating' => $this->getRating(),
             'comment' => $this->getDescription(),
         ];

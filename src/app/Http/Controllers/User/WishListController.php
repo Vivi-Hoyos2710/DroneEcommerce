@@ -17,20 +17,19 @@ class WishListController extends Controller
         $viewData = [];
         $viewData['title'] = 'Drone - WishList';
 
-        $wishList=WishList::with('products')->where('user_id', Auth::user()->getId())->get()->first();
+        $wishList = WishList::with('products')->where('user_id', Auth::user()->getId())->get()->first();
         if ($wishList) {
-            $viewData['wishList'] =$wishList;
+            $viewData['wishList'] = $wishList;
             $viewData['productToCart'] = __('wishList.productToCart');
             $viewData['deleteFromList'] = __('wishList.deleteFromList');
+
             return view('user.wishList.index')->with('viewData', $viewData);
-    
-        }
-        else{
-           
+
+        } else {
+
             return redirect()->back();
         }
-       
-        
+
     }
 
     public function delete(string $id, string $WishListId): RedirectResponse
