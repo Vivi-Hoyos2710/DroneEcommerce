@@ -71,9 +71,9 @@ class AdminProductController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
-            $storeInterface = app(ImageStorage::class);
-            $storeInterface->store($request);
-            $product->setImage($request->file('image')->getClientOriginalName());
+            $storeInterface = app(ImageStorage::class, ['storage' => $validated['storage']]);
+            $productPath = $storeInterface->store($request);
+            $product->setImage($productPath);
         }
 
         if (isset($validated['name'])) {
@@ -99,6 +99,7 @@ class AdminProductController extends Controller
         if (isset($validated['brand'])) {
             $product->setBrand($validated['brand']);
         }
+      
 
         $product->save();
 
