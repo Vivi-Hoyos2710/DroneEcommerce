@@ -16,6 +16,7 @@ jobs:
           php-version: "8.2.11"
       - uses: actions/checkout@v3
 
+      # Set up the pipeline
       - name: Copy .env
         working-directory: ./src
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
@@ -38,6 +39,8 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
+
+      # Run unit tests
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         working-directory: ./src
         env:
@@ -45,6 +48,22 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
 
+      # Pint and lint!
+      - name: "laravel-pint"
+        working-directory: ./src
+        uses: aglipanci/laravel-pint-action@0.1.0
+        with:
+          preset: laravel
+          verboseMode: true
+          configPath: "vendor/DRONE-project/pint.json"
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: PHP Linting (Pint)
+          skip_fetch: true
+
+      # Docker related stuff
       - name: Build and push Docker image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
