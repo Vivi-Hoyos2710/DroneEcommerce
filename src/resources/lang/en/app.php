@@ -18,5 +18,6 @@ return [
     'sign' => 'Sign In',
     'settings' => 'Settings',
     'dlmode'=>"Dark/light mode",
+    'allied' => 'Allied Products',
     
 ];
