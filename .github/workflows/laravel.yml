@@ -50,7 +50,6 @@ jobs:
 
       # Pint and lint!
       - name: "laravel-pint"
-        working-directory: ./src
         uses: aglipanci/laravel-pint-action@0.1.0
         with:
           preset: laravel
