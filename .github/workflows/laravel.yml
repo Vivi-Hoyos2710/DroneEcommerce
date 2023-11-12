@@ -63,12 +63,13 @@ jobs:
           skip_fetch: true
 
       # Docker related stuff xd
-      - name: Build and push Docker image
+      - name: docker login
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_REPO: jdramirezl/drone
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker build . --file Dockerfile --tag $DOCKER_REPO:latest.
-          docker push $DOCKER_REPO
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag jdramirezl/drone:latest
+      - name: Docker Push
+        run: docker push jdramirezl/drone
