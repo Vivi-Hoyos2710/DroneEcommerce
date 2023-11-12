@@ -15,19 +15,24 @@ jobs:
         with:
           php-version: "8.2.11"
       - uses: actions/checkout@v3
+
       - name: Copy .env
         working-directory: ./src
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
       - name: Install Dependencies
         working-directory: ./src
         run: |
           composer update
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Generate key
+        working-directory: ./src
         run: php artisan key:generate
+
       - name: Directory Permissions
         working-directory: ./src
         run: chmod -R 777 storage bootstrap/cache
+
       - name: Create Database
         working-directory: ./src
         run: |
