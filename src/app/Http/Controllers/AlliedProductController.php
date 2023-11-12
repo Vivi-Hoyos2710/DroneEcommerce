@@ -15,7 +15,10 @@ class AlliedProductController extends Controller
      */
     public function index(): View 
     {
-        $URL = env('API_URL', 'https://jsonplaceholder.typicode.com/todos/1');
+        $URL = env('API_URL', null);
+        if ($URL === null) {
+            abort(500, 'API_URL environment variable not set!');
+        }
         $response = Http::get($URL);
         $products = $response->json();
         $viewData = [
