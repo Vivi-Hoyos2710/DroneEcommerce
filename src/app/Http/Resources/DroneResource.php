@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ProductFormatResource;
+
 class DroneResource extends ResourceCollection
 {
     /**
@@ -15,6 +17,7 @@ class DroneResource extends ResourceCollection
     public function toArray(Request $request): array
     {
         $data = ProductFormatResource::collection($this->collection);
+
         return [
             'data' => $data,
             'storeInfo' => [

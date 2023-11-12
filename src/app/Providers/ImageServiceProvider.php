@@ -7,12 +7,19 @@ namespace App\Providers;
 use App\Interfaces\ImageStorage;
 use App\Util\ImageLocalStorage;
 use Illuminate\Support\ServiceProvider;
-
+use App\Util\ImageGCPStorage;
 class ImageServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-
-        $this->app->bind(ImageStorage::class, fn () => new ImageLocalStorage());
+        //aqui faltan tipos de $app $params 
+        $this->app->bind(ImageStorage::class, function ($app,$params) {
+            $storage = $params['storage'];
+            if ($storage == 'local') {
+                return new ImageLocalStorage();
+            } elseif ($storage == 'gcp') {
+                return new ImageGCPStorage();
+            }
+        });
     }
 }
