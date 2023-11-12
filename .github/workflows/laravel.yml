@@ -51,14 +51,14 @@ jobs:
       # Pint and lint!
       - name: "laravel-pint"
         working-directory: ./src
-        uses: aglipanci/laravel-pint-action@0.1.0
+      - uses: aglipanci/laravel-pint-action@0.1.0
         with:
           preset: laravel
           verboseMode: true
           configPath: "vendor/DRONE-project/pint.json"
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: PHP Linting (Pint)
           skip_fetch: true
