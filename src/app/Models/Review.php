@@ -41,6 +41,15 @@ class Review extends Model
 
         return $listCount;
     }
+    public static function averageRating(Collection $reviews): float
+    {
+        $average=0;
+        $total=count($reviews);
+        if($total>0){
+            $average= $reviews->sum('rating')/$total;
+        }
+        return $average;
+    }
 
     public static function averageRating(Collection $reviews): float
     {

@@ -76,6 +76,12 @@
                     <li>
                         <a href="{{ route('product.calculator') }}"
                             class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('app.calculator') }}</a>
+
+                    </li>
+                    <li>
+                        <a href="{{ route('allied.index') }}"
+                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('app.allied') }}</a>
+
                     </li>
                     <li>
                         <a href="{{ route('cart.index') }}"

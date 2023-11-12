@@ -1,5 +1,6 @@
 <?php
 
+
 declare(strict_types=1);
 
 namespace App\Http\Resources;
@@ -7,6 +8,7 @@ namespace App\Http\Resources;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 
 class ProductFormatResource extends JsonResource
 {
@@ -18,7 +20,9 @@ class ProductFormatResource extends JsonResource
     public function toArray(Request $request): array
     {
         $reviews = $this->getReviews()->filter([$this, 'byVerified']);
+
         $average = Review::averageRating($reviews);
+
 
         return [
             'id' => $this->getId(),
@@ -26,6 +30,7 @@ class ProductFormatResource extends JsonResource
             'brand' => $this->getBrand(),
             'price' => $this->getPrice(),
             'size' => $this->getSize(),
+
             'local_image' => '/storage/'.$this->getImage(),
             'description' => $this->getDescription(),
             'category' => $this->getCategory(),
@@ -36,6 +41,7 @@ class ProductFormatResource extends JsonResource
 
     public function byVerified($review)
     {
+
         return $review->getVerified();
     }
 }

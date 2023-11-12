@@ -9,6 +9,7 @@ use App\Http\Resources\DroneResource;
 use App\Http\Resources\ProductFormatResource;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
+
 use Throwable;
 
 class ProductController extends Controller
@@ -46,4 +47,5 @@ class ProductController extends Controller
             return response()->json(['message' => 'Product not found'], 404);
         }
     }
+
 }

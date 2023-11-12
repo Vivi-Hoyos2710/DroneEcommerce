@@ -37,6 +37,12 @@ Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(fun
     Route::post('/cart/add/{id}', 'add')->name('cart.add');
 });
 
+// Allied Routes
+
+Route::controller('App\Http\Controllers\AlliedProductController')->group(function (): void {
+    Route::get('/productos-aliados', 'index')->name('allied.index');
+});
+
 //User Routes WITH auth
 Route::middleware('auth')->group(function (): void {
     Route::controller('App\Http\Controllers\User\SettingsController')->group(function (): void {
