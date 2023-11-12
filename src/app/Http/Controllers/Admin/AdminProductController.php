@@ -44,7 +44,6 @@ class AdminProductController extends Controller
         $product->setSize($validated['size']);
         $product->setBrand($validated['brand']);
 
-
         $storeInterface = app(ImageStorage::class, ['storage' => $validated['storage']]);
         $productPath = $storeInterface->store($request);
 

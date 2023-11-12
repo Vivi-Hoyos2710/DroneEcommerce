@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Util;
 
 use App\Interfaces\ImageStorage;
 use Google\Cloud\Storage\StorageClient;
 use Illuminate\Http\Request;
-use Throwable;
 
 class ImageGCPStorage implements ImageStorage
 {
@@ -18,28 +19,21 @@ class ImageGCPStorage implements ImageStorage
             $bucket = $storage->bucket(env('GOOGLE_CLOUD_STORAGE_BUCKET'));
             $imageOriginalName = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME);
             $imageExtension = $request->file('image')->getClientOriginalExtension();
-            $gcpImageName = $imageOriginalName . '-' . uniqid() . '.' . $imageExtension;
+            $gcpImageName = $imageOriginalName.'-'.uniqid().'.'.$imageExtension;
 
             $bucket->upload(
                 file_get_contents($request->file('image')->getRealPath()),
                 [
                     'name' => $gcpImageName,
-                ]
+                ],
             );
 
-
-            $publicPath = 'https://storage.googleapis.com/' . env('GOOGLE_CLOUD_STORAGE_BUCKET') . '/' . $gcpImageName;
+            $publicPath = 'https://storage.googleapis.com/'.env('GOOGLE_CLOUD_STORAGE_BUCKET').'/'.$gcpImageName;
 
             return $publicPath;
-        }
-        else{
+        } else {
             return '';
         }
 
     }
-
-
-
-
-
 }

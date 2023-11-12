@@ -18,9 +18,9 @@ class ImageLocalStorage implements ImageStorage
                 $imageUrl,
                 file_get_contents($request->file('image')->getRealPath()),
             );
+
             return 'storage/'.$imageUrl;
-        }
-        else{
+        } else {
             return '';
         }
     }

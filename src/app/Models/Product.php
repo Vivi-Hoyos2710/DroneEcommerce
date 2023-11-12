@@ -36,6 +36,7 @@ class Product extends Model
 
         return $total;
     }
+
     public static function averageRateProducts(Collection &$products): void
     {
 
@@ -45,6 +46,7 @@ class Product extends Model
             $product['averageRating'] = $averageRating;
         }
     }
+
     //Getters
     public function getId(): int
     {
