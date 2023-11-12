@@ -44,3 +44,13 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
+
+      - name: Build and push Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_REPO: jdramirezl/drone
+        run: |
+          docker login -u "$DOCKER_USERNAME" -p $DOCKER_PASSWORD
+          docker build . --file Dockerfile --tag $DOCKER_REPO:latest.
+          docker push $DOCKER_REPO
