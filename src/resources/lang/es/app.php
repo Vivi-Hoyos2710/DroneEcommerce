@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 return [
     'app_name' => 'DroneStore',
-    'home'=> 'Inicio',
-    'products'=>'Productos',
+    'home' => 'Inicio',
+    'products' => 'Productos',
     'copyright' => '© 2023- DroneStore™. Todos los derechos reservados.',
     'logo' => 'Logotipo de DroneStore',
     'language' => 'Idioma',
@@ -18,5 +18,5 @@ return [
     'sign' => 'Registrarse',
     'settings' => 'Configuración',
     'dlmode'=>"Modo oscuro/claro",
-    'allied' => 'Productos aliados',4
+    'allied' => 'Productos aliados',
 ];

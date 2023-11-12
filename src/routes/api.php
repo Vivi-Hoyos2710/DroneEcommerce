@@ -24,3 +24,4 @@ Route::controller('App\Http\Controllers\Api\ProductController')->group(function 
     Route::get('/bases', 'allBases')->name('api.bases');
 
 });
+

@@ -37,6 +37,16 @@ class Product extends Model
         return $total;
     }
 
+    public static function averageRateProducts(Collection &$products): void
+    {
+
+        foreach ($products as $product) {
+            $averageRating = $product->reviews->avg('rating');
+
+            $product['averageRating'] = $averageRating;
+        }
+    }
+
     //Getters
     public function getId(): int
     {

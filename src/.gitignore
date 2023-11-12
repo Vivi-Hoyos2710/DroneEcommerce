@@ -6,6 +6,8 @@
 /storage/*.key
 /vendor
 .env
+credential.json
+src/credential.json
 .env.backup
 .env.production
 .phpunit.result.cache

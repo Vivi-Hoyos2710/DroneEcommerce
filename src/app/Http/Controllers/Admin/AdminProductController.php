@@ -37,7 +37,6 @@ class AdminProductController extends Controller
         $product = new Product();
 
         $validated = $request->validated();
-
         $product->setName($validated['name']);
         $product->setPrice((int) $validated['price']);
         $product->setDescription($validated['description']);
@@ -45,10 +44,10 @@ class AdminProductController extends Controller
         $product->setSize($validated['size']);
         $product->setBrand($validated['brand']);
 
-        // Store the image in the public folder
-        $storeInterface = app(ImageStorage::class);
-        $storeInterface->store($request);
-        $product->setImage($request->file('image')->getClientOriginalName());
+        $storeInterface = app(ImageStorage::class, ['storage' => $validated['storage']]);
+        $productPath = $storeInterface->store($request);
+
+        $product->setImage($productPath);
 
         $product->save();
 
@@ -72,9 +71,9 @@ class AdminProductController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
-            $storeInterface = app(ImageStorage::class);
-            $storeInterface->store($request);
-            $product->setImage($request->file('image')->getClientOriginalName());
+            $storeInterface = app(ImageStorage::class, ['storage' => $validated['storage']]);
+            $productPath = $storeInterface->store($request);
+            $product->setImage($productPath);
         }
 
         if (isset($validated['name'])) {
@@ -100,6 +99,7 @@ class AdminProductController extends Controller
         if (isset($validated['brand'])) {
             $product->setBrand($validated['brand']);
         }
+      
 
         $product->save();
 

@@ -51,6 +51,22 @@ class Review extends Model
         return $average;
     }
 
+    public static function averageRating(Collection $reviews): float
+    {
+        $average = 0;
+
+        $total = count($reviews);
+        $sum = 0;
+        foreach ($reviews as $review) {
+            $sum = $sum + $review->getRating();
+        }
+        if ($total > 0) {
+            $average = $sum / $total;
+        }
+
+        return $average;
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([
@@ -89,7 +105,7 @@ class Review extends Model
         return $this->attributes['product_id'];
     }
 
-    public function getCreatedAt(): int
+    public function getCreatedAt()
     {
         return $this->attributes['created_at'];
     }
