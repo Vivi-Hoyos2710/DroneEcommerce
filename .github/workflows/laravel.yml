@@ -62,7 +62,7 @@ jobs:
           commit_message: PHP Linting (Pint)
           skip_fetch: true
 
-      # Docker related stuff
+      # Docker related stuff xd
       - name: Build and push Docker image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
