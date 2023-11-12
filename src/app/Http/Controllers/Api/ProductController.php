@@ -43,8 +43,6 @@ class ProductController extends Controller
 
             return response()->json($accesories, 200);
         } catch (Throwable $th) {
-            dd($th);
-
             return response()->json(['message' => 'Product not found'], 404);
         }
     }
