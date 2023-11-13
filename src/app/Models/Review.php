@@ -32,7 +32,7 @@ class Review extends Model
         $listCount = [];
         foreach ($reviews as $review) {
             $rating = $review->getRating();
-            if (! isset($listCount[$rating])) {
+            if (!isset($listCount[$rating])) {
                 $listCount[$rating] = 1;
             } else {
                 $listCount[$rating]++;
@@ -53,21 +53,6 @@ class Review extends Model
         return $average;
     }
 
-    public static function averageRating(Collection $reviews): float
-    {
-        $average = 0;
-
-        $total = count($reviews);
-        $sum = 0;
-        foreach ($reviews as $review) {
-            $sum = $sum + $review->getRating();
-        }
-        if ($total > 0) {
-            $average = $sum / $total;
-        }
-
-        return $average;
-    }
 
     public static function validate(Request $request): void
     {

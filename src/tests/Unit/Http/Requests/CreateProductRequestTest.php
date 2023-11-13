@@ -25,11 +25,12 @@ class CreateProductRequestTest extends TestCase
             'size' => $this->faker->word,
             'brand' => $this->faker->word,
             'image' => UploadedFile::fake()->image('test.jpg'),
+            'storage' => 'public',
         ];
 
         $request = new CreateProductRequest();
         $validator = Validator::make($data, $request->rules());
-
+        // dd($validator->errors());
         $this->assertTrue($validator->passes());
     }
 
@@ -43,12 +44,13 @@ class CreateProductRequestTest extends TestCase
             'size' => '',
             'brand' => '',
             'image' => UploadedFile::fake()->create('test.txt'),
+            'storage' => null,
         ];
 
         $request = new CreateProductRequest();
         $validator = Validator::make($data, $request->rules());
 
         $this->assertFalse($validator->passes());
-        $this->assertCount(8, $validator->errors());
+        $this->assertCount(9, $validator->errors());
     }
 }
