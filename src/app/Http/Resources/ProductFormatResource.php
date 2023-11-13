@@ -9,7 +9,6 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-
 class ProductFormatResource extends JsonResource
 {
     /**
@@ -41,7 +40,6 @@ class ProductFormatResource extends JsonResource
 
     public function byVerified($review)
     {
-
         return $review->getVerified();
     }
 }

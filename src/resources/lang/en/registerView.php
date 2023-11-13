@@ -11,5 +11,4 @@ return [
     'confirm' => 'Confirm Password',
     'already' => 'Already have an account?',
     'login_here' => 'Login here',
-
 ];
