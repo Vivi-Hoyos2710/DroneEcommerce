@@ -39,11 +39,7 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
-  test:
-    needs: build
-    runs-on: ubuntu-latest
 
-    steps:
       # Run unit tests
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         working-directory: ./src
