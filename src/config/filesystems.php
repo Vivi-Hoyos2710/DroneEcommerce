@@ -57,6 +57,12 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'gcp' => [
+            'driver' => 'gcp',
+            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID'),
+            'key_file' => env('SERVICE_ACCOUNT_PATH'),
+            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET'),
+        ],
 
     ],
 

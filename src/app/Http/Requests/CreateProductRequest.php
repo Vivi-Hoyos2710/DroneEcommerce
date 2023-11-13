@@ -32,13 +32,7 @@ class CreateProductRequest extends FormRequest
             'size' => 'required|string|max:255',
             'brand' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'name' => 'required|string|max:255',
-            // 'brand' => 'required|string|max:255',
-            // 'price' => 'required|numeric',
-            // 'size' => 'required|in:s,m,l',
-            // 'description' => 'required|string',
-            // 'category' => 'required|in:accessory,base',
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'storage' => 'required|string|max:255',
         ];
     }
 }

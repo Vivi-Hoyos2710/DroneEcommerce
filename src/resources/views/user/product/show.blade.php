@@ -6,7 +6,7 @@
     <div class="md:flex md:items-center">
         <div class="w-full h-64 md:w-1/2 lg:h-96">
             <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto"
-                src="{{ asset('storage/' . $viewData['product']->getImage()) }}"
+                src="{{ url($viewData['product']->getImage()) }}"
                 alt="{{ $viewData['product']->getName() }}">
         </div>
         <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">

@@ -8,6 +8,7 @@ return [
     'reject' => 'Reject',
     'user' => 'User:',
     'rating' => 'Rating:',
+    'delete' => 'Delete',
     'reviewAccept' => 'Review accepted successfully.',
     'reviewReject' => 'Review rejected and deleted successfully.',
 ];

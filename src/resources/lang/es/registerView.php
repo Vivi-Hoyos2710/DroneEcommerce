@@ -12,3 +12,4 @@ return [
     'already' => '¿Ya tienes una cuenta?',
     'login_here' => 'Inicia sesión aquí',
 ];
+

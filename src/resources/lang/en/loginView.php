@@ -5,6 +5,6 @@ declare(strict_types=1);
 return [
     'title' => 'Login',
     'email' => 'E-mail Address',
-    'username' => 'username',
+    'username' => 'Nombre de usuario',
     'password' => 'Password',
 ];

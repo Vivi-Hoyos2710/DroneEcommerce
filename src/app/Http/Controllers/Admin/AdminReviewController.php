@@ -22,6 +22,42 @@ class AdminReviewController extends Controller
         return view('admin.review.index')->with('viewData', $viewData);
     }
 
+    public function acceptedReviews(): View
+    {
+        $viewData = [];
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle');
+
+        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', true)->get();
+
+        return view('admin.review.list')->with('viewData', $viewData);
+    }
+
+    public function newReviews(): View
+    {
+        $viewData = [];
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle');
+
+        $viewData['reviews'] = Review::with(['product', 'user'])
+            ->where('verified', false)
+            ->whereDate('created_at', today())
+            ->get();
+
+        return view('admin.review.list')->with('viewData', $viewData);
+    }
+
+    public function oldReviews(): View
+    {
+        $viewData = [];
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle');
+
+        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', false)->orderBy('created_at', 'asc')->get();
+
+        return view('admin.review.list')->with('viewData', $viewData);
+    }
+
     public function accept(string $id): Redirect
     {
         $viewData['reviewAccept'] = __('review.reviewAccept');
@@ -30,6 +66,16 @@ class AdminReviewController extends Controller
         $review->save();
 
         return redirect()->back()->with('success', $viewData['reviewAccept']);
+    }
+
+    public function reject(string $id): Redirect
+    {
+        $viewData['reviewReject'] = __('review.reviewReject');
+        $review = Review::findOrFail($id);
+        $review->setVerified(false);
+        $review->save();
+
+        return redirect()->back()->with('rejected', $viewData['reviewReject']);
     }
 
     public function delete(string $id): Redirect

@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="relative overflow-x-auto">
+        <h1 class="text-3xl font-extrabold dark:text-white">{{__('adminpanel.users')}}</h1>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 border-b uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
