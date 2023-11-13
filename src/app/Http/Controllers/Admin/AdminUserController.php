@@ -44,18 +44,18 @@ class AdminUserController extends Controller
 
     public function update(Request $request, string $userId): RedirectResponse
     {
-        $adminAuth = Auth::user();
         $user = User::findOrFail($userId);
 
-        if (! Hash::check($request->input('password'), $adminAuth->getPassword())) {
-            return redirect()->route('admin.user.edit', $userId)->with('error', 'Admin password is incorrect.');
-        }
+        
         User::validateAllFields($request, $userId);
         $user->setName($request->input('name'));
         $user->setRole($request->input('rol'));
         $user->setEmail($request->input('email'));
         $user->setBalance(intval($request->input('balance')));
         $user->setUserName($request->input('username'));
+        if($request->input('password')){
+            $user->setPassword(bcrypt($request->input('password')));
+        }
         $user->save();
 
         return redirect()->route('admin.user.edit', $userId)->with('success', 'changes applied in the update of user with id'.$userId);

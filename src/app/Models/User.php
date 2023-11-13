@@ -77,7 +77,7 @@ class User extends Authenticatable
             ],
             'balance' => 'required|numeric|min:0',
             'username' => 'required|string|max:255',
-            'password' => 'required|string|min:8',
+            'password' => 'nullable|string|min:8',
 
         ]);
     }
