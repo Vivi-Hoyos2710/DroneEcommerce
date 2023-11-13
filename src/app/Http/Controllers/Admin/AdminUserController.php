@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class AdminUserController extends Controller
@@ -46,14 +45,13 @@ class AdminUserController extends Controller
     {
         $user = User::findOrFail($userId);
 
-        
         User::validateAllFields($request, $userId);
         $user->setName($request->input('name'));
         $user->setRole($request->input('rol'));
         $user->setEmail($request->input('email'));
         $user->setBalance(intval($request->input('balance')));
         $user->setUserName($request->input('username'));
-        if($request->input('password')){
+        if ($request->input('password')) {
             $user->setPassword(bcrypt($request->input('password')));
         }
         $user->save();
