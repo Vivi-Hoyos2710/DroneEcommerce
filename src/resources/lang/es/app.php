@@ -17,6 +17,6 @@ return [
     'log' => 'Iniciar sesión',
     'sign' => 'Registrarse',
     'settings' => 'Configuración',
-    'dlmode'=>"Modo oscuro/claro",
+    'dlmode' => 'Modo oscuro/claro',
     'allied' => 'Productos aliados',
 ];

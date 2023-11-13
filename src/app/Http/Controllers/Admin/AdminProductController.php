@@ -99,7 +99,6 @@ class AdminProductController extends Controller
         if (isset($validated['brand'])) {
             $product->setBrand($validated['brand']);
         }
-      
 
         $product->save();
 

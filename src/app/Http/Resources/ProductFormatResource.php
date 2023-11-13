@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace App\Http\Resources;
@@ -21,7 +20,6 @@ class ProductFormatResource extends JsonResource
         $reviews = $this->getReviews()->filter([$this, 'byVerified']);
 
         $average = Review::averageRating($reviews);
-
 
         return [
             'id' => $this->getId(),

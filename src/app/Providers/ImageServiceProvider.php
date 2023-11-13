@@ -16,9 +16,9 @@ class ImageServiceProvider extends ServiceProvider
         //aqui faltan tipos de $app $params
         $this->app->bind(ImageStorage::class, function ($app, $params) {
             $storage = $params['storage'];
-            if ('local' === $storage) {
+            if ($storage === 'local') {
                 return new ImageLocalStorage();
-            } elseif ('gcp' === $storage) {
+            } elseif ($storage === 'gcp') {
                 return new ImageGCPStorage();
             }
         });
