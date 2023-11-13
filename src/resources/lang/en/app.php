@@ -6,6 +6,8 @@ return [
     'app_name' => 'DroneStore',
     'home' => 'Home',
     'products' => 'products',
+    'home' => 'Home',
+    'products' => 'products',
     'copyright' => '© 2023- DroneStore™. All Rights Reserved.',
     'logo' => "DroneStore's logo",
     'language' => 'Language',
