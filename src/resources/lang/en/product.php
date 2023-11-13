@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'search_placeholder' => 'Search a drone...',
-    'products_list'=> 'Product List',
+    'products_list' => 'Product List',
     'title' => 'Products',
     'submit' => 'Submit',
     'base' => 'Base',

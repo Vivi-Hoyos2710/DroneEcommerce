@@ -9,7 +9,6 @@ use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-/* Made By Vivi  */
 class AdminOrderController extends Controller
 {
     public function index(): View

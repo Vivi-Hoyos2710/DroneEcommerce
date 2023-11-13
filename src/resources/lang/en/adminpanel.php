@@ -12,5 +12,5 @@ return [
     'en' => 'English',
     'es' => 'Spanish',
     'welcome' => 'Welcome',
-    'admin_panel' => 'Welcome to the admin panel'
+    'admin_panel' => 'Welcome to the admin panel',
 ];
