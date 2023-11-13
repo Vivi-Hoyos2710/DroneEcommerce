@@ -78,8 +78,7 @@ Route::middleware('admin')->group(function (): void {
     Route::controller('App\Http\Controllers\Admin\AdminReviewController')->group(function (): void {
         Route::get('/admin/reviews', 'index')->name('admin.reviews');
         Route::get('/admin/reviews/accepted', 'acceptedReviews')->name('admin.reviews.accepted');
-        Route::get('/admin/reviews/rejected/new', 'newReviews')->name('admin.reviews.new');
-        Route::get('/admin/reviews/rejected/old', 'oldReviews')->name('admin.reviews.old');
+        Route::get('/admin/reviews/rejected/', 'rejectedReviews')->name('admin.reviews.rejected');
         Route::post('/admin/reviews/accept/{id}', 'accept')->name('admin.reviews.accept');
         Route::post('/admin/reviews/reject/{id}', 'reject')->name('admin.reviews.reject');
         Route::delete('/admin/reviews/delete/{id}', 'delete')->name('admin.reviews.delete');
