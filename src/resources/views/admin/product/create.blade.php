@@ -14,32 +14,32 @@
                             <p class="text-red-500">{{ $error }}</p>
                         @endforeach
                         <div class="flex flex-col gap-4">
-                            <label for="name">{{ __('product.name_title') }}</label>
+                            <label for="name"> {{ __('product.name') }} </label>
                             <input type="text" name="name" id="name"
                                 class="border border-gray-300 p-2 rounded-lg" placeholder="Name"
                                 value="{{ old('name') }}">
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="price">{{ __('product.price_title') }}</label>
+                            <label for="price"> {{ __('product.price') }} </label>
                             <input type="number" name="price" id="price"
                                 class="border border-gray-300 p-2 rounded-lg" placeholder="Price"
                                 value="{{ old('price') }}">
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="description">{{ __('product.description_title') }}</label>
+                            <label for="description"> {{ __('product.description') }} </label>
                             <input type="text" name="description" id="description"
                                 class="border border-gray-300 p-2 rounded-lg" placeholder="Description"
                                 value="{{ old('description') }}">
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="category">{{ __('product.category_title') }}</label>
+                            <label for="category">{{ __('product.category') }}</label>
                             <select name="category" id="size" class="border border-gray-300 p-2 rounded-lg">
                                 <option value="base">{{ __('product.base') }}</option>
                                 <option value="accessory">{{ __('product.accessory') }}</option>
                             </select>
                         </div>
                         <div class="flex flex-col gap- 4">
-                            <label for="size">{{ __('product.size_title') }}</label>
+                            <label for="size">{{ __('product.size') }}</label>
                             <!-- <input type="text" name="size" id="size" class="border border-gray-300 p-2 rounded-lg" placeholder="Size" value="{{ old('size') }}"> -->
                             <!-- use select instead of input -->
                             <select name="size" id="size" class="border border-gray-300 p-2 rounded-lg">
@@ -51,17 +51,14 @@
 
                         </div>
                         <div class="flex flex-col gap-4">
-                            <label for="brand">{{ __('product.brand_title') }}</label>
+                            <label for="brand"> {{ __('product.brand') }} </label>
                             <input type="text" name="brand" id="brand"
                                 class="border border-gray-300 p-2 rounded-lg" placeholder="Brand"
                                 value="{{ old('brand') }}">
                         </div>
                         <div class="flex gap-4">
-                            
                             <div class="flex flex-col gap-4">
-                                
-                                <label for="image_upload">{{ __('product.file') }}</label>
-                                
+                                <label for="image_upload">{{ __('product.image') }}</label>
                                 <input type="file" name="image" id="image"
                                     class="border border-gray-300 p-2 rounded-lg" placeholder="Image"
                                     value="{{ old('image') }}">
