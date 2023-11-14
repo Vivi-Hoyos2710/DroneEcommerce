@@ -27,8 +27,7 @@ class ProductFormatResource extends JsonResource
             'brand' => $this->getBrand(),
             'price' => $this->getPrice(),
             'size' => $this->getSize(),
-
-            'local_image' => '/storage/'.$this->getImage(),
+            'local_image' =>$this->getImage(),
             'description' => $this->getDescription(),
             'category' => $this->getCategory(),
             'reviews' => ['Average_rating' => $average, 'data' => ReviewFormatResource::collection($reviews)],
