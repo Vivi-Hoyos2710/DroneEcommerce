@@ -33,6 +33,7 @@ class UpdateProductRequest extends FormRequest
             'size' => 'sometimes|required|string|max:255',
             'brand' => 'sometimes|required|string|max:255',
             'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'storage' => 'sometimes|required|string|max:255',
         ];
     }
 }

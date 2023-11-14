@@ -37,6 +37,12 @@ Route::controller('App\Http\Controllers\User\ShoppingCartController')->group(fun
     Route::post('/cart/add/{id}', 'add')->name('cart.add');
 });
 
+// Allied Routes
+
+Route::controller('App\Http\Controllers\AlliedProductController')->group(function (): void {
+    Route::get('/productos-aliados', 'index')->name('allied.index');
+});
+
 //User Routes WITH auth
 Route::middleware('auth')->group(function (): void {
     Route::controller('App\Http\Controllers\User\SettingsController')->group(function (): void {
@@ -71,8 +77,11 @@ Route::middleware('admin')->group(function (): void {
     });
     Route::controller('App\Http\Controllers\Admin\AdminReviewController')->group(function (): void {
         Route::get('/admin/reviews', 'index')->name('admin.reviews');
+        Route::get('/admin/reviews/accepted', 'acceptedReviews')->name('admin.reviews.accepted');
+        Route::get('/admin/reviews/rejected/', 'rejectedReviews')->name('admin.reviews.rejected');
         Route::post('/admin/reviews/accept/{id}', 'accept')->name('admin.reviews.accept');
-        Route::delete('/admin/reviews/reject/{id}', 'delete')->name('admin.reviews.reject');
+        Route::post('/admin/reviews/reject/{id}', 'reject')->name('admin.reviews.reject');
+        Route::delete('/admin/reviews/delete/{id}', 'delete')->name('admin.reviews.delete');
     });
     Route::controller('App\Http\Controllers\Admin\AdminOrderController')->group(function (): void {
         Route::get('/admin/orders', 'index')->name('admin.orders');

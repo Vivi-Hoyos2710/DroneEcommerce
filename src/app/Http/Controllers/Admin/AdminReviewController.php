@@ -16,10 +16,33 @@ class AdminReviewController extends Controller
         $viewData = [];
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle');
-
-        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', false)->get();
+        $viewData['totalAccepted'] = Review::where('verified', true)->count();
+        $viewData['totalRejected'] = Review::where('verified', false)->count();
 
         return view('admin.review.index')->with('viewData', $viewData);
+    }
+
+    public function acceptedReviews(): View
+    {
+        $viewData = [];
+        $viewData['type'] = 'accepted';
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle');
+        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', true)->get();
+
+        return view('admin.review.list')->with('viewData', $viewData);
+    }
+
+    public function rejectedReviews(): View
+    {
+        $viewData = [];
+        $viewData['type'] = 'rejected';
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle');
+
+        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', false)->orderBy('created_at', 'asc')->get();
+
+        return view('admin.review.list')->with('viewData', $viewData);
     }
 
     public function accept(string $id): Redirect
@@ -32,11 +55,21 @@ class AdminReviewController extends Controller
         return redirect()->back()->with('success', $viewData['reviewAccept']);
     }
 
+    public function reject(string $id): Redirect
+    {
+        $viewData['reviewReject'] = __('review.reviewReject');
+        $review = Review::findOrFail($id);
+        $review->setVerified(false);
+        $review->save();
+
+        return redirect()->back()->with('rejected', $viewData['reviewReject']);
+    }
+
     public function delete(string $id): Redirect
     {
         $viewData['reviewReject'] = __('review.reviewReject');
         Review::destroy($id);
 
-        return redirect()->back()->with('rejected', $viewData['reviewReject']);
+        return redirect()->back()->with('deleted', $viewData['reviewReject']);
     }
 }

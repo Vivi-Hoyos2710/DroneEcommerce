@@ -3,53 +3,52 @@
 @section('content')
 
     <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <h1 class="text-3xl font-extrabold dark:text-white">{{ __('review.reviewTitle') }}</h1>
 
-            <tbody>
-                <div class="container mx-auto p-4">
-                    <h1 class="text-2xl font-semibold mb-4">{{ __('product.reviewTitle') }}</h1>
+        <div class="container mx-auto p-4 flex flex justify-evenly items-center">
+            <div
+                class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-                    @if (session('success'))
-                        <div class="bg-green-200 text-green-800 border border-green-400 rounded p-2 mb-4">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {{ __('adminpanel.rejected') }}</h5>
 
-                    @if (session('rejected'))
-                        <div class="bg-red-200 text-red-800 border border-red-400 rounded p-2 mb-4">
-                            {{ session('rejected') }}
-                        </div>
-                    @endif
-                    @foreach ($viewData['reviews'] as $review) 
-                        <h2 class="text-xl font-semibold mb-2">{{ $review -> getProduct() -> getName() }}</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">        
-                                    
-                                <div class="bg-white rounded-lg shadow-md p-4">
-                                    <p class="font-semibold text-lg"> {{ __('review.user') }} {{ $review -> getUser() -> getName() }}</p>
-                                    <p class="font-semibold text-lg"> {{ __('review.rating')}} {{ $review-> getRating() }}</p>
-                                    <p class="text-gray-600">{{ $review-> getDescription() }}</p>
-                                    <form method="POST" action="{{ route('admin.reviews.accept', $review->id) }}" class="mt-4">
-                                        @csrf
-                                        <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
-                                            {{ __('review.accept') }}
-                                        </button>
-                                    </form>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    {{ __('adminpanel.total') }}:{{$viewData['totalRejected']}}
+                </p>
+                <a href="{{ route('admin.reviews.rejected') }}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    +
+                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </a>
+            </div>
+            <div
+                class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-                                    <form method="POST" action="{{ route('admin.reviews.reject', $review->id) }}" class="mt-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
-                                            {{ __('review.reject') }}
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4">
-                    @endforeach
-                </div>
-            </tbody>
-        </table>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {{ __('adminpanel.accepted') }}</h5>
+
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    {{ __('adminpanel.total') }}:{{$viewData['totalAccepted']}}
+
+                </p>
+                <a href="{{ route('admin.reviews.accepted') }}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    +
+                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </a>
+            </div>
+
+
+
+        </div>
+
     </div>
-
 @endsection

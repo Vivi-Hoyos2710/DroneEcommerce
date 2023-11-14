@@ -41,13 +41,15 @@ class Review extends Model
 
         return $listCount;
     }
+
     public static function averageRating(Collection $reviews): float
     {
-        $average=0;
-        $total=count($reviews);
-        if($total>0){
-            $average= $reviews->sum('rating')/$total;
+        $average = 0;
+        $total = count($reviews);
+        if ($total > 0) {
+            $average = $reviews->sum('rating') / $total;
         }
+
         return $average;
     }
 
@@ -89,7 +91,7 @@ class Review extends Model
         return $this->attributes['product_id'];
     }
 
-    public function getCreatedAt(): int
+    public function getCreatedAt()
     {
         return $this->attributes['created_at'];
     }

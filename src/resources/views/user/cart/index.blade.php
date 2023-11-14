@@ -28,7 +28,7 @@
                                         <td class="py-4">
                                             <div class="flex items-center">
                                                 <img class="h-16 w-16 mr-4"
-                                                    src="{{ asset('storage/' . $product->getImage()) }}"
+                                                    src="{{ url($product->getImage()) }}"
                                                     alt="Product image">
                                                 <span class="font-semibold">{{ $product->getName() }}</span>
                                             </div>
