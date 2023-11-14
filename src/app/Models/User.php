@@ -77,7 +77,7 @@ class User extends Authenticatable
             ],
             'balance' => 'required|numeric|min:0',
             'username' => 'required|string|max:255',
-            'password' => 'required|string|min:8',
+            'password' => 'nullable|string|min:8',
 
         ]);
     }
@@ -85,12 +85,12 @@ class User extends Authenticatable
     //Validations of each field to custom update
     public static function validateEach(Request $request, string $type): string
     {
-        if ('name' === $type || 'username' === $type) {
+        if ($type === 'name' || $type === 'username') {
             $request->validate([
                 $type => 'required|string|max:255',
             ]);
 
-        } elseif ('email' === $type) {
+        } elseif ($type === 'email') {
             $request->validate([
                 $type => 'required|string|email|max:255|unique:users',
             ]);

@@ -14,5 +14,6 @@ return [
     'taxes' => 'Taxes',
     'next_step' => 'Next Step',
     'remove' => 'Remove all products from Cart',
-
+    'empty_cart' => 'Is empty!',
+    'empty_cart2' => ' No products in cart',
 ];

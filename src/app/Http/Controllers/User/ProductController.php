@@ -19,8 +19,8 @@ class ProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Products';
-        $viewData['subtitle'] = 'List of products';
+
+        $viewData['subtitle'] = 'All our products';
 
         $viewData['products'] = Product::with('reviews')->get();
 
@@ -40,7 +40,6 @@ class ProductController extends Controller
             $product = Product::with('reviews')->findOrFail($id);
             $viewData['title'] = $product['name'].' - Online Store';
             $viewData['subtitle'] = $product['name'].' - Product information';
-
             $viewData['product'] = $product;
             $viewData['reviews'] = Review::where('product_id', $id)->where('verified', true)->get();
             $viewData['stars'] = Review::countRatingsByStars($viewData['reviews']);
@@ -57,10 +56,10 @@ class ProductController extends Controller
 
     public function searchProducts(Request $request): View
     {
+        $search = $request->input('search');
         $viewData = [];
-        $viewData['title'] = 'Products';
-        $viewData['subtitle'] = 'Search results';
-        $viewData['products'] = Product::where('name', 'LIKE', '%'.$request->input('search').'%')->latest()->paginate(15);
+        $viewData['subtitle'] = 'Search results of: '.$search;
+        $viewData['products'] = Product::where('name', 'LIKE', '%'.$search.'%')->latest()->paginate(15);
 
         return view('user.product.index')->with('viewData', $viewData);
     }

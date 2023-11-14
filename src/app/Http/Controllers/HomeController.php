@@ -12,13 +12,14 @@ class HomeController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = __('home.name').' index';
+        $viewData['title'] = __('app.app_name').' index';
 
-        $topReviewedProducts = Product::withCount('reviews')
+        $topReviewedProducts = Product::with('reviews')
+            ->withCount('reviews')
             ->orderBy('reviews_count', 'desc')
             ->limit(3)
             ->get();
-
+        Product::averageRateProducts($topReviewedProducts);
         $viewData['products'] = $topReviewedProducts;
 
         return view('user.home.index')->with('viewData', $viewData);

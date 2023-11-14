@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Review extends Model
 {
@@ -25,7 +27,7 @@ class Review extends Model
 
     protected $fillable = ['description', 'rating'];
 
-    public static function countRatingsByStars($reviews): array
+    public static function countRatingsByStars(Collection $reviews): array
     {
         $listCount = [];
         foreach ($reviews as $review) {
@@ -40,7 +42,18 @@ class Review extends Model
         return $listCount;
     }
 
-    public static function validate($request): void
+    public static function averageRating(Collection $reviews): float
+    {
+        $average = 0;
+        $total = count($reviews);
+        if ($total > 0) {
+            $average = $reviews->sum('rating') / $total;
+        }
+
+        return $average;
+    }
+
+    public static function validate(Request $request): void
     {
         $request->validate([
             'description' => 'required|string|min:10|max:255',
@@ -65,7 +78,7 @@ class Review extends Model
 
     public function getVerified(): bool
     {
-        return $this->attributes['verified'];
+        return (bool) $this->attributes['verified'];
     }
 
     public function getUserId(): int
@@ -78,7 +91,7 @@ class Review extends Model
         return $this->attributes['product_id'];
     }
 
-    public function getCreatedAt(): int
+    public function getCreatedAt()
     {
         return $this->attributes['created_at'];
     }

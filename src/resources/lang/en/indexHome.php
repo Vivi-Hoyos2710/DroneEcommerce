@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 return [
+    'name' => 'DroneStore',
+    'home' => 'Home',
     'elevate_drone_experience' => 'Elevate Your Drone Experience',
     'customized_creations' => 'with Customized Creations',
     'welcome_message' => 'Welcome to our drone customization eCommerce platform, where we blend technology, innovation, and creativity to unlock the full potential of your drones. Discover unique, tailor-made solutions that enhance your drone capabilities and bring your aerial visions to life.',

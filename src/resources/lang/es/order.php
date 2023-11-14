@@ -12,4 +12,9 @@ return [
     'product_name' => 'Nombre del Producto',
     'price' => 'Precio',
     'quantity' => 'Cantidad',
+    'no_date' => 'No fecha:',
+    'filter_by_date' => 'Filtrar por fecha',
+    'start_date' => 'Poner fecha inicial',
+    'end_date' => 'Poner fecha final',
+    'select_date' => 'Seleccionar fecha',
 ];

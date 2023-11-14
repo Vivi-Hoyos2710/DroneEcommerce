@@ -30,9 +30,9 @@
             <div class="flex items-center justify-start">
                 <a href={{ route('home.index') }} class="flex items-center">
                     <img src="{{ asset('/img/drone_logo.png') }}"
-                        class="w-auto h-auto max-h-12 max-w-12 dark:border-white" alt={{ __('home.logo') }}>
+                        class="w-auto h-auto max-h-12 max-w-12 dark:border-white" alt={{ __('app.logo') }}>
                     <span
-                        class="self-center text-white text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ __('home.name') }}</span>
+                        class="self-center text-white text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ __('app.app_name') }}</span>
                 </a>
             </div>
             <button data-collapse-toggle="navbar-default" type="button"
@@ -58,7 +58,7 @@
                         @csrf
                         <input type="text" id="search" name="search"
                             class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search...">
+                            placeholder="{{ __('app.search_placeholder') }}">
                     </form>
 
                 </div>
@@ -67,15 +67,21 @@
                     <li>
                         <a href="{{ route('home.index') }}"
                             class="block py-2 pl-3 pr-4 {{ Route::currentRouteName() === 'home-index' ? 'text-green-500' : 'text-white' }} rounded md:bg-transparent md:p-0 dark:text-white">
-                            {{ __('home.home') }}</a>
+                            {{ __('app.home') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('product.index') }}"
-                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.products') }}</a>
+                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('app.product') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('product.calculator') }}"
-                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ 'Calculator' }}</a>
+                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('app.calculator') }}</a>
+
+                    </li>
+                    <li>
+                        <a href="{{ route('allied.index') }}"
+                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('app.allied') }}</a>
+
                     </li>
                     <li>
                         <a href="{{ route('cart.index') }}"
@@ -96,11 +102,11 @@
                     @guest
                         <li>
                             <a href="{{ route('login') }}"
-                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.log') }}</a>
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('app.log') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('register') }}"
-                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('home.sign') }}</a>
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{{ __('app.sign') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -148,7 +154,7 @@
                                 <li>
                                     <a href="{{ route('user.account') }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">{{ __('home.settings') }}</a>
+                                        role="menuitem">{{ __('app.settings') }}</a>
                                 </li>
                                 <li>
                                     <form id="logout" action="{{ route('logout') }}" method="POST">
@@ -177,40 +183,16 @@
         <footer
             class=" left-0 z-20 w-full p-4 bg-gradient-to-r from-blue-900 to-blue-600 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
             <span class="text-sm text-white sm:text-center dark:text-gray-400">
-                <a href={{ route('home.index') }} class="hover:underline">{{ __('home.copyright') }}</a>.
+                <a href={{ route('home.index') }} class="hover:underline">{{ __('app.copyright') }}</a>.
             </span>
             <div class="flex items-center md:order-2">
                 <button type="button" data-dropdown-toggle="language-dropdown-menu"
                     class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <svg class="w-5 h-5 mr-2 rounded-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3900 3900">
-                        <path fill="#b22234" d="M0 0h7410v3900H0z" />
-                        <path d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0" stroke="#fff"
-                            stroke-width="300" />
-                        <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
-                        <g fill="#fff">
-                            <g id="d">
-                                <g id="c">
-                                    <g id="e">
-                                        <g id="b">
-                                            <path id="a"
-                                                d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z" />
-                                            <use xlink:href="#a" y="420" />
-                                            <use xlink:href="#a" y="840" />
-                                            <use xlink:href="#a" y="1260" />
-                                        </g>
-                                        <use xlink:href="#a" y="1680" />
-                                    </g>
-                                    <use xlink:href="#b" x="247" y="210" />
-                                </g>
-                                <use xlink:href="#c" x="494" />
-                            </g>
-                            <use xlink:href="#d" x="988" />
-                            <use xlink:href="#c" x="1976" />
-                            <use xlink:href="#e" x="2470" />
-                        </g>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 22q-2.05 0-3.875-.788t-3.188-2.15q-1.362-1.362-2.15-3.187T2 12q0-2.075.788-3.888t2.15-3.174Q6.3 3.575 8.124 2.788T12 2q2.075 0 3.888.788t3.174 2.15q1.363 1.362 2.15 3.175T22 12q0 2.05-.788 3.875t-2.15 3.188q-1.362 1.362-3.175 2.15T12 22Zm0-2.05q.65-.9 1.125-1.875T13.9 16h-3.8q.3 1.1.775 2.075T12 19.95Zm-2.6-.4q-.45-.825-.788-1.713T8.05 16H5.1q.725 1.25 1.813 2.175T9.4 19.55Zm5.2 0q1.4-.45 2.488-1.375T18.9 16h-2.95q-.225.95-.562 1.838T14.6 19.55ZM4.25 14h3.4q-.075-.5-.113-.988T7.5 12q0-.525.038-1.012T7.65 10h-3.4q-.125.5-.188.988T4 12q0 .525.063 1.012T4.25 14Zm5.4 0h4.7q.075-.5.113-.988T14.5 12q0-.525-.038-1.012T14.35 10h-4.7q-.075.5-.113.988T9.5 12q0 .525.038 1.012T9.65 14Zm6.7 0h3.4q.125-.5.188-.988T20 12q0-.525-.063-1.012T19.75 10h-3.4q.075.5.113.988T16.5 12q0 .525-.038 1.012T16.35 14Zm-.4-6h2.95q-.725-1.25-1.812-2.175T14.6 4.45q.45.825.788 1.713T15.95 8ZM10.1 8h3.8q-.3-1.1-.775-2.075T12 4.05q-.65.9-1.125 1.875T10.1 8Zm-5 0h2.95q.225-.95.563-1.838T9.4 4.45Q8 4.9 6.912 5.825T5.1 8Z" />
                     </svg>
-                    English (US)
+                    {{ __('app.language').' : '. __('app.'. app()->getLocale()) }}
                 </button>
                 <!-- Dropdown -->
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
@@ -239,7 +221,7 @@
                                                 transform="scale(3.9385)" />
                                         </g>
                                     </svg>
-                                    English (US)
+                                    {{ __('app.en') }}
                                 </div>
                             </a>
                         </li>
@@ -248,13 +230,14 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                 role="menuitem">
                                 <div class="inline-flex items-center">
-                                    <svg class="h-3.5 w-3.5 rounded-full mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <rect width="24" height="8" fill="#ffda44"/>
-                                        <rect width="24" height="8" y="8" fill="#003478"/>
-                                        <rect width="24" height="8" y="16" fill="#ef3340"/>
+                                    <svg class="h-3.5 w-3.5 rounded-full mr-2" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24">
+                                        <rect width="24" height="8" fill="#ffda44" />
+                                        <rect width="24" height="8" y="8" fill="#003478" />
+                                        <rect width="24" height="8" y="16" fill="#ef3340" />
                                     </svg>
-                                    
-                                    Es (Col)
+
+                                    {{ __('app.es') }}
                                 </div>
                             </a>
                         </li>
@@ -274,7 +257,7 @@
                             d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
                             fill-rule="evenodd" clip-rule="evenodd"></path>
                     </svg>
-                    Dark/light mode
+                    {{__('app.dlmode')}}
                 </button>
             </div>
         </footer>

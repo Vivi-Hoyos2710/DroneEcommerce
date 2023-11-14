@@ -3,6 +3,8 @@
 @section('content')
 
     <div class="relative overflow-x-auto">
+        <h1 class="text-3xl font-extrabold dark:text-white">{{__('adminpanel.orders')}}</h1>
+
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class=" text-xs text-gray-700 border-b uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -46,7 +48,7 @@
                                         <path
                                             d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z" />
                                     </svg>
-                                    Delete
+                                    {{__('order.delete')}}
                                 </button>
                             </form>
                         </td>
