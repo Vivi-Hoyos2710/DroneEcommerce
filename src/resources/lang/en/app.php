@@ -24,5 +24,4 @@ return [
     'wishlist' => 'My Wishlist',
     'logout' => 'Logout',
 
-
 ];

@@ -34,7 +34,6 @@ class AdminReviewController extends Controller
         return view('admin.review.list')->with('viewData', $viewData);
     }
 
-
     public function rejectedReviews(): View
     {
         $viewData = [];
