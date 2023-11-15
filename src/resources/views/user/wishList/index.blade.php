@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app')se
 @section('title', $viewData["title"])
 @section('content')
 

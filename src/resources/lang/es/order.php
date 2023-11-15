@@ -21,6 +21,7 @@ return [
     'product_name' => 'Nombre del Producto',
     'price' => 'Precio',
     'quantity' => 'Cantidad',
+
     'select_address' => 'Seleccionar Dirección',
     'address_selection' => 'Selección de Dirección',
     'no_date' => 'Sin fecha:',
@@ -29,4 +30,5 @@ return [
     'end_date' => 'Ingrese la fecha de fin',
     'select_date' => 'Seleccionar Fecha',
     'show' => 'Mostrar',
+
 ];

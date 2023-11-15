@@ -9,6 +9,7 @@
 <html>
 
 <head>
+
     <title>{{__('order.address_selection')}}</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
@@ -21,6 +22,7 @@
             <div class="panel">
                 <div>
                     <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg" alt="">
+
                     <span class="sb-title">{{__('order.address_selection')}}</span>
                 </div>
                 <input type="text" placeholder="{{__('product.address')}}" id="location-input" />
@@ -43,6 +45,7 @@
                         disabled
                         style="opacity: 0.5; background-color: #bdc3c7;">
                         {{__('order.purchase')}}
+
                     </button>
                 </form>
             </div>

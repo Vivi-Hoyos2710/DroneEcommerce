@@ -24,4 +24,5 @@ return [
     'order' => 'Mis orden',
     'wishlist' => 'Lista de deseos',
     'logout' => 'Cerrar sesion',
+
 ];

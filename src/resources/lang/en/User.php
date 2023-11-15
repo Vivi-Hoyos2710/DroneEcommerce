@@ -12,6 +12,7 @@ return [
     'password_description' => 'Enter your password as an administrator to see the reflected changes of the user update',
     'update_user' => 'Update User',
     'username' => 'Username',
+
     'id' => 'ID',
     'name' => 'Name',
     'email' => 'Email',
@@ -19,4 +20,5 @@ return [
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'edit' => 'Edit',
+
 ];

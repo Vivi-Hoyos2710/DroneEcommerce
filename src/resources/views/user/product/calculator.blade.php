@@ -6,13 +6,16 @@
 <html>
 
 <head>
+
     <title>{{ __('order.address_selection') }}</title>
+
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
     <script src="{{ asset('js/map.js') }}"></script>
 </head>
 
 <body>
+
     <div class="container" style="display: flex; justify-content: center;">
         <div class="card-container">
             <div class="panel">
@@ -53,3 +56,4 @@
 
 </html>
 @endsection
+

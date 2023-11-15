@@ -28,6 +28,31 @@ class AdminReviewController extends Controller
         $viewData['type'] = __('review.accepted');
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle');
+
+        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', true)->get();
+
+        return view('admin.review.list')->with('viewData', $viewData);
+    }
+
+
+    public function rejectedReviews(): View
+    {
+        $viewData = [];
+        $viewData['type'] = __('review.rejected');
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle');
+
+        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', false)->orderBy('created_at', 'asc')->get();
+
+        return view('admin.review.list')->with('viewData', $viewData);
+    }
+
+    public function acceptedReviews(): View
+    {
+        $viewData = [];
+        $viewData['type'] = 'accepted';
+        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['reviewTitle'] = __('review.reviewTitle');
         $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', true)->get();
 
         return view('admin.review.list')->with('viewData', $viewData);
@@ -36,7 +61,7 @@ class AdminReviewController extends Controller
     public function rejectedReviews(): View
     {
         $viewData = [];
-        $viewData['type'] = __('review.rejected');
+        $viewData['type'] = 'rejected';
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle');
 

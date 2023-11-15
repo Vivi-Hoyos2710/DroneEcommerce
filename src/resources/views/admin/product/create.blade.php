@@ -13,6 +13,7 @@
                         @foreach ($errors->all() as $error)
                             <p class="text-red-500">{{ $error }}</p>
                         @endforeach
+
                         <div class="flex flex-col gap-4">
                             <label for="name"> {{ __('product.name') }} </label>
                             <input type="text" name="name" id="name"
@@ -33,6 +34,7 @@
                         </div>
                         <div class="flex flex-col gap-4">
                             <label for="category">{{ __('product.category') }}</label>
+
                             <select name="category" id="size" class="border border-gray-300 p-2 rounded-lg">
                                 <option value="base">{{ __('product.base') }}</option>
                                 <option value="accessory">{{ __('product.accessory') }}</option>
@@ -52,13 +54,16 @@
                         </div>
                         <div class="flex flex-col gap-4">
                             <label for="brand"> {{ __('product.brand') }} </label>
+
                             <input type="text" name="brand" id="brand"
                                 class="border border-gray-300 p-2 rounded-lg" placeholder="Brand"
                                 value="{{ old('brand') }}">
                         </div>
                         <div class="flex gap-4">
+
                             <div class="flex flex-col gap-4">
                                 <label for="image_upload">{{ __('product.image') }}</label>
+
                                 <input type="file" name="image" id="image"
                                     class="border border-gray-300 p-2 rounded-lg" placeholder="Image"
                                     value="{{ old('image') }}">

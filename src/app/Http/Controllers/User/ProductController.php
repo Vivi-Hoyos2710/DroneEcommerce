@@ -19,6 +19,7 @@ class ProductController extends Controller
     public function index(): View
     {
         $viewData = [];
+
         $viewData['products'] = Product::with('reviews')->get();
 
         return view('user.product.index')->with('viewData', $viewData);

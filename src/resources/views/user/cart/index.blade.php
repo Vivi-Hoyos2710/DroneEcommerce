@@ -2,7 +2,9 @@
 @section('title', __('cart.title'))
 @section('content')
 
+
     {{ Breadcrumbs::render('products.show.cart') }}
+
 
     <div class="-sm bg-neutral-500 bg-opacity-50 py-8 dark:bg-gray-600 dark:bg-opacity-70">
         <div class="container mx-auto px-4">
