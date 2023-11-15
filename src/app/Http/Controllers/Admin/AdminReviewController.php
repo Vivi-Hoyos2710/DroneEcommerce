@@ -14,7 +14,7 @@ class AdminReviewController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Drone Admin - Reviews';
+        $viewData['title'] = __('review.title');
         $viewData['reviewTitle'] = __('review.reviewTitle');
         $viewData['totalAccepted'] = Review::where('verified', true)->count();
         $viewData['totalRejected'] = Review::where('verified', false)->count();
@@ -25,7 +25,7 @@ class AdminReviewController extends Controller
     public function acceptedReviews(): View
     {
         $viewData = [];
-        $viewData['type'] = 'accepted';
+        $viewData['type'] = __('review.accepted');
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle');
         $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', true)->get();
@@ -36,7 +36,7 @@ class AdminReviewController extends Controller
     public function rejectedReviews(): View
     {
         $viewData = [];
-        $viewData['type'] = 'rejected';
+        $viewData['type'] = __('review.rejected');
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle');
 

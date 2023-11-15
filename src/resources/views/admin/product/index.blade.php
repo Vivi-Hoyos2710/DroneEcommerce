@@ -2,6 +2,8 @@
 @section('title', $viewData['title'])
 @section('content')
 
+    {{ Breadcrumbs::render('homeAdmin.products') }} 
+
     <div class="relative overflow-x-auto">
         <div class="flex justify-between items-center">
             <h1 class="text-3xl font-extrabold dark:text-white">{{ __('adminpanel.products') }}</h1>

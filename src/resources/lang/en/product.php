@@ -34,5 +34,14 @@ return [
     'empty_message' => 'No products',
     'search_title' => 'Products Result',
     'image' => 'Image',
-
+    'address' => 'Address',
+    'apt_suite_optional' => 'Apt, Suite, etc (optional)',
+    'city' => 'City',
+    'state_province' => 'State/Province',
+    'zip_postal_code' => 'Zip/Postal Code',
+    'country' => 'Country',
+    'file' => 'File',
+    'subtitle' => 'All our products',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
 ];

@@ -9,7 +9,6 @@ use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-/* Made By Vivi  */
 class AdminOrderController extends Controller
 {
     public function index(): View
@@ -17,7 +16,17 @@ class AdminOrderController extends Controller
         $viewData = [];
         $viewData['title'] = __('adminpanel.orders');
         $viewData['message'] = __('adminpanel.welcome');
-        $viewData['table_header'] = ['id', 'total_amount', 'address', 'user_id', 'user_name', 'created_at', 'updated_at', 'delete', 'show'];
+        $viewData['table_header'] = [
+            __('order.id'),
+            __('order.total_amount'),
+            __('order.address'),
+            __('order.id_user'),
+            __('order.customer_name'),
+            __('order.date'),
+            __('order.updated_at'),
+            __('order.delete'),
+            __('order.show'),
+        ];        
         $viewData['orders'] = Order::with('user')->get();
 
         return view('admin.order.index')->with('viewData', $viewData);

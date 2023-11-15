@@ -2,6 +2,8 @@
 @section('title', $viewData['title'])
 @section('content')
 
+    {{ Breadcrumbs::render('homeAdmin.reviews') }} 
+
     <div class="relative overflow-x-auto">
         <h1 class="text-3xl font-extrabold dark:text-white">{{ __('review.reviewTitle') }}</h1>
 
@@ -45,8 +47,6 @@
                     </svg>
                 </a>
             </div>
-
-
 
         </div>
 
