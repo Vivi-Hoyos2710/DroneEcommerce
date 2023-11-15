@@ -26,7 +26,7 @@ class AdminOrderController extends Controller
             __('order.updated_at'),
             __('order.delete'),
             __('order.show'),
-        ];        
+        ];
         $viewData['orders'] = Order::with('user')->get();
 
         return view('admin.order.index')->with('viewData', $viewData);

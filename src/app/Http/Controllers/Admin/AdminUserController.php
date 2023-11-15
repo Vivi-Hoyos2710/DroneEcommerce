@@ -30,7 +30,7 @@ class AdminUserController extends Controller
             __('User.delete'),
             __('User.edit'),
         ];
-        
+
         $viewData['users'] = User::where('id', '!=', $authenticatedUser->getId())->get();
 
         return view('admin.user.index')->with('viewData', $viewData);
