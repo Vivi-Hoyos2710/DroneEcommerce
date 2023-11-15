@@ -16,8 +16,8 @@ class AdminReviewController extends Controller
         $viewData = [];
         $viewData['title'] = __('review.title');
         $viewData['reviewTitle'] = __('review.reviewTitle');
-
-        $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', false)->get();
+        $viewData['totalAccepted'] = Review::where('verified', true)->count();
+        $viewData['totalRejected'] = Review::where('verified', false)->count();
 
         return view('admin.review.index')->with('viewData', $viewData);
     }
@@ -25,31 +25,18 @@ class AdminReviewController extends Controller
     public function acceptedReviews(): View
     {
         $viewData = [];
+        $viewData['type'] = 'accepted';
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle');
-
         $viewData['reviews'] = Review::with(['product', 'user'])->where('verified', true)->get();
 
         return view('admin.review.list')->with('viewData', $viewData);
     }
 
-    public function newReviews(): View
+    public function rejectedReviews(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Drone Admin - Reviews';
-        $viewData['reviewTitle'] = __('review.reviewTitle');
-
-        $viewData['reviews'] = Review::with(['product', 'user'])
-            ->where('verified', false)
-            ->whereDate('created_at', today())
-            ->get();
-
-        return view('admin.review.list')->with('viewData', $viewData);
-    }
-
-    public function oldReviews(): View
-    {
-        $viewData = [];
+        $viewData['type'] = 'rejected';
         $viewData['title'] = 'Drone Admin - Reviews';
         $viewData['reviewTitle'] = __('review.reviewTitle');
 
@@ -83,6 +70,6 @@ class AdminReviewController extends Controller
         $viewData['reviewReject'] = __('review.reviewReject');
         Review::destroy($id);
 
-        return redirect()->back()->with('rejected', $viewData['reviewReject']);
+        return redirect()->back()->with('deleted', $viewData['reviewReject']);
     }
 }

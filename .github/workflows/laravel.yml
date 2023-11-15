@@ -73,7 +73,7 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag jdramirezl/pokeneas:latest
+        run: docker build . --file Dockerfile --tag jdramirezl/drone:latest
 
       - name: Docker Push
-        run: docker push jdramirezl/pokeneas
+        run: docker push jdramirezl/drone

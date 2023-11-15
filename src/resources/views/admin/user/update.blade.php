@@ -67,12 +67,12 @@
                             value={{ $viewData['user_info']->getUserName() }} placeholder="Ex. bestUser123" required="true">
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="Password Confirmation"
+                        <label for="Password"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{__('order.admin_password')}}
                         </label>
                         <input type="password" id="admin_password" name="password"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Your Password">
+                            placeholder="****">
                         <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400"> {{__('user.password_description')}}</p>
                         @if (session('error'))
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ session('error') }}</p>
