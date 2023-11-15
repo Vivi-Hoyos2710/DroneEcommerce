@@ -19,7 +19,18 @@ class AdminUserController extends Controller
         $viewData = [];
         $viewData['title'] = __('adminpanel.users');
         $viewData['message'] = __('adminpanel.welcome');
-        $viewData['table_header'] = ['id', 'name', 'email', 'username', 'balance', 'created_at', 'updated_at', 'delete', 'edit'];
+        $viewData['table_header'] = [
+            __('User.id'),
+            __('User.name'),
+            __('User.email'),
+            __('User.username'),
+            __('User.balance'),
+            __('User.created_at'),
+            __('User.updated_at'),
+            __('User.delete'),
+            __('User.edit'),
+        ];
+        
         $viewData['users'] = User::where('id', '!=', $authenticatedUser->getId())->get();
 
         return view('admin.user.index')->with('viewData', $viewData);

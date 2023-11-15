@@ -24,7 +24,6 @@
 
 <body>
     <!-- Nav bar -->
-
     <nav class=" bg-gray-900  dark:bg-gray-900 shadow-md relative">
         <div class="max-w-screen-xl flex flex-wrap justify-between mx-auto  p-4">
             <div class="flex items-center justify-start">
@@ -144,12 +143,12 @@
                                 <li>
                                     <a href="{{ route('wishlist.index') }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">My Wishlist</a>
+                                        role="menuitem">{{ __('app.wishlist') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('user.orders') }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">My Order</a>
+                                        role="menuitem">{{ __('app.order') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('user.account') }}"
@@ -159,7 +158,7 @@
                                 <li>
                                     <form id="logout" action="{{ route('logout') }}" method="POST">
                                         <button type="submit"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('app.logout') }}</button>
                                         @csrf
                                     </form>
                                 </li>

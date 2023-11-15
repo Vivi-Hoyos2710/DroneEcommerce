@@ -41,4 +41,7 @@ return [
     'zip_postal_code' => 'Código postal',
     'country' => 'País',
     'file' => 'Archivo',
+    'subtitle' => 'Todos nuestros productos',
+    'delete' => 'Eliminar',
+    'edit' => 'Editar',
 ];

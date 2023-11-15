@@ -21,4 +21,7 @@ return [
     'settings' => 'Configuración',
     'dlmode' => 'Modo oscuro/claro',
     'allied' => 'Productos aliados',
+    'order' => 'Mis orden',
+    'wishlist' => 'Lista de deseos',
+    'logout' => 'Cerrar sesion',
 ];

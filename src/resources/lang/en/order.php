@@ -28,4 +28,5 @@ return [
     'start_date' => 'Put Start Date',
     'end_date' => 'Put End Date',
     'select_date' => 'Select Date',
+    'show' => 'Show',
 ];

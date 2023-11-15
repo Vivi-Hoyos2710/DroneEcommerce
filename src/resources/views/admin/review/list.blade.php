@@ -8,7 +8,6 @@
         <div class="container mx-auto p-4">
 
             @if ($viewData['type'] === 'rejected')
-        
                 <h1 class="dark:text-white text-2xl font-semibold mb-4">
                     {{ __('review.rr') }}
                 </h1>
@@ -17,8 +16,6 @@
                     {{ __('review.ar') }}
                 </h1>
             @endif
-
-
 
             @if (session('rejected'))
                 <div class="bg-red-200 text-red-800 border border-red-400 rounded p-2 mb-4">
