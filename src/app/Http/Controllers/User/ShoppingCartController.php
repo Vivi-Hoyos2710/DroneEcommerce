@@ -15,9 +15,6 @@ use Illuminate\View\View;
 
 class ShoppingCartController extends Controller
 {
-    /**
-     * Made by Vivi.
-     */
     public function index(Request $request): View
     {
         $total = 0;

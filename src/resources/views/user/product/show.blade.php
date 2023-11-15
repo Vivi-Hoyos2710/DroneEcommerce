@@ -2,6 +2,11 @@
 @section('title', $viewData['title'])
 @section('subtitle', $viewData['subtitle'])
 @section('content')
+
+
+{{ Breadcrumbs::render('products.show', $viewData['product']) }} 
+
+
 <div class="container">
     <div class="md:flex md:items-center">
         <div class="w-full h-64 md:w-1/2 lg:h-96">

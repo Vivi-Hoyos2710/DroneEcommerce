@@ -20,8 +20,6 @@ class ProductController extends Controller
     {
         $viewData = [];
 
-        $viewData['subtitle'] = 'All our products';
-
         $viewData['products'] = Product::with('reviews')->get();
 
         return view('user.product.index')->with('viewData', $viewData);

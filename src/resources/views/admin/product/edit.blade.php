@@ -3,6 +3,8 @@
 @section('title', $viewData['title'])
 @section('content')
 
+{{ Breadcrumbs::render('homeAdmin.products.edit', $viewData['product']) }}
+
 <div class="bg-[#F9FAFB] min-h-screen flex items-center">
     <div class="max-w-screen-md mx-auto flex flex-col items-center w-full">
         <h1 cass="text-2xl font-bold text-gray-800">{{__('product.title')}} </h1>

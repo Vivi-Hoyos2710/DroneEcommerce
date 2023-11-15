@@ -13,4 +13,12 @@ return [
     'update_user' => 'Update User',
     'username' => 'Username',
 
+    'id' => 'ID',
+    'name' => 'Name',
+    'email' => 'Email',
+    'balance' => 'Balance',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
+    'edit' => 'Edit',
+
 ];

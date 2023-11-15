@@ -19,7 +19,18 @@ class AdminProductController extends Controller
         $products = Product::with('reviews')->get();
 
         $viewData['title'] = 'Products';
-        $viewData['table_header'] = ['ID', 'Name', 'Price', 'Description', 'Image', 'Category', 'Size', 'Brand', 'Delete', 'Edit  '];
+        $viewData['table_header'] = [
+            __('product.id'),
+            __('product.name'),
+            __('product.price'),
+            __('product.description'),
+            __('product.image'),
+            __('product.category'),
+            __('product.size'),
+            __('product.brand'),
+            __('product.delete'),
+            __('product.edit'),
+        ];
         $viewData['products'] = $products;
 
         return view('admin.product.index')->with('viewData', $viewData);

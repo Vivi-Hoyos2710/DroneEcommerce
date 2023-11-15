@@ -3,14 +3,13 @@
 @section('content')
 
     <div class="container mx-auto py-12 flex flex-wrap items-center justify-between">
-        <!-- Left Side (Text Content) -->
         <div class="w-full md:w-1/2 rounded-lg bg-white dark:bg-gray-700 p-6 shadow-lg relative">
             <div>
-                <h1
-                    class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+
+                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                     {{ __('indexHome.elevate_drone_experience') }}
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{{ __('indexHome.customized_creations') }}</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{{ __('indexHome.customized_creations') }}</span>
+
                 </h1>
                 <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
                     {{ __('indexHome.welcome_message') }}
@@ -18,7 +17,7 @@
             </div>
         </div>
 
-        <!-- Right Side (Image) -->
+
         <div class="w-full md:w-1/2">
             <img src="https://nebula.wsimg.com/d7a7441c4f98c566fe762e6ee0ea08c6?AccessKeyId=77DC80C9B62DE94ACB31&disposition=0&alloworigin=1"
                 alt="Flying Drone GIF" class="w-full h-auto">
@@ -26,6 +25,8 @@
     </div>
     <div class="flex flex-col items-center justify-center md:flex-row">
 
+
+    <div class="flex flex-col items-center justify-center md:flex-row">
 
         <div class="w-full md:w-1/2 rounded-lg bg-white dark:bg-gray-700 p-6 shadow-lg relative md:order-2">
             <div class="md:w-1/2">
@@ -40,21 +41,18 @@
 
         <div class="h-full w-full md:w-1/2 lg:h-96 my-2 md:order-1">
             <div id="default-carousel" class="relative w-full h-full" data-carousel="slide">
-                <!-- Carousel wrapper -->
+
                 <div class="relative h-56-lg overflow-hidden rounded-lg md:h-96">
                     @foreach ($viewData['products'] as $product)
                         <div class="hidden duration-700 ease-in-out flex items-center justify-center" data-carousel-item>
-
-
                             <div
                                 class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
                                 <img class="p-8 rounded-t-lg" src="{{ url($product->getImage()) }}" alt="product image" />
 
                                 <div class="px-5 pb-5">
-
                                     <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                                        {{ $product->getName() }}</h5>
+                                        {{ $product->getName() }}
+                                    </h5>
 
                                     <div class="flex items-center mt-2.5 mb-5">
                                         <div class="flex items-center space-x-1 rtl:space-x-reverse">
@@ -124,7 +122,7 @@
             </div>
         </div>
 
-    </div>
 
+    </div>
 
 @endsection

@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 return [
-    'reviewTitle' => 'Reviews for All Products',
+
+    'reviewTitle' => 'Reviews for all Products',
+    'title' => 'Drone Admin - Reviews',
+
     'accept' => 'Accept',
     'reject' => 'Reject',
     'user' => 'User:',
@@ -13,4 +16,6 @@ return [
     'rr' => 'Rejected Reviews',
     'reviewAccept' => 'Review accepted successfully.',
     'reviewReject' => 'Review rejected and deleted successfully.',
+    'accepted' => 'Accepted',
+    'rejected' => 'Rejected',
 ];

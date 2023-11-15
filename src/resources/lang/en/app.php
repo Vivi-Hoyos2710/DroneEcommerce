@@ -20,4 +20,9 @@ return [
     'dlmode' => 'Dark/light mode',
     'allied' => 'Allied Products',
 
+    'order' => 'My Order',
+    'wishlist' => 'My Wishlist',
+    'logout' => 'Logout',
+
+
 ];
