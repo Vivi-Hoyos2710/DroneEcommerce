@@ -40,4 +40,5 @@ return [
     'state_province' => 'Departamento',
     'zip_postal_code' => 'Código postal',
     'country' => 'País',
+    'file' => 'Archivo',
 ];

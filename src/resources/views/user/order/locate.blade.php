@@ -2,6 +2,9 @@
 
 @section('title')
 @section('content')
+
+{{ Breadcrumbs::render('order.adress') }}
+
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +42,7 @@
                         class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full" 
                         disabled 
                         style="opacity: 0.5; background-color: #bdc3c7;">
-                        {{__('order.purcharse')}}
+                        {{__('order.purchase')}}
                     </button>
                 </form>
             </div>

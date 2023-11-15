@@ -1,7 +1,12 @@
 @extends('layouts.app')
 @section('title', __('product.title'))
 @section('subtitle',__('products_list') )
+
 @section('content')
+
+
+    {{ Breadcrumbs::render('products') }}
+
     <div class="mt-16">
         <h3 class="text-gray-600 text-2xl font-medium">{{ __('product.title') }}</h3>
         <h3 class="text-gray-600 text-2xl font-medium">{{ $viewData["subtitle"] }}</h3>

@@ -1,6 +1,9 @@
-@extends('layouts.app')se
+@extends('layouts.app')
 @section('title', $viewData["title"])
 @section('content')
+
+    {{ Breadcrumbs::render('wishlist') }}
+
     <div>
         <div class="px-32 py-20 bg-gray-100 grid  gap-10">
             @foreach ($viewData['wishList'] -> getProducts() as $product)

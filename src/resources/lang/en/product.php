@@ -40,5 +40,5 @@ return [
     'state_province' => 'State/Province',
     'zip_postal_code' => 'Zip/Postal Code',
     'country' => 'Country',
-
+    'file' => 'File',
 ];

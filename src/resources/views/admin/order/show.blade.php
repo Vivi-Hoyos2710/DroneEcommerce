@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('title', $viewData['title'])
 @section('content')
+
+    {{ Breadcrumbs::render('homeAdmin.orders.show', $viewData['order']) }} 
+
     <div class="bg-white shadow-md rounded-lg p-6">
         <h2 class="text-xl font-semibold mb-4">{{ $viewData['title'] }}</h2>
         <section class="bg-white dark:bg-gray-900">

@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 @section('title', $viewData['title'])
 @section('content')
+
+    {{ Breadcrumbs::render('homeAdmin.reviews') }} 
+
     <div class="relative overflow-x-auto">
         <div class="container mx-auto p-4">
-            <h1 class="text-2xl font-semibold mb-4">{{ __('product.reviewTitle') }} Accepted</h1>
-
+            <h1 class="text-2xl font-semibold mb-4">{{ __('product.reviewTitle') }} </h1>
 
             @if (session('rejected'))
                 <div class="bg-red-200 text-red-800 border border-red-400 rounded p-2 mb-4">

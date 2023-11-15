@@ -2,6 +2,8 @@
 @section('title', $viewData['title'])
 @section('content')
 
+    {{ Breadcrumbs::render('homeAdmin.reviews') }} 
+
     <div class="relative overflow-x-auto">
         <h1 class="text-3xl font-extrabold dark:text-white">{{ __('adminpanel.reviews') }}</h1>
 

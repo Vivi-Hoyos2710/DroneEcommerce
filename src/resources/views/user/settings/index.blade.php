@@ -20,6 +20,8 @@
             @endforeach
         </div>
     @endif
+    <!--------->
+
     <!--settings view start-->
     <div class="bg-white shadow-md mx-auto mt-8 p-4 w-96 rounded-lg dark:bg-gray-700">
         <h1 class="text-2xl font-semibold mb-4 dark:text-gray-100">{{ __('settings.account')}}</h1>
